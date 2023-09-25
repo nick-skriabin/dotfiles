@@ -1,0 +1,3 @@
+return {
+  "wavded/vim-stylus",
+}

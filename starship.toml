@@ -1,0 +1,68 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$git_metrics\
+$fill\
+$nodejs\
+$python\
+$rust\
+$docker_context\
+$cmd_duration $jobs $time\
+$line_break\
+$character"""
+# Inserts a blank line between shell prompts
+add_newline = true
+
+[git_status]
+format = '($all_status$ahead_behind) '
+ahead = '[⇡${count}](bold red)'
+diverged = '⇕⇡${ahead_count}⇣${behind_count}'
+behind = '[⇣${count}](bold yellow)'
+up_to_date = '[✓](bold green)'
+modified = '[](bold yellow)'
+untracked = '[](bold black)'
+deleted = '[](bold red)'
+staged = '[](bold green)'
+stashed = ''
+renamed = ''
+typechanged = ''
+
+[git_commit]
+only_detached = false
+
+[git_metrics]
+disabled = false
+
+[fill]
+symbol = " "
+
+# Replace the '❯' symbol in the prompt with '➜'
+[character] # The name of the module we are configuring is 'character'
+success_symbol = '[➜](bold green)' # The 'success_symbol' segment is being set to '➜' with the color 'bold green'
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = true
+
+[directory]
+truncation_length = 8
+truncation_symbol = '…/'
+
+[nodejs]
+format = "[ $version](bold green)"
+
+[docker_context]
+format = " [$symbol$context]($style)"
+
+[time]
+disabled = false
+use_12hr = true
+format = "[$time]($style)"
