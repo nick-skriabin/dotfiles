@@ -52,16 +52,12 @@ repoPaths:
 keybindings:
   issues: []
   prs: 
-    - key: o
+    - key: e
       command: >
-        tmux split-window -h -c {{.RepoPath}} '
-          gh pr checkout {{.PrNumber}} &&
-          nvim -c ":Octo pr edit {{.PrNumber}}"
-        '
-repoPaths: {}
+        tmux new-window -c {{.RepoPath}} 'nvim -c ":Octo pr edit {{.PrNumber}}"'
 theme:
   ui:
     table:
       showSeparator: true
 pager:
-  diff: ""
+  diff: "delta"

@@ -22,3 +22,4 @@ fish_add_path $HOME/.cargo/env
 fish_add_path $HOME/.tmux/plugins/tmuxifier/bin
 fish_add_path $HOME/Git/sourcekit-lsp/.build/debug
 fish_add_path $HOME/development/flutter/bin
+fish_add_path $HOME/.config/tmux/plugins/t-smart-tmux-session-manager/bin

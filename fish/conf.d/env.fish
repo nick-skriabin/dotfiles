@@ -29,6 +29,6 @@ set -e NODE_OPTIONS
 # set NODE_OPTIONS="--max-old-space-size=8192"
 
 # Vim
-set MYVIMRC $HOME/.config/nvim/init.lua
 set NVIM_APPNAME lazynvim
-set TMUX_FZF_LAUNCH_KEY C-f
+
+set GIT_PAGER delta

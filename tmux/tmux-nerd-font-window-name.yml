@@ -1,0 +1,11 @@
+config:
+  fallback-icon: "?"
+  show-name: false
+
+icons:
+  fish: "🐠"
+  nvim: ""
+  btop: "📈"
+  bun: "🥟"
+  node: "󰎙"
+  runtime: "󰜎"

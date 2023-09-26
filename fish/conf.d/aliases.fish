@@ -1,9 +1,7 @@
 # aliases
-alias cd="z"
 alias hflush="dscacheutil -flushcache"
 alias chromedebug="adb forward tcp:9222 localabstract:chrome_devtools_remote"
 alias pserv="python -m SimpleHTTPServer"
-alias t="tail -f"
 alias md="mkdir -p"
 alias zshconfig="cd $HOME/.config/zsh && nvim"
 alias ohmyzsh="$EDITOR ~/.oh-my-zsh"
@@ -15,6 +13,7 @@ alias pip="python3 -m pip"
 alias ls='exa --icons --git -a --group-directories-first'
 alias la='exa -l --icons --git -a --group-directories-first'
 alias lt='exa --tree --level=2 --long --icons --git --group-directories-first'
+alias nvim="NVIM_APPNAME=lazynvim /opt/homebrew/bin/nvim"
 alias v="nvim"
 alias cat="bat"
 alias c="clear"
