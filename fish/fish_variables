@@ -1,9 +1,33 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
+SETUVAR --export ANDROID_HOME:/Users/nicholasrq/Library/Android/sdk
+SETUVAR --export CODECOV_TOKEN:2eed9f29\x2df8d0\x2d446b\x2d86e9\x2d9962380833cb
+SETUVAR --export COMPOSE_DOCKER_CLI_BUILD:1
+SETUVAR --export CPPFLAGS:\x2dI/usr/local/opt/node\x4014/include
+SETUVAR --export CPU_NUMBER:10
+SETUVAR --export DOCKER_BUILDKIT:1
+SETUVAR --export EDITOR:nvim
+SETUVAR --export GITHUB_PACKAGES_TOKEN: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
+SETUVAR --export GITHUB_TOKEN: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
+SETUVAR --export GIT_PAGER:delta
+SETUVAR --export GOOGLE_APPLICATION_CREDENTIALS:/Users/nicholasrq/gcs\x2dcredentials\x2ejson
+SETUVAR --export JIRA_API_KEY:ATATT3xFfGF07MxkZI\x2dS9WIoe7q9m\x2d7\x2dDuoJ06j\x2dfnKatCLZE4SSoTS5VjOeU3WiXbbV8qPNz254H0CDL5W05Yf_vTmPtKf7\x2dZQqMswBuCJRMPftLDKijUKw6yY0XvOlH2Snfu4hAMJaHgBzRWl1juGoy6Pz7AYSxCYx0uU\x2d7Fe4ZT3bqOcDLyQ\x3d3F611E32
+SETUVAR --export JIRA_API_TOKEN:O7aP8E3hp6eBYwyyV7h85B21
+SETUVAR --export JIRA_URL:https\x3a//heartex\x2eatlassian\x2enet
+SETUVAR --export JIRA_USER:robot\x2dci\x40heartex\x2ecom
+SETUVAR --export LDFLAGS:\x2dL/usr/local/opt/node\x4014/lib
+SETUVAR --export NODE_ENV:development
+SETUVAR --export NODE_NO_WARNINGS:1
+SETUVAR --export NPMJS_TOKEN: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
+SETUVAR --export NVIM_APPNAME:lazynvim
+SETUVAR --export --path PKG_CONFIG_PATH:/usr/local/opt/zlib/lib/pkgconfig
+SETUVAR --export SLACK_API_TOKEN:xoxb\x2d634578297890\x2d3951402438771\x2dq7jvOqFXw5O52nlnuOV8hJlw
+SETUVAR --export XDG_CONFIG_HOME:/Users/nicholasrq/\x2econfig
 SETUVAR __fish_initialized:3400
 SETUVAR _fisher_jorgebucaran_2F_fisher_files:\x7e/\x2econfig/fish/functions/fisher\x2efish\x1e\x7e/\x2econfig/fish/completions/fisher\x2efish
 SETUVAR _fisher_plugins:jorgebucaran/fisher
 SETUVAR _fisher_upgraded_to_4_4:\x1d
+SETUVAR --export collect_analytics:false
 SETUVAR fish_color_autosuggestion:555\x1ebrblack
 SETUVAR fish_color_cancel:\x2dr
 SETUVAR fish_color_command:blue
@@ -26,6 +50,7 @@ SETUVAR fish_color_selection:white\x1e\x2d\x2dbold\x1e\x2d\x2dbackground\x3dbrbl
 SETUVAR fish_color_status:red
 SETUVAR fish_color_user:brgreen
 SETUVAR fish_color_valid_path:\x2d\x2dunderline
+SETUVAR fish_greeting:\x1d
 SETUVAR fish_key_bindings:fish_vi_key_bindings
 SETUVAR fish_pager_color_completion:normal
 SETUVAR fish_pager_color_description:B3A06D\x1eyellow\x1e\x2di

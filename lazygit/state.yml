@@ -1,15 +1,15 @@
 lastupdatecheck: 0
 recentrepos:
+- /Users/nicholasrq/Git/dotfiles
+- /Users/nicholasrq/Git/label-studio
+- /Users/nicholasrq/Git/label-studio-frontend
 - /Users/nicholasrq/Git/CoFlowApp
 - /Users/nicholasrq/Git/label-studio-enterprise
 - /Users/nicholasrq/Git/label-studio-enterprise/editor
-- /Users/nicholasrq/Git/label-studio-frontend
 - /Users/nicholasrq/Git/zmk-config
-- /Users/nicholasrq/Git/label-studio
 - /Users/nicholasrq/Git/label-studio-enterprise/datamanager
 - /Users/nicholasrq/Git/label-studio-enterprise/label-studio-private
 - /Users/nicholasrq/Git/nvimconf
-- /Users/nicholasrq/.config/lazynvim
 - /Users/nicholasrq/.config/astro
 - /Users/nicholasrq/Git/jz-state
 - /Users/nicholasrq/git/form_builder_cupertino_fields
@@ -18,7 +18,6 @@ recentrepos:
 - /Users/nicholasrq/Git/dm2
 - /Users/nicholasrq/Git/ls-frontend-test
 - /Users/nicholasrq/git/gha
-- /Users/nicholasrq/.config/nvim
 - /Users/nicholasrq/Git/ls-waveform
 - /Users/nicholasrq/Git/wecto
 startuppopupversion: 5
@@ -27,3 +26,4 @@ customcommandshistory:
 - fetch
 - git fetch
 hidecommandlog: false
+ignorewhitespaceindiffview: false

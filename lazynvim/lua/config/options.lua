@@ -3,3 +3,7 @@
 -- Add any additional options here
 
 vim.diagnostic.config({ update_in_insert = true })
+
+local opt = vim.opt
+
+opt.cursorline = false

@@ -71,3 +71,6 @@ alias gwr='gh workflow run'
 # alias gwr-sass='echo {"ref": $0, "deploy_to_prod": true, "sure": "sure"} gwr 30106738'
 #
 alias gws-sass='gws 30106738'
+
+alias jira="jirust"
+alias jj="jirust"

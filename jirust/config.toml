@@ -1,0 +1,14 @@
+# These two properties are required
+domain = "https://humansignal.atlassian.net"
+user_email = "nikita@humansignal.com"
+api_version = "3"
+db_file = true # If true, it will create a cached db in the /tmp directory.  Which can live for 10 days.
+
+[tickets]
+#Show current sprint ticket only
+current_sprint_tickets_only = false
+# Show tickets assigned to you only.  Can include unassigned.
+current_user_tickets_only = true
+# Show tickets in these status only
+show_ticket_status = ["Done", "In Progress", "To Do", "Needs Info", "QA", "Confirmed"]
+
