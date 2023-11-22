@@ -4,20 +4,14 @@ yabai -m config layout bsp
 
 # New window spawns to the right if vertical split, or bottom if horizontal split
 yabai -m config window_placement second_child
-yabai -m config window_opacity on
-yabai -m config active_window_opacity 1.0
-yabai -m config normal_window_opacity 0.8
 
-yabai -m config window_border on
-yabai -m config active_window_border_color 0xff775759
-yabai -m config normal_window_border_color 0xff555555
 
 # padding set to 12px
-yabai -m config top_padding 12
-yabai -m config bottom_padding 12
-yabai -m config left_padding 12
-yabai -m config right_padding 12
-yabai -m config window_gap 12
+yabai -m config top_padding 8
+yabai -m config bottom_padding 8
+yabai -m config left_padding 8
+yabai -m config right_padding 8
+yabai -m config window_gap 8
 
 # navigate between spaces
 yabai -m space --focus next
@@ -44,4 +38,10 @@ yabai -m rule --add app="^Creative Cloud$" manage=off
 yabai -m rule --add app="^Finder$" manage=off
 yabai -m rule --add app="^Figma$" manage=off
 yabai -m rule --add app="^Simulator$" manage=off
+yabai -m rule --add app="^WezTerm$" manage=off
+yabai -m rule --add app="^Rize$" manage=off
+yabai -m rule --add app="^Blocker$" manage=off
 
+# SKETCHYBAR EVENTS
+yabai -m signal --add event=window_focused action="sketchybar -m --trigger window_focus &> /dev/null"
+yabai -m signal --add event=window_title_changed action="sketchybar -m --trigger title_change &> /dev/null"

@@ -1,0 +1,1 @@
+require("nskriabin.auto.dashboard")

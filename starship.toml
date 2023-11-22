@@ -14,7 +14,7 @@ $cmd_duration $jobs $time\
 $line_break\
 $character"""
 # Inserts a blank line between shell prompts
-add_newline = true
+add_newline = false
 
 [fill]
 symbol = " "

@@ -3,6 +3,7 @@
 SETUVAR --export ANDROID_HOME:/Users/nicholasrq/Library/Android/sdk
 SETUVAR --export CODECOV_TOKEN:2eed9f29\x2df8d0\x2d446b\x2d86e9\x2d9962380833cb
 SETUVAR --export COMPOSE_DOCKER_CLI_BUILD:1
+SETUVAR --export CONFIG_DIR:/Users/nicholasrq/\x2econfig
 SETUVAR --export CPPFLAGS:\x2dI/usr/local/opt/node\x4014/include
 SETUVAR --export CPU_NUMBER:10
 SETUVAR --export DOCKER_BUILDKIT:1
@@ -18,9 +19,11 @@ SETUVAR --export JIRA_USER:robot\x2dci\x40heartex\x2ecom
 SETUVAR --export LDFLAGS:\x2dL/usr/local/opt/node\x4014/lib
 SETUVAR --export NODE_ENV:development
 SETUVAR --export NODE_NO_WARNINGS:1
+SETUVAR --export NODE_OPTIONS:\x2d\x2dmax\x2dold\x2dspace\x2dsize\x3d8192
 SETUVAR --export NPMJS_TOKEN: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
-SETUVAR --export NVIM_APPNAME:lazynvim
+SETUVAR --export NVIM_APPNAME:nvim
 SETUVAR --export --path PKG_CONFIG_PATH:/usr/local/opt/zlib/lib/pkgconfig
+SETUVAR --export RTC_METRO_PORT:9090
 SETUVAR --export SLACK_API_TOKEN:xoxb\x2d634578297890\x2d3951402438771\x2dq7jvOqFXw5O52nlnuOV8hJlw
 SETUVAR --export XDG_CONFIG_HOME:/Users/nicholasrq/\x2econfig
 SETUVAR __fish_initialized:3400
@@ -57,4 +60,4 @@ SETUVAR fish_pager_color_description:B3A06D\x1eyellow\x1e\x2di
 SETUVAR fish_pager_color_prefix:normal\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
 SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
 SETUVAR fish_pager_color_selected_background:\x2dr
-SETUVAR fish_user_paths:/Users/nicholasrq/\x2econfig/tmux/plugins/t\x2dsmart\x2dtmux\x2dsession\x2dmanager/bin\x1e/Users/nicholasrq/development/flutter/bin\x1e/Users/nicholasrq/Git/sourcekit\x2dlsp/\x2ebuild/debug\x1e/Users/nicholasrq/\x2etmux/plugins/tmuxifier/bin\x1e/Applications/Postgres\x2eapp/Contents/Versions/latest/bin\x1e/Users/nicholasrq/\x2ecargo/bin\x1e/Users/nicholasrq/\x2eyarn/bin\x1e/Users/nicholasrq/\x2elocal/bin\x1e/opt/homebrew/bin\x1e/opt/local/bin\x1e/usr/local/bin\x1e/Users/nicholasrq/Library/Android/sdk/platform\x2dtools\x1e/Users/nicholasrq/Library/Android/sdk/tools/bin\x1e/Users/nicholasrq/Library/Android/sdk/tools
+SETUVAR fish_user_paths:/Users/nicholasrq/\x2ebun/bin\x1e/Users/nicholasrq/\x2econfig/tmux/plugins/t\x2dsmart\x2dtmux\x2dsession\x2dmanager/bin\x1e/Users/nicholasrq/development/flutter/bin\x1e/Users/nicholasrq/Git/sourcekit\x2dlsp/\x2ebuild/debug\x1e/Users/nicholasrq/\x2etmux/plugins/tmuxifier/bin\x1e/Applications/Postgres\x2eapp/Contents/Versions/latest/bin\x1e/Users/nicholasrq/\x2ecargo/bin\x1e/Users/nicholasrq/\x2eyarn/bin\x1e/Users/nicholasrq/\x2elocal/bin\x1e/opt/homebrew/bin\x1e/opt/local/bin\x1e/usr/local/bin\x1e/Users/nicholasrq/Library/Android/sdk/platform\x2dtools\x1e/Users/nicholasrq/Library/Android/sdk/tools/bin\x1e/Users/nicholasrq/Library/Android/sdk/tools

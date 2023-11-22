@@ -5,6 +5,7 @@ set -Ux PKG_CONFIG_PATH /usr/local/opt/zlib/lib/pkgconfig
 set -Ux CPU_NUMBER $(sysctl -n hw.ncpu)
 set -Ux XDG_CONFIG_HOME "$HOME/.config"
 set -Ux collect_analytics false
+set -Ux CONFIG_DIR "$HOME/.config"
 
 # CPP
 set -Ux LDFLAGS "-L/usr/local/opt/node@14/lib"
@@ -26,10 +27,10 @@ set -Ux COMPOSE_DOCKER_CLI_BUILD 1
 
 set -Ux NODE_ENV development
 set -Ux NODE_NO_WARNINGS 1
-set -e NODE_OPTIONS
-# set -Ux NODE_OPTIONS="--max-old-space-size=8192"
+set -Ux NODE_OPTIONS "--max-old-space-size=8192"
+set -Ux RTC_METRO_PORT 9090
 
 # Vim
-set -Ux NVIM_APPNAME lazynvim
+set -Ux NVIM_APPNAME nvim
 
 set -Ux GIT_PAGER delta

@@ -9,12 +9,10 @@ alias gtf="cd ~/Git/gettaxfree"
 alias pick="cd ~/Git/pickio"
 alias rc="bundle exec rails console"
 alias python="python3"
-alias pip="python3 -m pip"
-alias ls='exa --icons --git -a --group-directories-first'
+alias ls='exa'
 alias la='exa -l --icons --git -a --group-directories-first'
 alias lt='exa --tree --level=2 --long --icons --git --group-directories-first'
-alias nvim="NVIM_APPNAME=lazynvim /opt/homebrew/bin/nvim"
-alias v="nvim"
+alias v="/opt/homebrew/bin/nvim"
 alias cat="bat"
 alias c="clear"
 alias s="source ~/.config/fish/config.fish"
@@ -74,3 +72,4 @@ alias gws-sass='gws 30106738'
 
 alias jira="jirust"
 alias jj="jirust"
+alias ld="lazydocker"

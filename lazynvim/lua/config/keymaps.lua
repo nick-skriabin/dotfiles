@@ -17,6 +17,8 @@ local function map(mode, lhs, rhs, opts)
   end
 end
 
+vim.keymap.del("n", "<leader>ww")
+
 -- exit insert mode
 map({ "i" }, "jk", "<ESC>", { noremap = true, silent = true, nowait = true })
 
@@ -26,7 +28,13 @@ map({ "n" }, "<S-Enter>", "O<ESC>")
 
 -- Save buffer
 map({ "n" }, "<leader>bw", ":w<cr>", { noremap = true, silent = true, nowait = true, desc = "Save Buffer" })
-map({ "n" }, "<leader>ba", ":w<cr>", { noremap = true, silent = true, nowait = true, desc = "Save All Buffers)" })
+map({ "n" }, "<leader>ba", ":w<cr>", { noremap = true, silent = true, nowait = true, desc = "Save All Buffers" })
+map(
+  { "n" },
+  "<leader>bb",
+  ":Telescope buffers<cr>",
+  { noremap = true, silent = true, nowait = true, desc = "List buffers" }
+)
 
 -- Flutter keys
 map({ "n" }, "<leader>df", ":Telescope flutter commands<cr>", { noremap = true, desc = "Open Flutter Command Pallet" })
