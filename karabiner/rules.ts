@@ -53,6 +53,8 @@ const rules: KarabinerRule[] = [
   quickCommandMap("m", "/opt/homebrew/bin/yabai -m window --toggle zoom-fullscreen"),
   quickCommandMap("e", "/opt/homebrew/bin/yabai -m space --balance"),
   quickCommandMap("f", "/opt/homebrew/bin/yabai -m window --toggle float --grid 4:4:1:1:2:2"),
+  quickCommandMap("f5", "~/.config/scripts/layout com.apple.keylayout.US"),
+  quickCommandMap("f6", "~/.config/scripts/layout com.apple.keylayout.RussianWin"),
 
   ...createHyperSubLayers({
     // Navigation

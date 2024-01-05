@@ -2,6 +2,10 @@ local M = {}
 
 M.misc = {
   dots = "󰇘",
+  file = "󰈔",
+  readonly_file = "󰈡",
+  file_plus = "󱪝",
+  recording = "󰑊",
 }
 
 M.dap = {

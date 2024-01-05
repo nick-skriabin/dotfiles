@@ -1,14 +1,18 @@
 local M = {}
 
 M.lsp = {
-  --"tsserver",
   "vtsls",
   "html",
   "cssls",
-  "luau_lsp",
-  "emmet_language_server",
+  "lua_ls",
   "pyright",
   "svelte",
+  "prismals",
+  "bashls",
+  "tailwindcss",
+  "dockerls",
+  "docker_compose_language_service",
+  "yamlls",
 }
 
 M.tools = {

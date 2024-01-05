@@ -1,7 +1,11 @@
 return {
   "f-person/git-blame.nvim",
+  event = "BufReadPre",
   opts = {
     delay = 1000,
+    ignored_filetypes = {
+      "oil",
+    },
   },
   keys = {
     { "<leader>gb", ":GitBlameToggle<cr>", silent = true, desc = "Toggle Git Blame" },

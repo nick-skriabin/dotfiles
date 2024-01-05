@@ -1,13 +1,15 @@
 -- Options are automatically loaded before lazy.nvim startup
+--
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 
 vim.diagnostic.config({ update_in_insert = true })
 
-vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
-
+local g = vim.g
 local opt = vim.opt
+
+g.mapleader = " "
+g.maplocalleader = "\\"
 
 opt.autowrite = false -- Enable auto write
 opt.clipboard = "unnamedplus" -- Sync with system clipboard
@@ -25,10 +27,10 @@ opt.laststatus = 3 -- global statusline
 opt.list = true -- Show some invisible characters (tabs...
 opt.mouse = "a" -- Enable mouse mode
 opt.number = true -- Print line number
-opt.pumblend = 10 -- Popup blend
+opt.pumblend = 0 -- Popup blend
 opt.pumheight = 10 -- Maximum number of entries in a popup
 opt.relativenumber = true -- Relative line numbers
-opt.scrolloff = 4 -- Lines of context
+opt.scrolloff = 999 -- Lines of context
 opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp" }
 opt.shiftround = true -- Round indent
 opt.shiftwidth = 2 -- Size of an indent
@@ -85,3 +87,10 @@ end
 vim.g.markdown_recommended_style = 0
 
 vim.cmd("let g:vimwiki_list = [{'path': '~/Git/notes', 'syntax': 'markdown', 'ext': '.md'}]")
+
+-- vim.cmd("set t_ZH=^[[3me")
+-- vim.cmd("set t_ZR=^[[23m")
+-- vim.cmd([[let &t_SI = "\e[6 q]])
+-- vim.cmd([[let &t_EI = "\e[2 q"]])
+
+g.skip_ts_context_commentstring_module = true

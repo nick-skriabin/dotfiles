@@ -34,3 +34,4 @@ set -Ux RTC_METRO_PORT 9090
 set -Ux NVIM_APPNAME nvim
 
 set -Ux GIT_PAGER delta
+set -Ux TERM screen-256color

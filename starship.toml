@@ -7,6 +7,7 @@ $hostname\
 $directory\
 $fill\
 $nodejs\
+$bun\
 $python\
 $rust\
 $docker_context\
@@ -38,12 +39,24 @@ truncation_length = 8
 truncation_symbol = '…/'
 
 [nodejs]
-format = "[ $version](bold green)"
+format = " [ $version](bold green)"
+
+[bun]
+format = " [ $version](bold blue)"
+
+[python]
+format = " [ $version](bold blue)"
 
 [docker_context]
+symbol = "󰡨 "
 format = " [$symbol$context]($style)"
+
+[cmd_duration]
+min_time = 10_000
+format = " [󰓅 $duration]($style)"
 
 [time]
 disabled = false
 use_12hr = true
 format = "[$time]($style)"
+time_format = "%H:%M %p"

@@ -4,6 +4,7 @@ return {
     keys = {
       { "<leader>e", ":Neotree toggle<cr>", noremap = true, silent = true, desc = "Show File Tree" },
     },
+    lazy = true,
     opts = function()
       return {
         window = {

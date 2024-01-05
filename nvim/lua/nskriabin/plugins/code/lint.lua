@@ -1,8 +1,19 @@
+local au = require("nskriabin.auto.utils")
 return {
   "mfussenegger/nvim-lint",
   event = {
     "BufReadPre",
     "BufNewFile",
+  },
+  keys = {
+    {
+      "<leader>bl",
+      function()
+        require("lint").try_lint()
+      end,
+      mode = "n",
+      desc = "Lint buffer",
+    },
   },
   config = function()
     local lint = require("lint")
@@ -15,22 +26,16 @@ return {
       python = { "pylint" },
     }
 
-    local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
-
-    vim.api.nvim_create_autocmd({
+    au.cmd({
       "BufEnter",
       "BufWritePost",
       "InsertLeave",
       "TextChanged",
     }, {
-      group = lint_augroup,
+      group = au.group("lint"),
       callback = function()
         lint.try_lint()
       end,
     })
-
-    vim.keymap.set("n", "<leader>l", function()
-      lint.try_lint()
-    end, { desc = "Trigger linting for current file" })
   end,
 }

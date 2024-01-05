@@ -12,6 +12,10 @@ map({ "n" }, "<leader>qb", ":bd!<cr>", { noremap = true, silent = true, nowait =
 map({ "n" }, "<Enter>", "o<ESC>")
 map({ "n" }, "<S-Enter>", "O<ESC>")
 
+-- Navigation
+map({ "n" }, "<C-u>", "<C-u>zz", { noremap = true, silent = true })
+map({ "n" }, "<C-d>", "<C-d>zz", { noremap = true, silent = true })
+
 -- Buffers
 map({ "n" }, "<leader>bd", ":Bdelete<cr>", { noremap = true, silent = true, nowait = true, desc = "Delete Buffer" })
 map(
@@ -25,3 +29,7 @@ map({ "n" }, "<leader>ba", ":wa<cr>", { noremap = true, silent = true, nowait = 
 
 -- Pasting
 map("n", "<C-p>", '<C-r>"', { noremap = true, silent = true, nowait = true })
+
+-- Managers
+map("n", "<leader>ll", ":Lazy<cr>", { noremap = true, silent = true, desc = "Lazy" })
+map("n", "<leader>lm", ":Mason<cr>", { noremap = true, silent = true, desc = "Mason" })

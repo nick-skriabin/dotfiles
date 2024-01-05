@@ -9,9 +9,9 @@ alias gtf="cd ~/Git/gettaxfree"
 alias pick="cd ~/Git/pickio"
 alias rc="bundle exec rails console"
 alias python="python3"
-alias ls='exa'
-alias la='exa -l --icons --git -a --group-directories-first'
-alias lt='exa --tree --level=2 --long --icons --git --group-directories-first'
+alias ls='eza'
+alias ll='ls -l --icons --git -a --group-directories-first'
+alias lt='ls --tree --level=2 --long --icons --git --group-directories-first'
 alias v="/opt/homebrew/bin/nvim"
 alias cat="bat"
 alias c="clear"

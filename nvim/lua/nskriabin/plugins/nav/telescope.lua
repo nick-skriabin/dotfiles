@@ -2,6 +2,7 @@ local Util = require("nskriabin.core.util")
 
 return {
   "nvim-telescope/telescope.nvim",
+  event = { "VeryLazy", "LspAttach" },
   dependencies = {
     {
       "natecraddock/telescope-zf-native.nvim",

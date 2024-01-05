@@ -1,3 +1,84 @@
+local servers = require("nskriabin.core.lsp.servers")
+local merge = require("nskriabin.core.util.merge")
+local auto = require("nskriabin.auto.utils")
+
+local configs = {
+  ["svelte"] = {
+    on_attach = function(client, bufnr)
+      auto.cmd("BufWritePost", {
+        pattern = { "*.js", "*.ts" },
+        group = auto.group("svelte"),
+
+        callback = function(ctx)
+          -- Here use ctx.match instead of ctx.file
+          client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.match })
+        end,
+      })
+    end,
+  },
+  ["vtsls"] = {
+    settings = {
+      typescript = {
+        tsserver = {
+          maxTsServerMemory = "auto",
+          --log = "verbose",
+          --trace = "verbose",
+        },
+        updateImportsOnFileMove = "always",
+        inlayHints = {
+          parameterNames = { enabled = "literals" },
+          parameterTypes = { enabled = true },
+          variableTypes = { enabled = true },
+          propertyDeclarationTypes = { enabled = true },
+          functionLikeReturnTypes = { enabled = true },
+          enumMemberValues = { enabled = true },
+        },
+      },
+      javascript = {
+        updateImportsOnFileMove = "always",
+      },
+    },
+  },
+  ["emmet_language_server"] = {
+    filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
+  },
+  ["lua_ls"] = {
+    settings = { -- custom settings for lua
+      Lua = {
+        -- make the language server recognize "vim" global
+        diagnostics = {
+          globals = { "vim" },
+        },
+        workspace = {
+          -- make language server aware of runtime files
+          library = {
+            [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+            [vim.fn.stdpath("config") .. "/lua"] = true,
+          },
+        },
+      },
+    },
+  },
+}
+
+local function get_config(name, capabilities, on_attach)
+  local server_config = configs[name] or {}
+
+  local overriden_on_attach = function(client, bufnr)
+    if server_config.on_attach then
+      server_config.on_attach(client, bufnr)
+    end
+    on_attach(client, bufnr)
+  end
+
+  local config = merge({
+    capabilities = capabilities,
+    on_attach = overriden_on_attach,
+  }, server_config)
+
+  return config
+end
+
 return {
   "neovim/nvim-lspconfig",
   event = { "BufReadPre", "BufNewFile" },
@@ -79,96 +160,22 @@ return {
     -- used to enable autocompletion (assign to every lsp server config)
     local capabilities = cmp_nvim_lsp.default_capabilities()
 
+    capabilities.textDocument.foldingRange = {
+      dynamicRegistration = false,
+      lineFoldingOnly = true,
+    }
+
     -- Change the Diagnostic symbols in the sign column (gutter)
     -- (not in youtube nvim video)
     local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
+
     for type, icon in pairs(signs) do
       local hl = "DiagnosticSign" .. type
       vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
     end
 
-    -- configure html server
-    lspconfig["html"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
-
-    -- configure html server
-    lspconfig["svelte"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
-
-    -- configure typescript server with plugin
-    lspconfig["vtsls"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-      settings = {
-        typescript = {
-          tsserver = {
-            maxTsServerMemory = "auto",
-            --log = "verbose",
-            --trace = "verbose",
-          },
-          updateImportsOnFileMove = "always",
-          inlayHints = {
-            parameterNames = { enabled = "literals" },
-            parameterTypes = { enabled = true },
-            variableTypes = { enabled = true },
-            propertyDeclarationTypes = { enabled = true },
-            functionLikeReturnTypes = { enabled = true },
-            enumMemberValues = { enabled = true },
-          },
-        },
-        javascript = {
-          updateImportsOnFileMove = "always",
-        },
-      },
-    })
-
-    -- configure css server
-    lspconfig["cssls"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
-
-    -- configure emmet language server
-    lspconfig["emmet_language_server"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-      filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
-    })
-
-    -- configure python server
-    lspconfig["pyright"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
-
-    lspconfig["tailwindcss"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
-
-    -- configure lua server (with special settings)
-    lspconfig["lua_ls"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-      settings = { -- custom settings for lua
-        Lua = {
-          -- make the language server recognize "vim" global
-          diagnostics = {
-            globals = { "vim" },
-          },
-          workspace = {
-            -- make language server aware of runtime files
-            library = {
-              [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-              [vim.fn.stdpath("config") .. "/lua"] = true,
-            },
-          },
-        },
-      },
-    })
+    for _, name in pairs(servers.lsp) do
+      lspconfig[name].setup(get_config(name, capabilities, on_attach))
+    end
   end,
 }

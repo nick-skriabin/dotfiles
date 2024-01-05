@@ -11,9 +11,14 @@ return {
   event = "InsertEnter",
   keys = { ":" },
   config = function(_, opts)
-    vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
+    vim.api.nvim_set_hl(0, "CmpGhostText", {
+      link = "Comment",
+      default = true,
+    })
 
     local cmp = require("cmp")
+
+    require("luasnip.loaders.from_vscode").lazy_load()
 
     cmp.setup(opts)
 
@@ -51,14 +56,14 @@ return {
     local luasnip = require("luasnip")
 
     local border_opts = {
-      border = "single",
-      winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+      border = nil,
+      winhighlight = "Normal:CmpNormal,NormalFloat:CmpNormalFloat,FloatBorder:TelescopeBorder",
+      zindex = 1001,
+      scrolloff = 0,
+      col_offset = 0,
+      side_padding = 1,
+      scrollbar = "║",
     }
-
-    local function has_words_before()
-      local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-      return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-    end
 
     local next_item = cmp.mapping(
       cmp.mapping.select_next_item({
@@ -99,15 +104,18 @@ return {
         ["<CR>"] = cmp.mapping(cmp.mapping.confirm({ select = false }), { "i" }),
         ["<Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
-            cmp.select_next_item()
+            local entry = cmp.get_selected_entry()
+            if not entry then
+              cmp.select_next_item({ behavior = cmp.SelectBehavior.select })
+            else
+              cmp.confirm()
+            end
           elseif luasnip.expand_or_jumpable() then
             luasnip.expand_or_jump()
-          elseif has_words_before() then
-            cmp.complete()
           else
             fallback()
           end
-        end, { "i", "s" }),
+        end, { "i", "s", "c" }),
         ["<S-Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_prev_item()
@@ -116,19 +124,26 @@ return {
           else
             fallback()
           end
-        end, { "i", "s" }),
+        end, { "i", "s", "c" }),
       }),
       sources = cmp.config.sources({
         { name = "nvim_lsp", priority = 1000 },
         { name = "dap", priority = 900 },
-        { name = "luasnip", priority = 130 },
+        { name = "luasnip", priority = 1100 },
         { name = "path", priority = 120 },
-        { name = "buffer", priority = 100 },
       }, {
         { name = "buffer" },
       }),
       formatting = {
         format = function(_, item)
+          item.dup = {
+            nvim_lsp = 1,
+            dap = 1,
+            luasnip = 1,
+            cmp_tabnine = 1,
+            buffer = 1,
+            path = 1,
+          }
           local icons = require("nskriabin.core.ui.icons").kinds
           if icons[item.kind] then
             item.kind = icons[item.kind] .. item.kind
@@ -141,20 +156,13 @@ return {
           hl_group = "CmpGhostText",
         },
       },
-      duplicates = {
-        nvim_lsp = 1,
-        luasnip = 1,
-        cmp_tabnine = 1,
-        buffer = 1,
-        path = 1,
-      },
       confirm_opts = {
         behavior = cmp.ConfirmBehavior.Replace,
         select = false,
       },
       window = {
-        completion = cmp.config.window.bordered(border_opts),
-        documentation = cmp.config.window.bordered(border_opts),
+        completion = border_opts,
+        documentation = border_opts,
       },
       sorting = defaults.sorting,
     }

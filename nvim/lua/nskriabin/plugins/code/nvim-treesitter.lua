@@ -1,3 +1,4 @@
+local auto = require("nskriabin.auto.utils")
 return {
   "nvim-treesitter/nvim-treesitter",
   event = { "BufReadPost", "BufNewFile", "BufWritePre" },
@@ -13,6 +14,11 @@ return {
   },
   config = function()
     local treesitter = require("nvim-treesitter.configs")
+
+    auto.cmd({ "BufRead", "BufNewFile" }, {
+      pattern = "*.keymap,*.dtsi",
+      command = "set filetype=devicetree",
+    })
 
     treesitter.setup({
       highlight = {
@@ -40,6 +46,7 @@ return {
         "lua",
         "vim",
         "svelte",
+        "devicetree",
       },
       incremental_selection = {
         enable = true,

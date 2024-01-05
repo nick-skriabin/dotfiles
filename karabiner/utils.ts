@@ -16,7 +16,7 @@ type HyperKeySublayer = {
 
 export function quickCommandMap(key: KeyCode, command: string): KarabinerRule {
   return {
-    description: "Yabai command",
+    description: `Shell command (Hyper + ${key})`,
     manipulators: [{
       type: 'basic',
       from: {
