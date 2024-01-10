@@ -4,6 +4,26 @@ local auto = require("nskriabin.auto.utils")
 
 local configs = {
   ["svelte"] = {
+    settings = {
+      svelte = {
+        ["enable-ts-plugin"] = true,
+        plugin = {
+          css = {
+            completions = {
+              emmet = false,
+            },
+          },
+          html = {
+            completions = {
+              emmet = false,
+            },
+            tagComplete = {
+              enable = false,
+            },
+          },
+        },
+      },
+    },
     on_attach = function(client, bufnr)
       auto.cmd("BufWritePost", {
         pattern = { "*.js", "*.ts" },
@@ -19,6 +39,9 @@ local configs = {
   ["vtsls"] = {
     settings = {
       typescript = {
+        format = {
+          enable = false,
+        },
         tsserver = {
           maxTsServerMemory = "auto",
           --log = "verbose",
@@ -35,12 +58,12 @@ local configs = {
         },
       },
       javascript = {
+        format = {
+          enable = false,
+        },
         updateImportsOnFileMove = "always",
       },
     },
-  },
-  ["emmet_language_server"] = {
-    filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
   },
   ["lua_ls"] = {
     settings = { -- custom settings for lua
@@ -57,6 +80,25 @@ local configs = {
           },
         },
       },
+    },
+  },
+  ["emmet_language_server"] = {
+    filetypes = {
+      "css",
+      "eruby",
+      "html",
+      "javascript",
+      "javascriptreact",
+      "less",
+      "sass",
+      "scss",
+      "pug",
+      "typescriptreact",
+      "svelte",
+    },
+    init_options = {
+      showAbbreviationSuggestions = false,
+      showSuggestionsAsSnippets = false,
     },
   },
 }
@@ -87,6 +129,7 @@ return {
     { "antosha417/nvim-lsp-file-operations", config = true },
     "yioneko/nvim-vtsls",
     "SmiteshP/nvim-navic",
+    "folke/neoconf.nvim",
   },
   config = function()
     -- import lspconfig plugin

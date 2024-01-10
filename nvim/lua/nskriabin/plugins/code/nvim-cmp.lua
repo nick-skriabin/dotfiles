@@ -7,6 +7,7 @@ return {
     "hrsh7th/cmp-path",
     "saadparwaiz1/cmp_luasnip",
     "L3MON4D3/LuaSnip",
+    "windwp/nvim-autopairs",
   },
   event = "InsertEnter",
   keys = { ":" },
@@ -17,8 +18,11 @@ return {
     })
 
     local cmp = require("cmp")
+    local cmp_npar = require("nvim-autopairs.completion.cmp")
 
     require("luasnip.loaders.from_vscode").lazy_load()
+
+    cmp.event:on("confirm_done", cmp_npar.on_confirm_done())
 
     cmp.setup(opts)
 

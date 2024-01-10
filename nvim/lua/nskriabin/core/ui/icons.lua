@@ -8,6 +8,16 @@ M.misc = {
   recording = "󰑊",
 }
 
+M.lsps = {
+  tailwindcss = "󱏿",
+  svelte = "",
+  rust = "",
+  ["lua_ls"] = "󰢱",
+  vtsls = "",
+  tsserver = "",
+  emmet_language_server = "",
+}
+
 M.dap = {
   Stopped = { "󰁕 ", "DiagnosticWarn", "DapStoppedLine" },
   Breakpoint = " ",

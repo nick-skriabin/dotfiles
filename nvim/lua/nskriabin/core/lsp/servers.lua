@@ -13,10 +13,12 @@ M.lsp = {
   "dockerls",
   "docker_compose_language_service",
   "yamlls",
+  "jsonls",
+  "emmet_language_server",
 }
 
 M.tools = {
-  "prettier", -- prettier formatter
+  "prettierd", -- prettier formatter
   "stylua", -- lua formatter
   "isort", -- python formatter
   "black", -- python formatter

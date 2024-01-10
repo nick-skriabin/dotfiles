@@ -1,6 +1,7 @@
 return {
   "f-person/git-blame.nvim",
   event = "BufReadPre",
+  enabled = false,
   opts = {
     delay = 1000,
     ignored_filetypes = {

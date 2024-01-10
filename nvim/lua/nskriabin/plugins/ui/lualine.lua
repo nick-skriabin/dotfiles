@@ -117,16 +117,16 @@ local lsp = function(palette, icons)
       for _, client in ipairs(clients) do
         local filetypes = client.config.filetypes
         if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-          table.insert(attached, client.name)
+          local icon = icons.lsps[client.name] or attached
+          table.insert(attached, icon)
         end
       end
       if #attached > 0 then
-        return table.concat(attached, ", ")
+        return table.concat(attached, " ")
       else
         return msg
       end
     end,
-    icon = "󰒓",
     color = { fg = palette.sky, gui = "bold" },
   }
 end
