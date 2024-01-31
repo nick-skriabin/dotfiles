@@ -17,12 +17,12 @@ return {
     },
   },
   config = function()
-    local pallete = require("catppuccin.palettes").get_palette("mocha")
+    local colors = require("nskriabin.core.util.color").kanagawa()
 
     require("package-info").setup({
       package_manager = "pnpm",
       colors = {
-        outdated = pallete.peach,
+        outdated = colors.warn,
       },
       hide_up_to_date = true,
     })

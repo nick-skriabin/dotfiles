@@ -30,6 +30,10 @@ return {
       autotag = {
         enable = true,
       },
+      context_commentstring = {
+        enable = true,
+        enable_autocmd = false,
+      },
       auto_install = true,
       ensure_installed = {
         "jsdoc",
@@ -67,10 +71,6 @@ return {
         },
       },
       -- enable nvim-ts-context-commentstring plugin for commenting tsx and jsx
-      context_commentstring = {
-        enable = true,
-        enable_autocmd = false,
-      },
     })
   end,
 }

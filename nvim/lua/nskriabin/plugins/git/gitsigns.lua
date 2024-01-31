@@ -3,7 +3,7 @@ return {
   event = "BufReadPre",
   opts = function()
     local C = {
-      current_linet_blame = true,
+      current_line_blame = true,
       preview_config = {
         border = "none",
       },

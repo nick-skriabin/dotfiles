@@ -1,13 +1,14 @@
 return {
-  "norcalli/nvim-colorizer.lua",
-  event = { "BufReadPre", "BufNewFile" },
-  opts = {
-
-    "css",
-    "javascript",
-    "typescript",
-    "javascript.react",
-    "typescript.react",
-    "html",
-  },
+    "norcalli/nvim-colorizer.lua",
+    event = { "BufReadPre", "BufNewFile" },
+    opts = {
+        "css",
+        "stylus",
+        "sass",
+        "javascript",
+        "typescript",
+        "javascript.react",
+        "typescript.react",
+        "html",
+    },
 }

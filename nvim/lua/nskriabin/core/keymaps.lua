@@ -19,13 +19,14 @@ map({ "n" }, "<C-d>", "<C-d>zz", { noremap = true, silent = true })
 -- Buffers
 map({ "n" }, "<leader>bd", ":Bdelete<cr>", { noremap = true, silent = true, nowait = true, desc = "Delete Buffer" })
 map(
-  { "n" },
-  "<leader>bD",
-  ":bufdo Bdelete<cr>",
-  { noremap = true, silent = true, nowait = true, desc = "Delete all Buffers" }
+    { "n" },
+    "<leader>bD",
+    ":bufdo Bdelete<cr>",
+    { noremap = true, silent = true, nowait = true, desc = "Delete all Buffers" }
 )
 map({ "n" }, "<leader>bw", ":w<cr>", { noremap = true, silent = true, nowait = true, desc = "Save Buffer" })
 map({ "n" }, "<leader>ba", ":wa<cr>", { noremap = true, silent = true, nowait = true, desc = "Save All Buffers" })
+map({ "n" }, "<leader>bq", ":q<cr>", { noremap = true, silent = true, nowait = true, desc = "Close Buffer" })
 
 -- Pasting
 map("n", "<C-p>", '<C-r>"', { noremap = true, silent = true, nowait = true })

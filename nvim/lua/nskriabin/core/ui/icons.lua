@@ -16,6 +16,8 @@ M.lsps = {
   vtsls = "",
   tsserver = "",
   emmet_language_server = "",
+  biome = "󰬉",
+  jsonls = "󰘦",
 }
 
 M.dap = {
@@ -75,6 +77,10 @@ M.kinds = {
   Unit = " ",
   Value = " ",
   Variable = " ",
+}
+
+M.modes = {
+  command = "",
 }
 
 return M
