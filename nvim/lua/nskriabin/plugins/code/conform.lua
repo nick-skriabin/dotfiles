@@ -17,6 +17,9 @@ return {
         },
     },
     config = function()
+        vim.b.disable_autoformat = false
+        vim.g.disable_autoformat = false
+
         local conform = require("conform")
         local util = require("conform.util")
         local root_files = {
@@ -35,8 +38,8 @@ return {
             eslint = {
                 ".eslintrc.js",
                 ".eslintrc.cjs",
-                ".eslintrc.yml",
                 ".eslintrc.yaml",
+                ".eslintrc.yml",
                 ".eslintrc.json",
             },
             biome = {
@@ -59,6 +62,7 @@ return {
             {
                 "biome",
                 "eslint_d",
+                -- "eslint",
                 "prettier",
             },
         }
@@ -70,8 +74,12 @@ return {
                     cwd = util.root_file(root_files.prettier),
                 },
                 eslint_d = {
-                    -- command = util.from_node_modules("eslint"),
-                    -- args = { "--fix-dry-run", "--stdin", "--stdin-filename", "$FILENAME" },
+                    -- require_cwd = true,
+                    -- cwd = util.root_file(root_files.eslint),
+                },
+                eslint = {
+                    command = util.from_node_modules("eslint"),
+                    args = { "--fix-dry-run", "--stdin", "--stdin-filename", "$FILENAME" },
                     require_cwd = true,
                     cwd = util.root_file(root_files.eslint),
                 },
@@ -95,11 +103,34 @@ return {
                 lua = { "stylua" },
                 -- python = { "isort", "black" },
             },
-            format_on_save = {
-                lsp_fallback = true,
-                async = false,
-                timeout_ms = 1000,
-            },
+            format_on_save = function(bufnr)
+                if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+                    return
+                end
+                return {
+                    lsp_fallback = true,
+                    async = false,
+                    timeout_ms = 1000,
+                }
+            end,
+        })
+
+        vim.api.nvim_create_user_command("FormatDisable", function(args)
+            if args.bang then
+                -- FormatDisable! will disable formatting just for this buffer
+                vim.b.disable_autoformat = true
+            else
+                vim.g.disable_autoformat = true
+            end
+        end, {
+            desc = "Disable autoformat-on-save",
+            bang = true,
+        })
+        vim.api.nvim_create_user_command("FormatEnable", function()
+            vim.b.disable_autoformat = false
+            vim.g.disable_autoformat = false
+        end, {
+            desc = "Re-enable autoformat-on-save",
         })
     end,
 }

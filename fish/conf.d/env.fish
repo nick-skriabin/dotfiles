@@ -35,3 +35,4 @@ set -Ux NVIM_APPNAME nvim
 
 set -Ux GIT_PAGER delta
 set -Ux TERM screen-256color
+set -Ux OPENAI_API_KEY "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"

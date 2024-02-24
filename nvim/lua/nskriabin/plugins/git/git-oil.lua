@@ -1,9 +1,15 @@
 return {
-    "refractalize/oil-git-status.nvim",
-
+    -- "nicholasrq/oil-git-status.nvim",
+    dir = "~/Git/nvim/oil-git-status.nvim",
+    enabled = false,
     dependencies = {
         "stevearc/oil.nvim",
     },
-
-    config = true,
+    opts = {
+        signs = {
+            added = "",
+            modified = "",
+            deleted = "",
+        },
+    },
 }
