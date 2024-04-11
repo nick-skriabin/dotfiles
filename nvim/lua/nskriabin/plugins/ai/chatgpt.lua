@@ -6,6 +6,7 @@ return {
         "folke/trouble.nvim",
         "nvim-telescope/telescope.nvim",
     },
+    enabled = false,
     config = function()
         local home = vim.fn.expand("$HOME")
         require("chatgpt").setup({

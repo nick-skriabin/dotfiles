@@ -21,7 +21,7 @@ return {
         vim.g.disable_autoformat = false
 
         local conform = require("conform")
-        local util = require("conform.util")
+        local root_file = require("conform.util").root_file
         local root_files = {
             prettier = {
                 ".prettierrc",
@@ -44,6 +44,7 @@ return {
             },
             biome = {
                 "biome.json",
+                "biome.jsonc",
             },
             stylua = {
                 "stylua.toml",
@@ -62,7 +63,6 @@ return {
             {
                 "biome",
                 "eslint_d",
-                -- "eslint",
                 "prettier",
             },
         }
@@ -71,24 +71,17 @@ return {
             formatters = {
                 prettier = {
                     require_cwd = true,
-                    cwd = util.root_file(root_files.prettier),
-                },
-                eslint_d = {
-                    -- require_cwd = true,
-                    -- cwd = util.root_file(root_files.eslint),
-                },
-                eslint = {
-                    command = util.from_node_modules("eslint"),
-                    args = { "--fix-dry-run", "--stdin", "--stdin-filename", "$FILENAME" },
-                    require_cwd = true,
-                    cwd = util.root_file(root_files.eslint),
+                    cwd = root_file(root_files.prettier),
                 },
                 biome = {
+                    args = { "check", "--apply", "--stdin-file-path", "$FILENAME" },
                     require_cwd = true,
-                    cwd = util.root_file(root_files.biome),
+                    cwd = root_file(root_files.biome),
                 },
             },
             formatters_by_ft = {
+                ["*"] = { "codespell" },
+                gleam = { "gleam" },
                 javascript = js_formatters,
                 typescript = js_formatters,
                 javascriptreact = js_formatters,
@@ -101,7 +94,8 @@ return {
                 markdown = { "prettier" },
                 graphql = { "prettier" },
                 lua = { "stylua" },
-                -- python = { "isort", "black" },
+                python = { "blue", "black" },
+                go = { "gofmt", "goimports" },
             },
             format_on_save = function(bufnr)
                 if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then

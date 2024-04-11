@@ -19,11 +19,12 @@ return {
     config = function()
         local lint = require("lint")
         local js_lint = {
-            "eslint",
             "biomejs",
+            "eslint",
         }
 
         lint.linters_by_ft = {
+            ["*"] = { "cspell" },
             javascript = js_lint,
             typescript = js_lint,
             javascriptreact = js_lint,
@@ -32,7 +33,12 @@ return {
             stylus = { "stylelint" },
             sass = { "stylelint" },
             python = { "pylint" },
+            lua = { "luacheck" },
         }
+
+        for ft, _ in pairs(lint.linters_by_ft) do
+            table.insert(lint.linters_by_ft[ft], "cspell")
+        end
 
         au.cmd({
             "BufEnter",

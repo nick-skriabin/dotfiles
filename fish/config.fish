@@ -15,4 +15,5 @@ source ~/.config/fish/conf.d/keys.fish
 source ~/.config/fish/conf.d/env.fish
 source ~/.config/fish/conf.d/path.fish
 source ~/.config/fish/conf.d/aliases.fish
+source ~/.config/fish/conf.d/hs_aws.fish
 source ~/.config/fish/functions/*

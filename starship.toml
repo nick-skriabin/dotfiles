@@ -5,13 +5,13 @@ format = """
 $username\
 $hostname\
 $directory\
+$git_branch\
 $fill\
 $nodejs\
 $bun\
 $python\
 $rust\
 $docker_context\
-$cmd_duration $jobs $time\
 $line_break\
 $character"""
 # Inserts a blank line between shell prompts
@@ -20,19 +20,13 @@ add_newline = false
 [fill]
 symbol = " "
 
-# Replace the '❯' symbol in the prompt with '➜'
-[character] # The name of the module we are configuring is 'character'
-success_symbol = '[](bold green)' # The 'success_symbol' segment is being set to '➜' with the color 'bold green'
-error_symbol = '[](bold red)' # The 'success_symbol' segment is being set to '➜' with the color 'bold green'
-vimcmd_symbol = '[](bold green)' # The 'success_symbol' segment is being set to '➜' with the color 'bold green'
-vimcmd_replace_one_symbol = '[](bold purple)' # The 'success_symbol' segment is being set to '➜' with the color 'bold green'
-vimcmd_replace_symbol = '[](bold purple)' # The 'success_symbol' segment is being set to '➜' with the color 'bold green'
-vimcmd_visual_symbol = '[󰒅](bold purple)' # The 'success_symbol' segment is being set to '➜' with the color 'bold green'
-
-
-# Disable the package module, hiding it from the prompt completely
-[package]
-disabled = true
+[character]
+success_symbol = '[](bold green)'
+error_symbol = '[](bold red)'
+vimcmd_symbol = '[](bold purple)'
+vimcmd_replace_one_symbol = '[](bold yellow)'
+vimcmd_replace_symbol = '[](bold yellow)'
+vimcmd_visual_symbol = '[󰒅](bold red)'
 
 [directory]
 truncation_length = 8
@@ -51,12 +45,3 @@ format = " [ $version](bold blue)"
 symbol = "󰡨 "
 format = " [$symbol$context]($style)"
 
-[cmd_duration]
-min_time = 10_000
-format = " [󰓅 $duration]($style)"
-
-[time]
-disabled = false
-use_12hr = true
-format = "[$time]($style)"
-time_format = "%H:%M %p"

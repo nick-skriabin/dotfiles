@@ -1,110 +1,16 @@
-local servers = require("nskriabin.core.lsp.servers")
 local merge = require("nskriabin.core.util.merge")
-local auto = require("nskriabin.auto.utils")
-
-local configs = {
-    ["svelte"] = {
-        settings = {
-            svelte = {
-                ["enable-ts-plugin"] = true,
-                plugin = {
-                    css = {
-                        completions = {
-                            emmet = false,
-                        },
-                    },
-                    html = {
-                        completions = {
-                            emmet = false,
-                        },
-                        tagComplete = {
-                            enable = false,
-                        },
-                    },
-                },
-            },
-        },
-        on_attach = function(client, bufnr)
-            auto.cmd("BufWritePost", {
-                pattern = { "*.js", "*.ts" },
-                group = auto.group("svelte"),
-
-                callback = function(ctx)
-                    -- Here use ctx.match instead of ctx.file
-                    client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.match })
-                end,
-            })
-        end,
-    },
-    ["vtsls"] = {
-        settings = {
-            typescript = {
-                format = {
-                    enable = false,
-                },
-                tsserver = {
-                    maxTsServerMemory = "auto",
-                    --log = "verbose",
-                    --trace = "verbose",
-                },
-                updateImportsOnFileMove = "always",
-                inlayHints = {
-                    parameterNames = { enabled = "literals" },
-                    parameterTypes = { enabled = true },
-                    variableTypes = { enabled = true },
-                    propertyDeclarationTypes = { enabled = true },
-                    functionLikeReturnTypes = { enabled = true },
-                    enumMemberValues = { enabled = true },
-                },
-            },
-            javascript = {
-                format = {
-                    enable = false,
-                },
-                updateImportsOnFileMove = "always",
-            },
-        },
-    },
-    ["lua_ls"] = {
-        settings = { -- custom settings for lua
-            Lua = {
-                -- make the language server recognize "vim" global
-                diagnostics = {
-                    globals = { "vim" },
-                },
-                workspace = {
-                    -- make language server aware of runtime files
-                    library = {
-                        [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                        [vim.fn.stdpath("config") .. "/lua"] = true,
-                    },
-                },
-            },
-        },
-    },
-    ["emmet_language_server"] = {
-        filetypes = {
-            "css",
-            "eruby",
-            "html",
-            "javascript",
-            "javascriptreact",
-            "less",
-            "sass",
-            "scss",
-            "pug",
-            "typescriptreact",
-            "svelte",
-        },
-        init_options = {
-            showAbbreviationSuggestions = false,
-            showSuggestionsAsSnippets = false,
-        },
-    },
-}
+local configs = require("nskriabin.config.server_configs")
 
 local function get_config(name, capabilities, on_attach)
-    local server_config = configs[name] or {}
+    local lsp = require("lspconfig")
+    local server_config = {}
+    local cfg = configs[name]
+
+    if type(server_config) == "function" then
+        server_config = server_config(lsp)
+    elseif type(server_config) == "table" then
+        server_config = server_config
+    end
 
     local overriden_on_attach = function(client, bufnr)
         if server_config.on_attach then
@@ -126,15 +32,17 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
         { "antosha417/nvim-lsp-file-operations", config = true },
+        "williamboman/mason.nvim",
         "yioneko/nvim-vtsls",
         "SmiteshP/nvim-navic",
         "folke/neoconf.nvim",
         "hrsh7th/nvim-cmp",
     },
     config = function()
-        -- import lspconfig plugin
         local lspconfig = require("lspconfig")
         local navic = require("nvim-navic")
+        local mason = require("mason-lspconfig")
+
         require("lspconfig.configs").vtsls = require("vtsls").lspconfig
 
         -- import cmp-nvim-lsp plugin
@@ -157,16 +65,16 @@ return {
 
             -- set keybinds
             opts.desc = "Show LSP references"
-            map.set("n", "gr", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
+            map.set("n", "gr", "<cmd>Glance references<CR>", opts) -- show definition, references
 
             opts.desc = "Show LSP definitions"
-            map.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts) -- show lsp definitions
+            map.set("n", "gd", "<cmd>Glance definitions<CR>", opts) -- show lsp definitions
 
             opts.desc = "Show LSP implementations"
-            map.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts) -- show lsp implementations
+            map.set("n", "gi", "<cmd>Glance implementations<CR>", opts) -- show lsp implementations
 
             opts.desc = "Show LSP type definitions"
-            map.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts) -- show lsp type definitions
+            map.set("n", "gt", "<cmd>Glance type_definitions<CR>", opts) -- show lsp type definitions
 
             opts.desc = "See available code actions"
             map.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts) -- see available code actions, in visual mode will apply to selection
@@ -217,8 +125,21 @@ return {
             vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
         end
 
-        for _, name in pairs(servers.lsp) do
-            lspconfig[name].setup(get_config(name, capabilities, on_attach))
-        end
+        vim.tbl_deep_extend("keep", lspconfig, {
+            cmd = { "gleam", "lsp" },
+            filetypes = { "gleam" },
+        })
+        lspconfig.gleam.setup({
+            capabilities = capabilities,
+            on_attach = on_attach,
+            root_dir = lspconfig.util.root_pattern("gleam.toml"),
+        })
+
+        mason.setup_handlers({
+            function(server)
+                local config = get_config(server, capabilities, on_attach)
+                lspconfig[server].setup(config)
+            end,
+        })
     end,
 }

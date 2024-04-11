@@ -146,13 +146,17 @@ local macro_recording = function(palette, icons)
     }
 end
 
+local function maximize_status()
+    return vim.t.maximized and "   " or ""
+end
+
 return {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
     opts = function()
         local icons = require("nskriabin.core.ui.icons")
         local Util = require("nskriabin.core.util")
-        local palette = require("nskriabin.core.util.color")
+        local palette = require("nskriabin.core.util.color").current()
 
         local sections = {
             -- these are to remove the defaults
@@ -177,7 +181,6 @@ return {
         add_left(mode(palette, icons))
         add_left({
             "filetype",
-            icon_only = true,
             separator = "",
             cond = conditions.buffer_not_empty,
         })
@@ -193,14 +196,7 @@ return {
             cond = conditions.buffer_not_empty,
         })
         add_left({ "location" })
-        add_left({
-            function()
-                return require("nvim-navic").get_location()
-            end,
-            cond = function()
-                return package.loaded["nvim-navic"] and require("nvim-navic").is_available()
-            end,
-        })
+        add_left({ maximize_status })
         add_left({
             function()
                 return "%="
@@ -240,7 +236,9 @@ return {
                     inactive = { b = { fg = palette.text, bg = "" } },
                 },
                 globalstatus = true,
-                disabled_filetypes = { statusline = { "dashboard", "alpha", "neo-tree", "oil" } },
+                disabled_filetypes = {
+                    statusline = { "dashboard", "alpha" },
+                },
             },
             sections = sections,
             inactive_sections = {

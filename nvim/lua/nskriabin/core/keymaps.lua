@@ -1,42 +1,53 @@
 local map = vim.keymap.set
+local keys = require("nskriabin.core.util.keymap")
 
 -- cmdline
-map({ "n" }, "<leader>;", "<cmd>Telescope cmdline<cr>", { noremap = true, silent = true })
-map({ "n" }, "<esc>", "<cmd>nohl<cr>", { noremap = true, silent = true })
+keys.map({
+    { "n", "<leader>;", "<cmd>Telescope cmdline<cr>" },
+})
 
 -- exit insert mode
-map({ "i" }, "jj", "<ESC>", { noremap = true, silent = true, nowait = true })
-map({ "n" }, "<leader>qq", ":qa!<cr>", { noremap = true, silent = true, nowait = true, desc = "Quit" })
-map({ "n" }, "<leader>qb", ":bd!<cr>", { noremap = true, silent = true, nowait = true, desc = "Quit" })
+keys.map({
+    { "i", "jj", "<ESC>", nowait = true },
+    { "n", "<esc>", "<cmd>nohl<cr>" },
+    { "n", "<Enter>", "o<ESC>" },
+    { "n", "<S-Enter>", "O<ESC>" },
+})
 
--- Newlines
-map({ "n" }, "<Enter>", "o<ESC>")
-map({ "n" }, "<S-Enter>", "O<ESC>")
+-- navigation
+keys.map({
+    { "n", "<C-u>", "<C-u>zz" },
+    { "n", "<C-d>", "<C-d>zz" },
+})
 
--- Navigation
-map({ "n" }, "<C-u>", "<C-u>zz", { noremap = true, silent = true })
-map({ "n" }, "<C-d>", "<C-d>zz", { noremap = true, silent = true })
+-- quit
+keys.map({
+    { "n", "<leader>qq", ":qall!<cr>", nowait = true, desc = "Quit" },
+})
 
 -- Buffers
-map({ "n" }, "<leader>bd", ":Bdelete<cr>", { noremap = true, silent = true, nowait = true, desc = "Delete Buffer" })
-map(
-    { "n" },
-    "<leader>bD",
-    ":bufdo Bdelete<cr>",
-    { noremap = true, silent = true, nowait = true, desc = "Delete all Buffers" }
-)
-map({ "n" }, "<leader>bw", ":w<cr>", { noremap = true, silent = true, nowait = true, desc = "Save Buffer" })
-map({ "n" }, "<leader>bW", ":wa<cr>", { noremap = true, silent = true, nowait = true, desc = "Save All Buffers" })
-map({ "n" }, "<leader>bq", ":q<cr>", { noremap = true, silent = true, nowait = true, desc = "Close Buffer" })
+keys.map({
+    { "n", "<leader>bD", ":bufdo Bdelete<cr>", nowait = true, desc = "Delete all Buffers" },
+    { "n", "<leader>bd", ":Bdelete<cr>", nowait = true, desc = "Delete Buffer" },
+    { "n", "<leader>bw", ":w<cr>", nowait = true, desc = "Save Buffer" },
+    { "n", "<leader>bW", ":wa<cr>", nowait = true, desc = "Save All Buffers" },
+    { "n", "<leader>bq", ":q<cr>", nowait = true, desc = "Close Buffer" },
+    { "n", "<leader>bl", ":edit<cr>", nowait = true, desc = "Reload Buffer" },
+})
 
--- Pasting
-map("n", "<C-p>", '<C-r>"', { noremap = true, silent = true, nowait = true })
+-- packages
+keys.map({
+    { "n", "<leader>ll", ":Lazy<cr>", desc = "Lazy" },
+    { "n", "<leader>lm", ":Mason<cr>", desc = "Mason" },
+})
 
--- Managers
-map("n", "<leader>ll", ":Lazy<cr>", { noremap = true, silent = true, desc = "Lazy" })
-map("n", "<leader>lm", ":Mason<cr>", { noremap = true, silent = true, desc = "Mason" })
-
--- Window management
-map("n", "<leader>wh", ":split<cr>", { noremap = true, silent = true, desc = "Horizontal Split" })
-map("n", "<leader>wv", ":vsplit<cr>", { noremap = true, silent = true, desc = "Vertical Split" })
-map("n", "<leader>wq", ":q<cr>", { noremap = true, silent = true, desc = "Split" })
+-- splits
+keys.map({
+    { "n", "<leader>wh", ":split<cr>", nowait = true, desc = "Split" },
+    { "n", "<leader>wv", ":vsplit<cr>", nowait = true, desc = "VSplit" },
+    { "n", "<leader>ww", "<C-w>w", nowait = true, desc = "Next Split" },
+    { "n", "<leader>wq", "<C-w>q", nowait = true, desc = "Close Split" },
+    { "n", "<leader>wc", "<C-w>c", nowait = true, desc = "Close Split" },
+    { "n", "<leader>wr", "<C-w>r", nowait = true, desc = "Rotate Split" },
+    { "n", "<leader>w=", "<C-w>e", nowait = true, desc = "Equalize Splits" },
+})

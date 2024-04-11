@@ -8,6 +8,47 @@ local border_opts = {
     scrollbar = "║",
 }
 
+local function indexof(array, value)
+    for i, v in ipairs(array) do
+        if v == value then
+            return i
+        end
+    end
+    return nil
+end
+
+local function get_lsp_kinds_ordering()
+    local lsp_kind = require("cmp.types.lsp").CompletionItemKind
+
+    return {
+        lsp_kind.Variable,
+        lsp_kind.Value,
+        lsp_kind.Field,
+        lsp_kind.EnumMember,
+        lsp_kind.Property,
+        lsp_kind.TypeParameter,
+        lsp_kind.Method,
+        lsp_kind.Module,
+        lsp_kind.Function,
+        lsp_kind.Constructor,
+        lsp_kind.Interface,
+        lsp_kind.Class,
+        lsp_kind.Struct,
+        lsp_kind.Enum,
+        lsp_kind.Constant,
+        lsp_kind.Unit,
+        lsp_kind.Keyword,
+        lsp_kind.Snippet,
+        lsp_kind.Color,
+        lsp_kind.File,
+        lsp_kind.Folder,
+        lsp_kind.Event,
+        lsp_kind.Operator,
+        lsp_kind.Reference,
+        lsp_kind.Text,
+    }
+end
+
 return {
     {
         "L3MON4D3/LuaSnip",
@@ -23,6 +64,7 @@ return {
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-cmdline",
             "hrsh7th/cmp-path",
+            "rcarriga/cmp-dap",
             "L3MON4D3/LuaSnip",
             "windwp/nvim-autopairs",
             "onsails/lspkind.nvim",
@@ -30,15 +72,23 @@ return {
         event = { "InsertEnter", "CmdlineEnter" },
         config = function(_, opts)
             local cmp = require("cmp")
+            local lsp = require("cmp.types.lsp")
             local lspkind = require("lspkind")
-            local defaults = require("cmp.config.default")()
             local luasnip = require("luasnip")
             local cmp_npar = require("nvim-autopairs.completion.cmp")
             local insert = cmp.SelectBehavior.Insert
+            local lspKinds = lsp.CompletionItemKind
+            local kind_ordering = get_lsp_kinds_ordering()
 
             require("luasnip.loaders.from_vscode").lazy_load()
 
             cmp.event:on("confirm_done", cmp_npar.on_confirm_done())
+
+            cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
+                sources = {
+                    { name = "dap" },
+                },
+            })
 
             cmp.setup({
                 preselect = false,
@@ -108,6 +158,51 @@ return {
                         return not context.in_treesitter_capture("comment") and not context.in_syntax_group("Comment")
                     end
                 end,
+                sorting = {
+                    priority_weight = 2,
+                    comparators = {
+                        function(e1, e2)
+                            local kind1 = e1:get_kind()
+                            local kind2 = e2:get_kind()
+
+                            if kind1 == kind2 then
+                                return nil
+                            end
+
+                            local kind1_index = indexof(kind_ordering, kind1) or 100
+                            local kind2_index = indexof(kind_ordering, kind2) or 100
+
+                            return kind1_index < kind2_index
+                        end,
+                        cmp.config.compare.score,
+                        cmp.config.compare.kind,
+                        function(entry1, entry2)
+                            local kind1 = entry1:get_kind()
+                            local kind2 = entry2:get_kind()
+                            kind1 = kind1 == lspKinds.Text and 100 or kind1
+                            kind2 = kind2 == lspKinds.Text and 100 or kind2
+                            if kind1 ~= kind2 then
+                                if kind1 == lspKinds.Snippet then
+                                    return false
+                                end
+                                if kind2 == lspKinds.Snippet then
+                                    return true
+                                end
+                                local diff = kind1 - kind2
+                                if diff < 0 then
+                                    return true
+                                elseif diff > 0 then
+                                    return false
+                                end
+                            end
+                        end,
+                        cmp.config.compare.exact,
+                        cmp.config.compare.offset,
+                        cmp.config.compare.length,
+                        cmp.config.compare.sort_text,
+                        cmp.config.compare.order,
+                    },
+                },
                 experimental = {
                     ghost_text = true,
                 },

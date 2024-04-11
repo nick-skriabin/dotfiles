@@ -3,6 +3,7 @@ local init_highlights = require("nskriabin.core.ui.init_highlights")
 return {
     "rebelot/kanagawa.nvim",
     lazy = false,
+    enabled = false,
     config = function()
         -- Default options:
         require("kanagawa").setup({
@@ -72,6 +73,8 @@ return {
                     OilGitStatusWorkingTreeAdded = { fg = theme.diff.add },
                     OilGitStatusWorkingTreeModified = { fg = theme.diff.change },
                     OilGitStatusWorkingTreeDeleted = { fg = theme.diff.removed },
+
+                    SpellBad = { underline = true, bg = theme.diff.removed },
                 }
             end,
         })

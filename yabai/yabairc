@@ -43,7 +43,9 @@ yabai -m rule --add app="^Simulator$" manage=off
 yabai -m rule --add app="^WezTerm$" manage=off
 yabai -m rule --add app="^Rize$" manage=off
 yabai -m rule --add app="^Blocker$" manage=off
+yabai -m rule --add app="Fusion" manage=off
 
 # SKETCHYBAR EVENTS
 yabai -m signal --add event=window_focused action="sketchybar -m --trigger window_focus &> /dev/null"
 yabai -m signal --add event=window_title_changed action="sketchybar -m --trigger title_change &> /dev/null"
+

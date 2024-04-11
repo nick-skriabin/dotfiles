@@ -73,10 +73,10 @@ M.kinds = {
     Snippet = " ",
     String = " ",
     Struct = " ",
-    Text = " ",
+    Text = " ",
     TypeParameter = " ",
     Unit = " ",
-    Value = " ",
+    Value = " ",
     Variable = " ",
     Codeium = "",
 }

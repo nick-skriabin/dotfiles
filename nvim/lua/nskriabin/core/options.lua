@@ -11,6 +11,7 @@ local opt = vim.opt
 g.mapleader = " "
 g.maplocalleader = "\\"
 
+opt.fixendofline = false
 opt.autowrite = false -- Enable auto write
 opt.clipboard = "unnamedplus" -- Sync with system clipboard
 opt.completeopt = "menu,menuone,noselect"
@@ -44,7 +45,7 @@ opt.spelllang = { "en" }
 opt.splitbelow = true -- Put new windows below current
 opt.splitkeep = "screen"
 opt.splitright = true -- Put new windows right of current
-opt.tabstop = 2 -- Number of spaces tabs count for
+opt.tabstop = 4 -- Number of spaces tabs count for
 opt.termguicolors = true -- True color support
 opt.timeoutlen = 300
 opt.undofile = true
@@ -54,17 +55,17 @@ opt.wildmode = "longest:full,full" -- Command-line completion mode
 opt.winminwidth = 5 -- Minimum window width
 opt.wrap = false -- Disable line wrap
 opt.fillchars = {
-  foldopen = "",
-  foldclose = "",
-  -- fold = "⸱",
-  fold = " ",
-  foldsep = " ",
-  diff = "╱",
-  eob = " ",
+    foldopen = "",
+    foldclose = "",
+    -- fold = "⸱",
+    fold = " ",
+    foldsep = " ",
+    diff = "╱",
+    eob = " ",
 }
 
 if vim.fn.has("nvim-0.10") == 1 then
-  opt.smoothscroll = true
+    opt.smoothscroll = true
 end
 
 -- Folding
@@ -72,15 +73,15 @@ vim.opt.foldlevel = 99
 vim.opt.foldtext = "v:lua.require'nskriabin.core.util.ui'.foldtext()"
 
 if vim.fn.has("nvim-0.9.0") == 1 then
-  vim.opt.statuscolumn = [[%!v:lua.require'nskriabin.core.util.ui'.statuscolumn()]]
+    vim.opt.statuscolumn = [[%!v:lua.require'nskriabin.core.util.ui'.statuscolumn()]]
 end
 
 -- HACK: causes freezes on <= 0.9, so only enable on >= 0.10 for now
 if vim.fn.has("nvim-0.10") == 1 then
-  vim.opt.foldmethod = "expr"
-  vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+    vim.opt.foldmethod = "expr"
+    vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 else
-  vim.opt.foldmethod = "indent"
+    vim.opt.foldmethod = "indent"
 end
 
 -- Fix markdown indentation settings
@@ -93,4 +94,10 @@ vim.cmd("let g:vimwiki_list = [{'path': '~/Git/notes', 'syntax': 'markdown', 'ex
 -- vim.cmd([[let &t_SI = "\e[6 q]])
 -- vim.cmd([[let &t_EI = "\e[2 q"]])
 
+vim.cmd([[let &t_Cs = "\e[4:3m"]])
+vim.cmd([[let &t_Ce = "\e[4:0m"]])
+
 g.skip_ts_context_commentstring_module = true
+
+vim.cmd("set spelllang=en")
+vim.cmd("set spell")

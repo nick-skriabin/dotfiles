@@ -38,6 +38,7 @@ return {
             ["t"] = { name = "+Tests" },
             ["g"] = { name = "+Git(Hub)" },
             ["h"] = { name = "+Harpoon" },
+            ["H"] = { name = "+Hunks" },
             ["n"] = { name = "+Swap Next" },
             ["p"] = { name = "+Swap Previous" },
             ["i"] = { name = "+DBUI" },

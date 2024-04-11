@@ -6,6 +6,7 @@ set -Ux CPU_NUMBER $(sysctl -n hw.ncpu)
 set -Ux XDG_CONFIG_HOME "$HOME/.config"
 set -Ux collect_analytics false
 set -Ux CONFIG_DIR "$HOME/.config"
+set -Ux GOPATH "$HOME/go"
 
 # CPP
 set -Ux LDFLAGS "-L/usr/local/opt/node@14/lib"

@@ -4,8 +4,7 @@ M.root_patterns = { ".git", "lua" }
 
 function M.fg(name)
     ---@type {foreground?:number}?
-    local hl = vim.api.nvim_get_hl and vim.api.nvim_get_hl(0, { name = name })
-        or vim.api.nvim_get_hl_by_name(name, true)
+    local hl = vim.api.nvim_get_hl and vim.api.nvim_get_hl(0, { name = name }) or vim.api.nvim_get_hl_by_name(name, true)
     local fg = hl and hl.fg or hl.foreground
     return fg and { fg = string.format("#%06x", fg) }
 end
@@ -65,7 +64,7 @@ function M.telescope(builtin, opts)
         opts = vim.tbl_deep_extend("force", { cwd = M.get_root() }, opts or {})
         if builtin == "files" then
             if vim.loop.fs_stat((opts.cwd or vim.loop.cwd()) .. "/.git") then
-                opts.show_untracked = true
+                opts.git_command = { "git", "ls-files", "-m", "--exclude-standard", "--cached", "--deduplicate" }
                 builtin = "git_files"
             else
                 builtin = "find_files"
@@ -76,10 +75,7 @@ function M.telescope(builtin, opts)
                 map("i", "<a-c>", function()
                     local action_state = require("telescope.actions.state")
                     local line = action_state.get_current_line()
-                    M.telescope(
-                        params.builtin,
-                        vim.tbl_deep_extend("force", {}, params.opts or {}, { cwd = false, default_text = line })
-                    )()
+                    M.telescope(params.builtin, vim.tbl_deep_extend("force", {}, params.opts or {}, { cwd = false, default_text = line }))()
                 end)
                 return true
             end

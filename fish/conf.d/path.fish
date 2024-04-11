@@ -24,4 +24,5 @@ fish_add_path $HOME/Git/sourcekit-lsp/.build/debug
 fish_add_path $HOME/development/flutter/bin
 fish_add_path $HOME/.config/tmux/plugins/t-smart-tmux-session-manager/bin
 fish_add_path $HOME/.bun/bin
+fish_add_path $GOPATH/bin
 fish_add_path /Applications/Alacritty.app/Contents/MacOS
