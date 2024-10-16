@@ -1,3 +1,4 @@
+require("nskriabin.config.filetype")
 local auto = require("nskriabin.auto.utils")
 return {
     "nvim-treesitter/nvim-treesitter",
@@ -14,6 +15,7 @@ return {
     },
     config = function()
         local treesitter = require("nvim-treesitter.configs")
+        local autotag = require("nvim-ts-autotag")
 
         auto.cmd({ "BufRead", "BufNewFile" }, {
             pattern = "*.keymap,*.dtsi",
@@ -25,9 +27,6 @@ return {
                 enable = true,
             },
             indent = {
-                enable = true,
-            },
-            autotag = {
                 enable = true,
             },
             context_commentstring = {
@@ -73,8 +72,8 @@ return {
             -- enable nvim-ts-context-commentstring plugin for commenting tsx and jsx
         })
 
-        require("nvim-ts-autotag").setup({
-            autotag = {
+        autotag.setup({
+            opts = {
                 enable = true,
                 enable_rename = true,
                 enable_close = true,

@@ -18,6 +18,8 @@ keys.map({
 keys.map({
     { "n", "<C-u>", "<C-u>zz" },
     { "n", "<C-d>", "<C-d>zz" },
+    { "n", "j", "gj" },
+    { "n", "k", "gk" },
 })
 
 -- quit
@@ -29,10 +31,10 @@ keys.map({
 keys.map({
     { "n", "<leader>bD", ":bufdo Bdelete<cr>", nowait = true, desc = "Delete all Buffers" },
     { "n", "<leader>bd", ":Bdelete<cr>", nowait = true, desc = "Delete Buffer" },
-    { "n", "<leader>bw", ":w<cr>", nowait = true, desc = "Save Buffer" },
-    { "n", "<leader>bW", ":wa<cr>", nowait = true, desc = "Save All Buffers" },
-    { "n", "<leader>bq", ":q<cr>", nowait = true, desc = "Close Buffer" },
     { "n", "<leader>bl", ":edit<cr>", nowait = true, desc = "Reload Buffer" },
+    { "n", "<C-q>", ":q<cr>", nowait = true, desc = "Close Buffer" },
+    { "n", "<C-w>", ":w<cr>", nowait = true, desc = "Save Buffer" },
+    { "n", "<C-W>", ":wa<cr>", nowait = true, desc = "Save All Buffers" },
 })
 
 -- packages

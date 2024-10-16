@@ -4,7 +4,13 @@ end
 
 starship init fish | source
 zoxide init fish | source
-fish_vi_key_bindings
+tput cup $COLUMNS 0
+
+set fish_key_bindings fish_user_key_bindings
+
+bind yy fish_clipboard_copy
+bind Y fish_clipboard_copy
+bind p fish_clipboard_paste
 
 set -U fish_greeting
 set fish_cursor_default block

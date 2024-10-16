@@ -8,6 +8,23 @@ local border_opts = {
     scrollbar = "║",
 }
 
+local disabled_fts = {
+    "oil",
+    "dashboard",
+    "startify",
+    "fugitive",
+    "fugitiveblame",
+    "gitcommit",
+    "gitrebase",
+    "gitconfig",
+    "git",
+    "help",
+    "TelescopePrompt",
+    "TelescopeResults",
+    "dap-repl",
+    "terminal",
+}
+
 local function indexof(array, value)
     for i, v in ipairs(array) do
         if v == value then
@@ -51,58 +68,46 @@ end
 
 return {
     {
-        "L3MON4D3/LuaSnip",
-        dependencies = {
-            "saadparwaiz1/cmp_luasnip",
-            "rafamadriz/friendly-snippets",
-        },
-    },
-    {
         "hrsh7th/nvim-cmp",
+        -- enabled = false,
         dependencies = {
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-cmdline",
             "hrsh7th/cmp-path",
-            "rcarriga/cmp-dap",
-            "L3MON4D3/LuaSnip",
-            "windwp/nvim-autopairs",
             "onsails/lspkind.nvim",
+            -- {
+            --     "garymjr/nvim-snippets",
+            --     opts = {
+            --         friendly_snippets = true,
+            --         create_cmp_source = true,
+            --     },
+            --     dependencies = {
+            --         "rafamadriz/friendly-snippets",
+            --     },
+            -- },
         },
-        event = { "InsertEnter", "CmdlineEnter" },
+        event = { "InsertEnter" },
         config = function(_, opts)
             local cmp = require("cmp")
             local lsp = require("cmp.types.lsp")
             local lspkind = require("lspkind")
-            local luasnip = require("luasnip")
-            local cmp_npar = require("nvim-autopairs.completion.cmp")
             local insert = cmp.SelectBehavior.Insert
             local lspKinds = lsp.CompletionItemKind
             local kind_ordering = get_lsp_kinds_ordering()
-
-            require("luasnip.loaders.from_vscode").lazy_load()
-
-            cmp.event:on("confirm_done", cmp_npar.on_confirm_done())
-
-            cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
-                sources = {
-                    { name = "dap" },
-                },
-            })
 
             cmp.setup({
                 preselect = false,
                 completion = {
                     completeopt = "menu,menuone,noinsert",
                 },
-                snippet = {
-                    expand = function(args)
-                        luasnip.lsp_expand(args.body)
-                    end,
-                },
+                -- snippet = {
+                --     expand = function(args)
+                --         -- luasnip.lsp_expand(args.body)
+                --         vim.snippet.expand(args.body)
+                --     end,
+                -- },
                 mapping = cmp.mapping.preset.insert({
-                    ["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = insert }), { "i" }),
-                    ["<Down>"] = cmp.mapping(cmp.mapping.select_next_item({ behavior = insert }), { "i" }),
                     ["<C-k>"] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = insert }), { "i" }),
                     ["<C-j>"] = cmp.mapping(cmp.mapping.select_next_item({ behavior = insert }), { "i" }),
                     ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
@@ -111,11 +116,10 @@ return {
                     ["<C-y>"] = cmp.mapping.confirm({ select = true }),
                 }),
                 sources = cmp.config.sources({
-                    { name = "luasnip" },
-                    { name = "codeium" },
                     { name = "nvim_lsp" },
-                    { name = "dap" },
+                    -- { name = "snippet" },
                 }, {
+                    { name = "dap" },
                     { name = "buffer" },
                     { name = "path" },
                 }),
@@ -149,6 +153,12 @@ return {
                     documentation = border_opts,
                 },
                 enabled = function()
+                    -- disable completions in certain filetypes
+                    local filetype = vim.bo.filetype
+                    if vim.tbl_contains(disabled_fts, filetype) then
+                        return false
+                    end
+
                     -- disable completion in comments
                     local context = require("cmp.config.context")
                     -- keep command mode completion enabled when cursor is in a comment
@@ -161,6 +171,8 @@ return {
                 sorting = {
                     priority_weight = 2,
                     comparators = {
+                        cmp.config.compare.score,
+                        cmp.config.compare.exact,
                         function(e1, e2)
                             local kind1 = e1:get_kind()
                             local kind2 = e2:get_kind()
@@ -174,7 +186,6 @@ return {
 
                             return kind1_index < kind2_index
                         end,
-                        cmp.config.compare.score,
                         cmp.config.compare.kind,
                         function(entry1, entry2)
                             local kind1 = entry1:get_kind()
@@ -196,7 +207,6 @@ return {
                                 end
                             end
                         end,
-                        cmp.config.compare.exact,
                         cmp.config.compare.offset,
                         cmp.config.compare.length,
                         cmp.config.compare.sort_text,
@@ -204,7 +214,7 @@ return {
                     },
                 },
                 experimental = {
-                    ghost_text = true,
+                    ghost_text = false,
                 },
             })
 
@@ -223,7 +233,6 @@ return {
                     c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
                 }),
             })
-
             cmp.setup.cmdline(":", {
                 mapping = cmdline_mapping,
                 sources = cmp.config.sources({

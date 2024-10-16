@@ -1,7 +1,5 @@
 local themes = require("nskriabin.core.util.color")
-local function theme(theme_name)
-    return themes[theme_name]()
-end
+local au = require("nskriabin.auto.utils")
 
 local function init_colors()
     local hl = vim.api.nvim_set_hl
@@ -20,9 +18,26 @@ local function init_colors()
     -- CMP
     hl(0, "CmpNormal", { bg = bg })
     hl(0, "CmpNormalFloat", { bg = bg })
+    hl(0, "BlinkCmpMenuSelection", { bg = colors.highlight })
 
     -- Popup menu
     hl(0, "PmenuSel", { blend = 0 })
+
+    au.cmd("FileType", {
+        pattern = "mason",
+        group = au.group("MasonHl"),
+        callback = function()
+            hl(0, "MasonNormal", { bg = bg })
+        end,
+    })
+
+    au.cmd("FileType", {
+        pattern = "lazy",
+        group = au.group("Lazy"),
+        callback = function()
+            hl(0, "LazyNormal", { bg = bg })
+        end,
+    })
 end
 
 return init_colors

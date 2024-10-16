@@ -57,39 +57,73 @@ M.vtsls = {
             format = {
                 enable = false,
             },
-            tsserver = {
-                maxTsServerMemory = "auto",
+            inlayHints = {
+                parameterNames = true,
             },
             updateImportsOnFileMove = "always",
-            inlayHints = {
-                parameterNames = { enabled = "literals" },
-                parameterTypes = { enabled = true },
-                variableTypes = { enabled = true },
-                propertyDeclarationTypes = { enabled = true },
-                functionLikeReturnTypes = { enabled = true },
-                enumMemberValues = { enabled = true },
-            },
         },
+
         javascript = {
             format = {
                 enable = false,
+            },
+            inlayHints = {
+                parameterNames = true,
             },
             updateImportsOnFileMove = "always",
         },
     },
 }
+
+-- M.vtsls = {
+--     settings = {
+--         typescript = {
+--             format = {
+--                 enable = false,
+--             },
+--             tsserver = {
+--                 maxTsServerMemory = "auto",
+--             },
+--             updateImportsOnFileMove = "always",
+--             inlayHints = {
+--                 parameterNames = { enabled = true },
+--                 parameterTypes = { enabled = false },
+--                 variableTypes = { enabled = false },
+--                 propertyDeclarationTypes = { enabled = false },
+--                 functionLikeReturnTypes = { enabled = false },
+--                 enumMemberValues = { enabled = true },
+--             },
+--         },
+--         javascript = {
+--             format = {
+--                 enable = false,
+--             },
+--             updateImportsOnFileMove = "always",
+--             inlayHints = {
+--                 parameterNames = { enabled = true },
+--                 parameterTypes = { enabled = false },
+--                 variableTypes = { enabled = false },
+--                 propertyDeclarationTypes = { enabled = false },
+--                 functionLikeReturnTypes = { enabled = false },
+--                 enumMemberValues = { enabled = true },
+--             },
+--         },
+--     },
+-- }
 M.lua_ls = {
     settings = { -- custom settings for lua
         Lua = {
             -- make the language server recognize "vim" global
             diagnostics = {
-                globals = { "vim" },
+                globals = { "vim", "hs", "spoon" },
             },
             workspace = {
                 -- make language server aware of runtime files
                 library = {
                     [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+                    [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
                     [vim.fn.stdpath("config") .. "/lua"] = true,
+                    ["/Applications/Hammerspoon.app/Contents/Resources/extensions/hs/"] = true,
                 },
             },
         },
@@ -113,6 +147,30 @@ M.emmet_language_server = {
     init_options = {
         showAbbreviationSuggestions = false,
         showSuggestionsAsSnippets = false,
+    },
+}
+
+M.cspell = {
+    filetypes = { "*" },
+}
+
+M.cssls = {
+    settings = {
+        css = {
+            format = {
+                spaceAroundSelectorSeparator = true,
+            },
+        },
+        scss = {
+            format = {
+                spaceAroundSelectorSeparator = false,
+            },
+        },
+        less = {
+            format = {
+                spaceAroundSelectorSeparator = true,
+            },
+        },
     },
 }
 

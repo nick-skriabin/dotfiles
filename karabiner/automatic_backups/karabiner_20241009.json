@@ -1,0 +1,9 @@
+{
+    "global": { "show_in_menu_bar": false },
+    "profiles": [
+        {
+            "name": "Default",
+            "selected": true
+        }
+    ]
+}

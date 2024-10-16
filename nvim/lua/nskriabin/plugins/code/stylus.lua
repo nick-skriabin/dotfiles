@@ -1,3 +1,0 @@
-return {
-    "ChiliConSql/neovim-stylus",
-}

@@ -14,7 +14,7 @@ return {
             adapters = {
                 require("neotest-vitest"),
                 require("neotest-jest")({
-                    cmd = "yarn test",
+                    cmd = "yarn jest --detectOpenHandles",
                     env = {
                         NODE_ENV = "test",
                     },
@@ -35,7 +35,7 @@ return {
                 require("neotest").run.run()
             end,
             silent = true,
-            desc = "Run tests in current project",
+            desc = "Run Nearest Test [Neotest]",
         },
         {
             "<leader>tc",
@@ -43,7 +43,7 @@ return {
                 require("neotest").run.run(vim.fn.expand("%"))
             end,
             silent = true,
-            desc = "Run tests in current file",
+            desc = "Run Tests In Current File [Neotest]",
         },
         {
             "<leader>td",
@@ -51,7 +51,7 @@ return {
                 require("neotest").run.run({ strategy = "dap" })
             end,
             silent = true,
-            desc = "Run nearest test with debug",
+            desc = "Tests With DAP [Neotest]",
         },
         {
             "<leader>ts",
@@ -59,7 +59,7 @@ return {
                 require("neotest").run.stop()
             end,
             silent = true,
-            desc = "Stop currently running tests",
+            desc = "Stop Running Tests [Neotest]",
         },
         {
             "<leader>to",
@@ -67,15 +67,31 @@ return {
                 require("neotest").output.open()
             end,
             silent = true,
-            desc = "Open test output",
+            desc = "Open Output [Neotest]",
         },
         {
-            "<leader>tO",
+            "<leader>tt",
             function()
-                require("neotest").summary.open()
+                require("neotest").summary.toggle()
             end,
             silent = true,
-            desc = "Open test output",
+            desc = "Toggle Summary [Neotest]",
+        },
+        {
+            "<leader>tp",
+            function()
+                require("neotest").jump.prev()
+            end,
+            silent = true,
+            desc = "Previous Test [Neotest]",
+        },
+        {
+            "<leader>tn",
+            function()
+                require("neotest").jump.next()
+            end,
+            silent = true,
+            desc = "Next Test [Neotest]",
         },
     },
 }

@@ -30,8 +30,8 @@ return {
             javascriptreact = js_lint,
             typescriptreact = js_lint,
             css = { "stylelint" },
-            stylus = { "stylelint" },
             sass = { "stylelint" },
+            scss = { "stylelint" },
             python = { "pylint" },
             lua = { "luacheck" },
         }

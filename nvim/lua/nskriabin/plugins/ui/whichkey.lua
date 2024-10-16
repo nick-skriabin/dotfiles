@@ -1,13 +1,22 @@
 return {
     "folke/which-key.nvim",
-    keys = { "<leader>", "<c-r>", '"', "'", "`", "c", "v", "g" },
+    event = "VeryLazy",
+    keys = {
+        {
+            "<leader>?",
+            function()
+                require("which-key").show({ global = false })
+            end,
+            desc = "Buffer Local Keymaps (which-key)",
+        },
+    },
+    dependencies = {
+        { "echasnovski/mini.icons", version = false },
+    },
     config = function()
-        vim.o.timeout = true
-        vim.o.timeoutlen = 500
-
         local wk = require("which-key")
 
-        local config = {
+        wk.setup({
             defaults = {},
             plugins = {
                 marks = true,
@@ -26,46 +35,39 @@ return {
                     g = true,
                 },
             },
-        }
-
-        local n_mapping = {
-            ["q"] = { name = "+Quit" },
-            ["b"] = { name = "+Buffers" },
-            ["c"] = { name = "+Code Actions" },
-            ["cp"] = { name = "+Packages" },
-            ["d"] = { name = "+Debug" },
-            ["f"] = { name = "+Files" },
-            ["t"] = { name = "+Tests" },
-            ["g"] = { name = "+Git(Hub)" },
-            ["h"] = { name = "+Harpoon" },
-            ["H"] = { name = "+Hunks" },
-            ["n"] = { name = "+Swap Next" },
-            ["p"] = { name = "+Swap Previous" },
-            ["i"] = { name = "+DBUI" },
-            ["s"] = { name = "+Search" },
-            ["u"] = { name = "+UI" },
-            ["x"] = { name = "+Diagnostics" },
-            ["o"] = { name = "+Octo" },
-            ["op"] = { name = "+Octo PR" },
-            ["or"] = { name = "+Octo Review" },
-            ["m"] = { name = "+Marks" },
-            ["l"] = { name = "+Managers" },
-        }
-        local v_mapping = {
-            ["c"] = { name = "+Code Actions" },
-            ["s"] = { name = "+Search" },
-            ["n"] = { name = "+Swap Next" },
-            ["p"] = { name = "+Swap Previous" },
-        }
-
-        wk.setup(config)
-        wk.register(n_mapping, {
-            prefix = "<leader>",
         })
 
-        wk.register(v_mapping, {
-            prefix = "<leader>",
-            mode = "v",
+        wk.add({
+            { "<leader>H", group = "Hunks", icon = "" },
+            { "<leader>b", group = "Buffers" },
+            { "<leader>c", group = "Code Actions" },
+            { "<leader>cp", group = "Packages" },
+            { "<leader>a", group = "Avante", icon = "" },
+            { "<leader>d", group = "Debug" },
+            { "<leader>f", group = "Files" },
+            { "<leader>g", group = "Git(Hub)" },
+            { "<leader>i", group = "DBUI" },
+            { "<leader>k", group = "Kulala", icon = "󱂛" },
+            { "<leader>l", group = "Managers", icon = "󰏓" },
+            { "<leader>o", group = "Octo", icon = "" },
+            { "<leader>op", group = "Octo PR" },
+            { "<leader>or", group = "Octo Review" },
+            { "<leader>q", group = "Quit" },
+            { "<leader>s", group = "Search" },
+            { "<leader>t", group = "Tests" },
+            { "<leader>u", group = "UI" },
+            { "<leader>x", group = "Diagnostics" },
+            { "<leader>w", group = "Window" },
+            {
+                mode = { "v" },
+                { "<leader>c", group = "Code Actions" },
+                { "<leader>n", group = "Swap Next" },
+                { "<leader>p", group = "Swap Previous" },
+                { "<leader>s", group = "Search" },
+            },
+
+            { "<space>p", hidden = true },
+            { "<space>n", hidden = true },
         })
     end,
 }

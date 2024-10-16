@@ -18,19 +18,21 @@ local lsp_symbols = {
 
 return {
     "nvim-telescope/telescope.nvim",
-    event = { "VeryLazy", "LspAttach" },
+    event = { "LspAttach" },
+    cmd = { "Telescope" },
     dependencies = {
         {
             "natecraddock/telescope-zf-native.nvim",
+            lazy = true,
             config = function()
                 require("telescope").load_extension("zf-native")
             end,
         },
-        "ThePrimeagen/git-worktree.nvim",
+        -- { "ThePrimeagen/git-worktree.nvim", lazy = true },
     },
     version = false, -- telescope did only one release, so use HEAD for now
     keys = {
-        { "<leader>,", Util.telescope("buffers", { path_display = path_display }), desc = "Switch Buffer" },
+        -- { "<leader>,", Util.telescope("buffers", { path_display = path_display }), desc = "Switch Buffer" },
         { "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
         { "<leader><space>", Util.telescope("files", { path_display = path_display }), desc = "Find Files (root dir)" },
         { "<leader>df", ":Telescope flutter commands<cr>", noremap = true, desc = "Open Flutter Command Pallet" },
@@ -68,6 +70,8 @@ return {
         { "<leader>sS", Util.telescope("lsp_dynamic_workspace_symbols", { symbols = lsp_symbols }), desc = "Goto Symbol (Workspace)" },
     },
     config = function(_, opts)
+        local actions = require("telescope.actions")
+        opts.defaults.mappings.n["<C-c>"] = actions.close
         require("telescope").setup(opts)
         require("telescope").load_extension("git_worktree")
         require("telescope").load_extension("dap")
@@ -76,8 +80,9 @@ return {
         return {
             defaults = {
                 layout_strategy = "vertical",
+                sorting_strategy = "ascending",
                 layout_config = {
-                    vertical = { width = 0.5 },
+                    vertical = { width = 0.5, height = 0.6, prompt_position = "top" },
                 },
                 file_ignore_patterns = {
                     ".git/",
@@ -94,6 +99,9 @@ return {
                         ["<C-k>"] = function(...)
                             return require("telescope.actions").move_selection_previous(...)
                         end,
+                    },
+                    n = {
+                        ["<C-c>"] = { "<esc>", type = "command" },
                     },
                 },
             },
@@ -123,6 +131,11 @@ return {
                         match_filename = false,
                     },
                 },
+            },
+            pickers = {
+                buffers = { previewer = false },
+                git_files = { previewer = false },
+                find_files = { previewer = false },
             },
         }
     end,

@@ -8,8 +8,13 @@ return {
         require("catppuccin").setup({
             transparent_background = true,
             flavour = "mocha",
+            background = {
+                dark = "mocha",
+                light = "frappe",
+            },
+            term_colors = true,
             integrations = {
-                cmp = false,
+                cmp = true,
                 fidget = true,
                 lsp_trouble = true,
                 gitsigns = true,

@@ -17,7 +17,8 @@ opt.clipboard = "unnamedplus" -- Sync with system clipboard
 opt.completeopt = "menu,menuone,noselect"
 opt.conceallevel = 3 -- Hide * markup for bold and italic
 opt.confirm = true -- Confirm to save changes before exiting modified buffer
-opt.cursorline = false -- Enable highlighting of the current line
+opt.cursorline = true -- Enable highlighting of the current line
+opt.cursorcolumn = true -- Enable highlighting of the current line
 opt.expandtab = true -- Use spaces instead of tabs
 opt.formatoptions = "jcroqlnt" -- tcqj
 opt.grepformat = "%f:%l:%c:%m"
@@ -64,17 +65,9 @@ opt.fillchars = {
     eob = " ",
 }
 
-if vim.fn.has("nvim-0.10") == 1 then
-    opt.smoothscroll = true
-end
-
 -- Folding
 vim.opt.foldlevel = 99
 vim.opt.foldtext = "v:lua.require'nskriabin.core.util.ui'.foldtext()"
-
-if vim.fn.has("nvim-0.9.0") == 1 then
-    vim.opt.statuscolumn = [[%!v:lua.require'nskriabin.core.util.ui'.statuscolumn()]]
-end
 
 -- HACK: causes freezes on <= 0.9, so only enable on >= 0.10 for now
 if vim.fn.has("nvim-0.10") == 1 then
@@ -87,17 +80,18 @@ end
 -- Fix markdown indentation settings
 vim.g.markdown_recommended_style = 0
 
-vim.cmd("let g:vimwiki_list = [{'path': '~/Git/notes', 'syntax': 'markdown', 'ext': '.md'}]")
+-- vim.cmd("let g:vimwiki_list = [{'path': '~/Git/notes', 'syntax': 'markdown', 'ext': '.md'}]")
 
 -- vim.cmd("set t_ZH=^[[3me")
 -- vim.cmd("set t_ZR=^[[23m")
 -- vim.cmd([[let &t_SI = "\e[6 q]])
 -- vim.cmd([[let &t_EI = "\e[2 q"]])
 
-vim.cmd([[let &t_Cs = "\e[4:3m"]])
-vim.cmd([[let &t_Ce = "\e[4:0m"]])
+-- vim.cmd([[let &t_Cs = "\e[4:3m"]])
+-- vim.cmd([[let &t_Ce = "\e[4:0m"]])
 
 g.skip_ts_context_commentstring_module = true
 
 vim.cmd("set spelllang=en")
 vim.cmd("set spell")
+vim.cmd("set noswapfile")

@@ -6,6 +6,7 @@ return {
             exclude = {
                 "notify",
                 "cmp_menu",
+                "blink",
                 "noice",
                 "flash_prompt",
                 "neo_tree",

@@ -10,14 +10,11 @@ alias cat="bat"
 alias c="clear"
 alias s="source ~/.config/fish/config.fish"
 alias fc="nvim ~/.config/fish/config.fish"
+alias yy="yazi"
 
 alias lso="cd ~/Git/label-studio"
 alias lse="cd ~/Git/label-studio-enterprise"
-alias ecm='git commit --allow-empty -m "trigger ci" && git push'
 
-alias venv-create='mkdir -p ~/py-env && python3 -m venv ~/py-env/htx'
-alias venv-drop='rm -rf ~/py-env/htx'
-alias venv='source ~/py-env/htx/bin/activate'
 alias fcpxreset='rm ~/Library/Application\ Support/.ffuserdata'
 
 # Git
@@ -31,6 +28,7 @@ alias gcm='git commit -m'
 alias grm='git checkout origin/master -- '
 alias grh='git checkout HEAD -- '
 alias gby="git rev-parse --abbrev-ref HEAD | tr -d '\n' | pbcopy"
+alias ecm='git commit --allow-empty -m "trigger ci" && git push'
 alias gd="gh dash"
 alias lg="lazygit"
 
@@ -42,7 +40,6 @@ alias tma='tmux attach -t'
 alias vimconfig='cd ~/.config/$NVIM_APPNAME/ && nvim'
 
 alias x='clear && tmux clear-history'
-alias f="ranger"
 
 # Github workflows
 alias gwls='gh workflow list'
