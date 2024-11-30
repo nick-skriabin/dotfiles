@@ -41,6 +41,7 @@ SETUVAR --export OPEN_AI_KEY:sk\x2dvA9BbJBHsOOQUyKPNKYGT3BlbkFJt8Yn6ha4KWUNlWYwi
 SETUVAR --export --path PKG_CONFIG_PATH:/usr/local/opt/zlib/lib/pkgconfig
 SETUVAR --export RTC_METRO_PORT:9090
 SETUVAR --export SLACK_API_TOKEN:xoxb\x2d634578297890\x2d3951402438771\x2dq7jvOqFXw5O52nlnuOV8hJlw
+SETUVAR --export STARSHIP_CONFIG:/Users/nicholasrq/\x2econfig/starship/starship\x2etoml
 SETUVAR --export TERM:screen\x2d256color
 SETUVAR --export XDG_CONFIG_HOME:/Users/nicholasrq/\x2econfig
 SETUVAR __fish_initialized:3400
