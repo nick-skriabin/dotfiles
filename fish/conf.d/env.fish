@@ -1,11 +1,11 @@
-# Global set -Uxtings
+set Global set -Uxtings
 set -Ux LDFLAGS -L/usr/local/opt/zlib/lib
 set -Ux CPPFLAGS -I/usr/local/opt/zlib/include
 set -Ux PKG_CONFIG_PATH /usr/local/opt/zlib/lib/pkgconfig
 set -Ux CPU_NUMBER $(sysctl -n hw.ncpu)
 set -Ux XDG_CONFIG_HOME "$HOME/.config"
 set -Ux collect_analytics false
-set -Ux CONFIG_DIR "$HOME/.config"
+set -Ux CONFIG_DIR "$HOME/.config/lazygit/"
 set -Ux GOPATH "$HOME/go"
 
 # CPP

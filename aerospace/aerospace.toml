@@ -1,0 +1,207 @@
+# Reference: https://github.com/i3/i3/blob/next/etc/config
+
+# i3 doesn't have "normalizations" feature that why we disable them here.
+# But the feature is very helpful.
+# Normalizations eliminate all sorts of weird tree configurations that don't make sense.
+# Give normalizations a chance and enable them back.
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = true
+
+after-startup-command = [
+    'exec-and-forget /opt/homebrew/opt/sketchybar/bin/sketchybar',
+    'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0'
+]
+
+exec-on-workspace-change = ['/opt/homebrew/bin/fish', '-c',
+    '/opt/homebrew/opt/sketchybar/bin/sketchybar --trigger aerospace_workspace_change AEROSPACE_FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE AEROSPACE_PREV_WORKSPACE=$AEROSPACE_PREV_WORKSPACE',
+    'hs -c "test(\"from aerospace\")"'
+]
+
+# Mouse follows focus when focused monitor changes
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+
+start-at-login = true
+
+[key-mapping.key-notation-to-key-code]
+q = 'q'
+w = 'w'
+f = 'e'
+p = 'r'
+b = 't'
+j = 'y'
+l = 'u'
+u = 'i'
+y = 'o'
+semicolon = 'p'
+leftSquareBracket = 'leftSquareBracket'
+rightSquareBracket = 'rightSquareBracket'
+backslash = 'backslash'
+
+a = 'a'
+r = 's'
+s = 'd'
+t = 'f'
+g = 'g'
+m = 'h'
+n = 'j'
+e = 'k'
+i = 'l'
+o = 'semicolon'
+quote = 'quote'
+
+x = 'z'
+c = 'x'
+d = 'c'
+v = 'v'
+z = 'b'
+k = 'n'
+h = 'm'
+comma = 'comma'
+period = 'period'
+slash = 'slash'
+
+[mode.main.binding]
+cmd-h = [] # Disable "hide application"
+cmd-alt-h = [] # Disable "hide others"
+
+alt-h = 'focus left'
+alt-j = 'focus up'
+alt-k = 'focus down'
+alt-l = 'focus right'
+
+alt-shift-h = 'move left'
+alt-shift-j = 'move up'
+alt-shift-k = 'move down'
+alt-shift-l = 'move right'
+
+ctrl-shift-h = 'join-with left'
+ctrl-shift-j = 'join-with down'
+ctrl-shift-k = 'join-with up'
+ctrl-shift-l = 'join-with right'
+
+alt-f = 'fullscreen'
+alt-s = 'layout v_accordion' # 'layout stacking' in i3
+alt-w = 'layout h_accordion' # 'layout tabbed' in i3
+alt-e = 'layout tiles vertical horizontal' # 'layout toggle split' in i3
+
+alt-shift-space = 'layout floating tiling' # 'floating toggle' in i3
+
+# Not supported, because this command is redundant in AeroSpace mental model.
+# See: https://nikitabobko.github.io/AeroSpace/guide#floating-windows
+#alt-space = 'focus toggle_tiling_floating'
+
+# `focus parent`/`focus child` are not yet supported, and it's not clear whether they
+# should be supported at all https://github.com/nikitabobko/AeroSpace/issues/5
+# alt-a = 'focus parent'
+
+ctrl-1 = 'workspace 1'
+ctrl-2 = 'workspace 2'
+ctrl-3 = 'workspace 3'
+ctrl-4 = 'workspace 4'
+ctrl-5 = 'workspace 5'
+ctrl-6 = 'workspace 6'
+ctrl-7 = 'workspace 7'
+ctrl-8 = 'workspace 8'
+ctrl-9 = 'workspace 9'
+ctrl-0 = 'workspace 10'
+
+ctrl-shift-1 = 'move-node-to-workspace 1'
+ctrl-shift-2 = 'move-node-to-workspace 2'
+ctrl-shift-3 = 'move-node-to-workspace 3'
+ctrl-shift-4 = 'move-node-to-workspace 4'
+ctrl-shift-5 = 'move-node-to-workspace 5'
+ctrl-shift-6 = 'move-node-to-workspace 6'
+ctrl-shift-7 = 'move-node-to-workspace 7'
+ctrl-shift-8 = 'move-node-to-workspace 8'
+ctrl-shift-9 = 'move-node-to-workspace 9'
+ctrl-shift-0 = 'move-node-to-workspace 10'
+
+alt-comma = 'mode system'
+alt-a = 'mode app'
+
+alt-minus = 'resize smart -50'
+alt-equal = 'resize smart +50'
+
+[mode.system.binding]
+enter = [ 'reload-config', 'mode main' ]
+esc = 'mode main'
+
+[mode.app.binding]
+s = ['exec-and-forget open -a /Applications/Slack.app', 'mode main']
+shift-s = ['exec-and-forget open -a /Applications/Spotify.app', 'mode main']
+t = ['exec-and-forget open -a /Applications/kitty.app', 'mode main']
+p = ['exec-and-forget open -a /Applications/Telegram.app', 'mode main']
+a = ['exec-and-forget open -a /Applications/Arc.app', 'mode main']
+c = ['exec-and-forget open -a /System/Applications/Notion\ Calendar.app', 'mode main']
+m = ['exec-and-forget open -a /System/Applications/Mail.app', 'mode main']
+v = ['exec-and-forget open -a /Applications/Spotify.app', 'mode main']
+f = ['exec-and-forget marta ~/Downloads', 'mode main']
+enter = 'mode main'
+esc = 'mode main'
+
+[gaps]
+inner.horizontal = 8
+inner.vertical =   8
+outer.left =       8
+outer.bottom =     8
+outer.top =        [
+  {monitor."Built-in Retina Display" = 10},
+  {monitor.main = 40},
+  40
+]
+outer.right =      8
+
+# Pin apps to the workspace
+[[on-window-detected]]
+if.app-id = 'company.thebrowser.Browser'
+run = ['move-node-to-workspace 1']
+
+[[on-window-detected]]
+if.app-id = 'net.kovidgoyal.kitty'
+run = ['move-node-to-workspace 2']
+
+[[on-window-detected]]
+if.app-id = 'ru.keepcoder.Telegram'
+run = ['move-node-to-workspace 3']
+
+[[on-window-detected]]
+if.app-id = 'com.tinyspeck.slackmacgap'
+run = ['move-node-to-workspace 3']
+
+[[on-window-detected]]
+if.app-id = 'com.apple.mail'
+run = ['move-node-to-workspace 4']
+
+[[on-window-detected]]
+if.app-id = 'com.cron.electron'
+run = ['move-node-to-workspace 4']
+
+[[on-window-detected]]
+if.app-id = 'notion.id'
+run = ['move-node-to-workspace 5']
+
+[[on-window-detected]]
+if.app-id = 'md.obsidian'
+run = ['move-node-to-workspace 5']
+
+[[on-window-detected]]
+if.app-id = 'com.spotify.client'
+run = ['move-node-to-workspace 6']
+
+[[on-window-detected]]
+if.app-id = 'dev.kdrag0n.MacVirt'
+run = ['move-node-to-workspace 7']
+
+[[on-window-detected]]
+if.app-id = 'com.figma.Desktop'
+run = ['move-node-to-workspace 8']
+
+[[on-window-detected]]
+if.app-id = 'com.shapr3d.shapr'
+run = ['move-node-to-workspace 8']
+
+# [[on-window-detected]]
+# if.app-id = ''
+# check-further-callbacks = true
+# run = 'layout floating'
+

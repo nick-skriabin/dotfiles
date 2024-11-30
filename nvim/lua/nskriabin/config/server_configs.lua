@@ -2,15 +2,6 @@ local auto = require("nskriabin.auto.utils")
 
 local M = {}
 
-M.biome = function(lsp)
-    return {
-        cmd = { "biome", "lsp-proxy" },
-        filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact" },
-        cwd = lsp.util.root_pattern("biome.json", "biome.jsonc"),
-        single_file_support = false,
-    }
-end
-
 M.tailwindcss = function(lsp)
     return {
         cwd = lsp.util.root_pattern("tailwind.config.js", "tailwind.config.cjs", "tailwind.config.ts"),
@@ -22,6 +13,12 @@ M.svelte = {
         svelte = {
             ["enable-ts-plugin"] = true,
             plugin = {
+                svelte = {
+                    enable = true,
+                    format = {
+                        enable = true,
+                    },
+                },
                 css = {
                     completions = {
                         emmet = false,
@@ -51,9 +48,14 @@ M.svelte = {
     end,
 }
 
-M.vtsls = {
+M.ts_ls = {
     settings = {
+        includeCompletionsForModuleExports = true,
+        includePackageJsonAutoImports = true,
         typescript = {
+            tsserver = {
+                maxTsServerMemory = "auto",
+            },
             format = {
                 enable = false,
             },
@@ -72,61 +74,7 @@ M.vtsls = {
             },
             updateImportsOnFileMove = "always",
         },
-    },
-}
-
--- M.vtsls = {
---     settings = {
---         typescript = {
---             format = {
---                 enable = false,
---             },
---             tsserver = {
---                 maxTsServerMemory = "auto",
---             },
---             updateImportsOnFileMove = "always",
---             inlayHints = {
---                 parameterNames = { enabled = true },
---                 parameterTypes = { enabled = false },
---                 variableTypes = { enabled = false },
---                 propertyDeclarationTypes = { enabled = false },
---                 functionLikeReturnTypes = { enabled = false },
---                 enumMemberValues = { enabled = true },
---             },
---         },
---         javascript = {
---             format = {
---                 enable = false,
---             },
---             updateImportsOnFileMove = "always",
---             inlayHints = {
---                 parameterNames = { enabled = true },
---                 parameterTypes = { enabled = false },
---                 variableTypes = { enabled = false },
---                 propertyDeclarationTypes = { enabled = false },
---                 functionLikeReturnTypes = { enabled = false },
---                 enumMemberValues = { enabled = true },
---             },
---         },
---     },
--- }
-M.lua_ls = {
-    settings = { -- custom settings for lua
-        Lua = {
-            -- make the language server recognize "vim" global
-            diagnostics = {
-                globals = { "vim", "hs", "spoon" },
-            },
-            workspace = {
-                -- make language server aware of runtime files
-                library = {
-                    [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                    [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
-                    [vim.fn.stdpath("config") .. "/lua"] = true,
-                    ["/Applications/Hammerspoon.app/Contents/Resources/extensions/hs/"] = true,
-                },
-            },
-        },
+        plugins = { "typescript-plugin-css-modules" },
     },
 }
 
@@ -155,20 +103,29 @@ M.cspell = {
 }
 
 M.cssls = {
+    css = {
+        format = {
+            spaceAroundSelectorSeparator = true,
+        },
+    },
+    scss = {
+        format = {
+            spaceAroundSelectorSeparator = false,
+        },
+    },
+    less = {
+        format = {
+            spaceAroundSelectorSeparator = true,
+        },
+    },
+}
+
+M.luals = {
     settings = {
-        css = {
-            format = {
-                spaceAroundSelectorSeparator = true,
-            },
-        },
-        scss = {
-            format = {
-                spaceAroundSelectorSeparator = false,
-            },
-        },
-        less = {
-            format = {
-                spaceAroundSelectorSeparator = true,
+        diagnostics = {
+            globals = {
+                "vim",
+                "hs",
             },
         },
     },

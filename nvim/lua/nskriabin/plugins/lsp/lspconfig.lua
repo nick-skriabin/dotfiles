@@ -95,14 +95,11 @@ return {
         "williamboman/mason.nvim",
         "SmiteshP/nvim-navic",
         "folke/neoconf.nvim",
-        "hrsh7th/nvim-cmp",
     },
     config = function()
         local lspconfig = require("lspconfig")
         local mason = require("mason-lspconfig")
 
-        -- import cmp-nvim-lsp plugin
-        -- local cmp_nvim_lsp = require("cmp_nvim_lsp")
         local map = vim.keymap -- for conciseness
 
         local opts = { noremap = true, silent = true }
@@ -112,35 +109,25 @@ return {
 
             -- set keybinds
             opts.desc = "Show LSP references"
-            map.set("n", "gr", "<cmd>Telescope lsp_references<cr>", opts) -- show definition, references
+            map.set("n", "gr", "<cmd>FzfLua lsp_references<cr>", opts) -- show definition, references
 
             opts.desc = "Show LSP definitions"
-            map.set("n", "gd", "<cmd>Telescope lsp_definitions<cr>", opts) -- show lsp definitions
+            map.set("n", "gd", "<cmd>FzfLua lsp_definitions<cr>", opts) -- show lsp definitions
 
             opts.desc = "Show LSP implementations"
-            map.set("n", "gi", "<cmd>Telescope lsp_implementations<cr>", opts) -- show lsp implementations
+            map.set("n", "gi", "<cmd>FzfLua lsp_implementations<cr>", opts) -- show lsp implementations
 
             opts.desc = "Show LSP type definitions"
-            map.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts) -- show lsp type definitions
+            map.set("n", "gt", "<cmd>FzfLua lsp_type_definitions<CR>", opts) -- show lsp type definitions
 
             opts.desc = "See available code actions"
-            map.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts) -- see available code actions, in visual mode will apply to selection
+            map.set({ "n", "v" }, "<leader>ca", "<cmd>FzfLua lsp_code_actions<cr>", opts) -- see available code actions, in visual mode will apply to selection
 
             opts.desc = "See available source actions"
-            map.set("n", "<leader>cA", function()
-                vim.lsp.buf.code_action({
-                    context = {
-                        only = { "source" },
-                        diagnostics = {},
-                    },
-                })
-            end, opts) -- see available code actions, in visual mode will apply to selection
+            map.set("n", "<leader>cA", '<cmd>FzfLua lsp_code_actions only="source"<cr>', opts) -- see available code actions, in visual mode will apply to selection
 
             opts.desc = "Rename Symbol"
             map.set("n", "<leader>cr", vim.lsp.buf.rename, { buffer = bufnr, desc = "Rename" }) -- smart rename
-
-            opts.desc = "Show buffer diagnostics"
-            map.set("n", "<leader>cd", "<cmd>Telescope diagnostics bufnr=0<CR>", opts) -- show  diagnostics for file
 
             opts.desc = "Show line diagnostics"
             map.set("n", "gl", vim.diagnostic.open_float, opts) -- show diagnostics for line
@@ -156,7 +143,6 @@ return {
         end
 
         -- used to enable autocompletion (assign to every lsp server config)
-        -- local capabilities = cmp_nvim_lsp.default_capabilities()
         local capabilities = default_capabilities()
         capabilities.textDocument.foldingRange = {
             dynamicRegistration = false,
@@ -184,6 +170,9 @@ return {
 
         mason.setup_handlers({
             function(server)
+                if server == "emmet_language_server" then
+                    return
+                end
                 lspconfig[server].setup(get_config(server, capabilities, on_attach))
             end,
         })

@@ -14,6 +14,11 @@ keys.map({
     { "n", "<S-Enter>", "O<ESC>" },
 })
 
+-- editing
+keys.map({
+    { "i", "<M-BS>", "<C-w>", nowait = true, silent = true },
+})
+
 -- navigation
 keys.map({
     { "n", "<C-u>", "<C-u>zz" },

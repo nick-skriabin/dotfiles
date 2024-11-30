@@ -16,6 +16,7 @@ return {
             "lazy",
             "mason",
             "oil",
+            "minifiles",
             "NeogitStatus",
             "dap-repl",
             "dapui_watches",
@@ -24,6 +25,7 @@ return {
             "dapui_breakpoints",
             "dapui_frames",
             "neotest-summary",
+            "avante",
         },
     },
 }

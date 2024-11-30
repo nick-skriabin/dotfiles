@@ -1,7 +1,6 @@
 local M = {}
 
 M.lsp = {
-    "html",
     "cssls",
     "lua_ls",
     "pyright",
@@ -13,7 +12,7 @@ M.lsp = {
     "docker_compose_language_service",
     "yamlls",
     "jsonls",
-    "vtsls",
+    "ts_ls",
     "emmet_language_server",
 }
 

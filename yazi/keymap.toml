@@ -1,0 +1,25 @@
+[[manager.prepend_keymap]]
+on = ["-"]
+run = "leave"
+desc = "Up one folder"
+
+[[manager.prepend_keymap]]
+on = ["e"]
+run = "open"
+desc = "Up one folder"
+
+[[manager.prepend_keymap]]
+on = ["g", "?"]
+run = "help"
+desc = "Show help"
+
+[[manager.prepend_keymap]]
+on = ["g", "."]
+run = "hidden toggle"
+desc = "Toggle hidden files"
+
+[[manager.prepend_keymap]]
+on = ["<Enter>"]
+run = "enter"
+desc = "Open file"
+

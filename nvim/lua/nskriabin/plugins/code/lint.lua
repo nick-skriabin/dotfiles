@@ -32,7 +32,7 @@ return {
             css = { "stylelint" },
             sass = { "stylelint" },
             scss = { "stylelint" },
-            python = { "pylint" },
+            python = { "ruff" },
             lua = { "luacheck" },
         }
 

@@ -1,11 +1,6 @@
--- lazy.nvim
---
 return {
     "folke/noice.nvim",
     event = "VeryLazy",
-    dependencies = {
-        -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-    },
     opts = {
         -- you can enable a preset for easier configuration
         presets = {

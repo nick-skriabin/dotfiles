@@ -1,0 +1,130 @@
+# This is a demo config to show some of the most important commands more easily.
+# This is meant to be changed and configured, as it is intentionally kept sparse.
+# For a more advanced configuration example see my dotfiles:
+# https://github.com/FelixKratz/dotfiles
+source "$HOME/.config/sketchybar/colors.sh"
+source "$HOME/.config/sketchybar/icons.sh"
+source "$HOME/.config/sketchybar/userconfig.sh"
+
+# aerospace setting
+AEROSPACE_FOCUSED_MONITOR_NO=$(aerospace list-workspaces --focused)
+AEROSPACE_LIST_OF_WINDOWS_IN_FOCUSED_MONITOR=$(aerospace list-windows --workspace $AEROSPACE_FOCUSED_MONITOR_NO | awk -F'|' '{gsub(/^ *| *$/, "", $2); print $2}')
+
+PLUGIN_DIR="$CONFIG_DIR/plugins"
+
+bar_config=(
+  blur_radius=30
+  color="$BASE"
+  corner_radius=0
+  margin=0
+  notch_width=0
+  padding_left=16
+  padding_right=16
+  position=top
+  height=32
+  shadow=on
+  sticky=on
+  topmost=off
+  y_offset=0
+)
+
+icon_defaults=(
+  icon.color="$ICON_COLOR"
+  icon.font="$NERD_FONT:Bold:16.0"
+  icon.padding_left="$PADDINGS"
+  icon.padding_right="$PADDINGS"
+)
+
+label_defaults=(
+  label.color="$TEXT"
+  label.font="$FONT:Regular:13.0"
+  label.padding_left="$PADDINGS"
+  label.padding_right="$PADDINGS"
+)
+
+background_defaults=(
+  background.corner_radius=9
+  background.height=30
+  background.padding_left="$PADDINGS"
+  background.padding_right="$PADDINGS"
+)
+
+popup_defaults=(
+  popup.height=30
+  popup.horizontal=false
+  popup.background.border_color="$BLUE"
+  popup.background.border_width=0
+  popup.background.color="$MANTLE"
+  popup.background.corner_radius=4
+  popup.background.shadow.drawing=on
+)
+
+# Setting up the general bar appearance and default values
+sketchybar --bar "${bar_config[@]}" \
+  --default \
+  updates=when_shown \
+  "${icon_defaults[@]}" \
+  "${label_defaults[@]}" \
+  "${background_defaults[@]}" \
+  "${popup_defaults[@]}"
+
+##### Changing Defaults #####
+# We now change some default values that are applied to all further items
+# For a full list of all available item properties see:
+# https://felixkratz.github.io/SketchyBar/config/items
+
+#sketchybar --default icon.font="FiraCode NF:Bold:17.0"  \
+                     #icon.color=0xffffffff                 \
+                     #label.font="SF Pro:Bold:14.0" \
+                     #label.color=0xffffffff                \
+                     #padding_left=5                        \
+                     #padding_right=5                       \
+                     #label.padding_left=4                  \
+                     #label.padding_right=4                 \
+                     #icon.padding_left=4                   \
+                     #icon.padding_right=4
+
+##### Adding Mission Control Space Indicators #####
+# Now we add some mission control spaces:
+# https://felixkratz.github.io/SketchyBar/config/components#space----associate-mission-control-spaces-with-an-item
+# to indicate active and available mission control spaces
+
+
+# EVENTS
+#sketchybar -m --add event window_focus \
+              #--add event title_change
+
+# WINDOW TITLE
+#sketchybar -m --add item title left \
+              #--set title script="$PLUGIN_DIR/window_title.sh" \
+              #--subscribe title window_focus front_app_switched space_change title_change
+
+##### Adding Right Items #####
+# In the same way as the left items we can add items to the right side.
+# Additional position (e.g. center) are available, see:
+# https://felixkratz.github.io/SketchyBar/config/items#adding-items-to-sketchybar
+
+# Some items refresh on a fixed cycle, e.g. the clock runs its script once
+# every 10s. Other items respond to events they subscribe to, e.g. the
+# volume.sh script is only executed once an actual change in system audio
+# volume is registered. More info about the event system can be found here:
+# https://felixkratz.github.io/SketchyBar/config/events
+
+#sketchybar --add item volume right                             \
+           #--set volume  script="$PLUGIN_DIR/volume.sh"        \
+           #--subscribe volume volume_change                    \
+                                                               #\
+           #--add item battery right                            \
+           #--set battery script="$PLUGIN_DIR/battery.sh"       \
+                         #update_freq=120                       \
+           #--subscribe battery system_woke power_source_change
+
+source "$PLUGIN_DIR/left.sh"
+source "$PLUGIN_DIR/right.sh"
+
+sketchybar --hotload on
+##### Finalizing Setup #####
+# The below command is only needed at the end of the initial configuration to
+# force all scripts to run the first time, it should never be run in an item script.
+
+sketchybar --update

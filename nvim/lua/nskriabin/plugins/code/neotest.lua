@@ -1,3 +1,4 @@
+local ignored_dirs = { "node_modules", "dist", "coverage", "__mocks__", "__snapshots__" }
 return {
     "nvim-neotest/neotest",
     dependencies = {
@@ -11,6 +12,12 @@ return {
     },
     config = function()
         require("neotest").setup({
+            discovery = {
+                filter_dir = function(name)
+                    local match = string.find(name, table.concat(ignored_dirs, "|"))
+                    return match == nil
+                end,
+            },
             adapters = {
                 require("neotest-vitest"),
                 require("neotest-jest")({

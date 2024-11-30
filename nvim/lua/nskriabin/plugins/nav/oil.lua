@@ -1,6 +1,7 @@
 return {
     "stevearc/oil.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
+    enabled = false,
     lazy = true,
     keys = {
         { "-", ":lua require('oil').open()<cr>", desc = "Open parent dir", silent = true },
