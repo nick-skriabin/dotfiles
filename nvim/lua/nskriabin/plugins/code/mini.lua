@@ -44,7 +44,7 @@ return {
         opts = {
             mappings = {
                 close = "q",
-                go_in = "<cr>",
+                go_in = "",
                 go_in_plus = "L",
                 go_out = "-",
                 go_out_plus = "H",
@@ -130,6 +130,26 @@ return {
                     map_split(buf_id, opts.mappings and opts.mappings.go_in_vertical or "<C-w>v", "vertical", false)
                     map_split(buf_id, opts.mappings and opts.mappings.go_in_horizontal_plus or "<C-w>S", "horizontal", true)
                     map_split(buf_id, opts.mappings and opts.mappings.go_in_vertical_plus or "<C-w>V", "vertical", true)
+                end,
+            })
+
+            -- Function to open file and close mini.files
+            local function open_file_and_close()
+                require("mini.files").go_in({ close_on_file = true })
+            end
+
+            -- Create an autocommand to set up the custom mapping
+            vim.api.nvim_create_autocmd("User", {
+                pattern = "MiniFilesBufferCreate",
+                callback = function(args)
+                    local buf_id = args.data.buf_id
+                    -- Map 'l' key to open file and close mini.files
+                    vim.api.nvim_buf_set_keymap(buf_id, "n", "<cr>", "", {
+                        callback = open_file_and_close,
+                        desc = "Open file and close mini.files",
+                        noremap = true,
+                        silent = true,
+                    })
                 end,
             })
         end,

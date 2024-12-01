@@ -21,7 +21,7 @@ recentrepos:
     - /Users/nicholasrq/Git/ls-waveform
     - /Users/nicholasrq/Git/wecto
 startuppopupversion: 5
-lastversion: 0.43.1
+lastversion: 0.44.1
 customcommandshistory:
     - Remove output dir from git
     - fetch

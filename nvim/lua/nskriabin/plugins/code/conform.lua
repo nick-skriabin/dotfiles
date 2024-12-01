@@ -104,6 +104,7 @@ return {
                 python = { "blue", "ruff_fix" },
                 go = { "gofmt", "goimports" },
                 markdown = { "mdformat", "markdownlint" },
+                nix = { "nixfmt" },
             },
             format_on_save = function(bufnr)
                 if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then

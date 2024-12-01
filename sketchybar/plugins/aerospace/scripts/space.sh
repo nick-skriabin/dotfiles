@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/bin/zsh
+
+AEROSPACE="/run/current-system/sw/bin/aerospace"
 
 update() {
   if [ "$SENDER" = "space_change" ]; then
@@ -8,7 +10,7 @@ update() {
       COLOR=$ACTIVE_BG
     fi
 
-    sketchybar --set space.$(aerospace list-workspaces --focused) \
+    sketchybar --set space.$($AEROSPACE list-workspaces --focused) \
       icon.highlight=true \
       label.highlight=true
   fi
@@ -22,7 +24,7 @@ mouse_clicked() {
   if [ "$BUTTON" = "right" ]; then
     echo ''
   else
-    aerospace workspace ${NAME#*.}
+    $AEROSPACE workspace ${NAME#*.}
   fi
 }
 

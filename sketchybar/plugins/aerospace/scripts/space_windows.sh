@@ -13,6 +13,8 @@ source "$CONFIG_DIR/colors.sh"
 source "$CONFIG_DIR/icon_map.sh"
 source "$CONFIG_DIR/plugins/aerospace/scripts/space_apps_icons.sh"
 
+AEROSPACE="/run/current-system/sw/bin/aerospace"
+
 reload_workspace_icon() {
   icon_strip=$(get_apps_icons "$@")
   sketchybar --set space.$@ label="$icon_strip" icon="$@"
@@ -33,8 +35,8 @@ if [ "$SENDER" = "aerospace_workspace_change" ]; then
   reload_workspace_icon "$AEROSPACE_PREV_WORKSPACE"
   reload_workspace_icon "$AEROSPACE_FOCUSED_WORKSPACE"
 
-  AEROSPACE_FOCUSED_MONITOR=$(aerospace list-monitors --focused | awk '{print $1}')
-  AEROSAPCE_WORKSPACE_FOCUSED_MONITOR=$(aerospace list-workspaces --monitor focused --empty no)
+  AEROSPACE_FOCUSED_MONITOR=$($AEROSPACE list-monitors --focused | awk '{print $1}')
+  AEROSAPCE_WORKSPACE_FOCUSED_MONITOR=$($AEROSPACE list-workspaces --monitor focused --empty no)
 
   # focused 된 모니터에 space 상태 보이게 설정
   for i in $AEROSAPCE_WORKSPACE_FOCUSED_MONITOR; do

@@ -1,5 +1,7 @@
+AEROSPACE="/run/current-system/sw/bin/aerospace"
+
 get_apps_icons() {
-  apps=$(aerospace list-windows --workspace "$@" | awk -F'|' '{gsub(/^ *| *$/, "", $2); print $2}')
+  apps=$($AEROSPACE list-windows --workspace "$@" | awk -F'|' '{gsub(/^ *| *$/, "", $2); print $2}')
 
   icon_strip=""
   if [ "${apps}" != "" ]; then

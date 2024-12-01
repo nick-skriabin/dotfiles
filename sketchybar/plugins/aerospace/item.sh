@@ -1,17 +1,18 @@
-#!/bin/sh
+#!/bin/zsh
 source "$CONFIG_DIR/colors.sh"
 source "$CONFIG_DIR/icon_map.sh"
 source "$CONFIG_DIR/plugins/aerospace/scripts/space_apps_icons.sh"
 
 CURRENT_FONT="sketchybar-app-font"
 ICON_FONT_SETTINGS="$CURRENT_FONT:Regular:16.0"
+AEROSPACE="/run/current-system/sw/bin/aerospace"
 
 sketchybar --add event aerospace_workspace_change
 
-for m in $(aerospace list-monitors | awk '{print $1}'); do
-  focused_workspace=$(aerospace list-workspaces --monitor $m focused --visible)
+for m in $($AEROSPACE list-monitors | awk '{print $1}'); do
+  focused_workspace=$($AEROSPACE list-workspaces --monitor $m focused --visible)
 
-  for i in $(aerospace list-workspaces --monitor $m); do
+  for i in $($AEROSPACE list-workspaces --monitor $m); do
     sid=$i
     space=(
       space="$sid"
@@ -35,12 +36,12 @@ for m in $(aerospace list-monitors | awk '{print $1}'); do
     )
 
     sketchybar --add space space.$sid left \
-               --set space.$sid "${space[@]}" \
-               --subscribe space.$sid mouse.clicked
+      --set space.$sid "${space[@]}" \
+      --subscribe space.$sid mouse.clicked
 
     icon_strip=$(get_apps_icons $sid)
 
-    sketchybar --set space.$sid label="$icon_strip" icon="$sid" 
+    sketchybar --set space.$sid label="$icon_strip" icon="$sid"
 
     if [ "$sid" = "$focused_workspace" ]; then
       sketchybar --set space.$sid \
@@ -57,7 +58,6 @@ space_creator=(
   script="$PLUGIN_DIR/aerospace/scripts/space_windows.sh"
 )
 
-sketchybar --add item space_creator left               \
-           --set space_creator "${space_creator[@]}"   \
-           --subscribe space_creator aerospace_workspace_change
-
+sketchybar --add item space_creator left \
+  --set space_creator "${space_creator[@]}" \
+  --subscribe space_creator aerospace_workspace_change

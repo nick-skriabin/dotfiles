@@ -20,6 +20,7 @@ M.lsps = {
     emmet_language_server = "",
     biome = "󰬉",
     jsonls = "󰘦",
+    ["nil"] = "",
 }
 
 M.dap = {
