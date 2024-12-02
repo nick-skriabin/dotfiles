@@ -98,20 +98,16 @@ Borders is a utility for managing window borders on your desktop. It enhances th
 
 <br><br>
 
-### Misc
-
-#### Testing webhooks is pain no more - Hookdeck
-
-<img src="./assets/hookdeck.png" alt="hookdeck" width="100%" width="100%" style="display: block; margin-bottom: 16px;"/>
-Hookdeck is a tool for managing webhooks with ease. It provides a reliable infrastructure for receiving, processing, and monitoring webhooks.
-
-[Hookdeck](https://hookdeck.com/)
-
-<br><br>
-
 #### Raycast
 
 <img src="./assets/raycast.png" alt="raycast" width="100%" width="100%" style="display: block; margin-bottom: 16px;"/>
 Raycast is a productivity tool that allows you to perform tasks quickly using keyboard shortcuts. It integrates with various applications to streamline your workflow.
 
 [Raycast](https://www.raycast.com/)
+
+### Utilities worth mentioning
+
+- [fzf](https://github.com/junegunn/fzf) - Fuzzy finder. You can pipe pretty much any list of strings into it and search through.
+- [zoxide](https://github.com/ajeetdsouza/zoxide) - Smarter `cd`. It remembers directories you visited and allow fuzzy `cd`. E.g., if I type `z dot` it will `cd ~/Git/dotfiles`
+- [eza](https://github.com/eza-community/eza) - A drop-in replacement for `ls`. Supports tree view, icons, friendly formatting and more.
+- [tmux](https://github.com/tmux/tmux) - TMUX allows you to spawn long-sessions that will continue working in the background even if you close your terminal
