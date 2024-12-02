@@ -1,4 +1,6 @@
-# My personal dotfiles collection
+<h1>
+  <center>My personal dotfiles collection</center>
+</h1>
 
 ![Preview](/assets/screen.png)
 
