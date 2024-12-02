@@ -71,7 +71,7 @@ alias dcu="docker-compose up"
 alias dcr="dcd && dcu -d"
 
 # Nix commands
-alias nixb="darwin-rebuild switch --flake $HOME/.config/nix-darwin"
+alias nixb="darwin-rebuild switch --flake $HOME/Git/dotfiles/nix-darwin"
 
 gwr-sass () {
   REF=$1

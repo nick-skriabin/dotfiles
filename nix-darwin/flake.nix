@@ -58,6 +58,7 @@
           pkgs.emscripten
           pkgs.eza # better ls
           pkgs.fd # file finder
+          pkgs.ffmpeg # media magic
           pkgs.fswatch # FS events
           pkgs.fzf # Fuzzy search for everything
           pkgs.gitmux # Git status for TMUX
