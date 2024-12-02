@@ -6,6 +6,7 @@ starship init fish | source
 zoxide init fish | source
 tput cup $COLUMNS 0
 
+set -U fish_user_paths /run/current-system/sw/bin $fish_user_paths
 set fish_key_bindings fish_user_key_bindings
 
 bind yy fish_clipboard_copy

@@ -28,3 +28,4 @@ fish_add_path $GOPATH/bin
 fish_add_path /Applications/Alacritty.app/Contents/MacOS
 fish_add_path $HOME/.local/share/bob/nvim-bin
 fish_add_path /opt/homebrew/opt/arm-none-eabi-binutils/bin
+fish_add_path $NIX_PATH

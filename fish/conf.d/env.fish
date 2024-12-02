@@ -33,3 +33,11 @@ set -Ux TERM screen-256color
 
 # Starship
 set -Ux STARSHIP_CONFIG "$HOME/.config/starship/starship.toml"
+
+# NIX
+set -Ux NIX_SSL_CERT_FILE "/etc/ssl/certs/ca-certificates.crt"
+set -Ux NIX_PROFILES "/nix/var/nix/profiles/default /run/current-system/sw /Users/nicholasrq/.nix-profile"
+set -Ux __NIX_DARWIN_SET_ENVIRONMENT_DONE 1
+set -Ux NIX_PATH "nixphgs=flake:nixpkgs:/nix/var/nix/profiles/per-user/root/channels"
+set -Ux NIX_USER_PROFILE_DIR "/nix/var/nix/profiles/per-user/nicholasrq"
+set -Ux NIX_REMOTE daemon
