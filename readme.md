@@ -5,146 +5,113 @@
 ## What's included
 
 This is a list of everything that I use daily or somewhat often. Some of the apps on this list run in background or launched on system start.
+I've been tailoring my system for years. Now I'm finally at the point where I'm almost 100% satisfied with it.
 
-### Terminal
+#### Terminal of choice - Kitty
 
+<img src="./assets/kitty.png" alt="kitty terminal" width="100%" style="display: block; margin-bottom: 16px;"/>
 I'm spending most of the time in the terminal, so this is the most tailored place of them all.
 
-<div class="two-side">
-  <div class="image">
-    <img src="./assets/kitty.png" alt="kitty terminal"/>
-  </div>
-  <div class="text">
-    <h3>Kitty</h3>
-    GPU accelerated terminal emulator. I used iTerm2, Alacritty, Wezterm and kitty. The last one turned out to be perfect for. More about kitty.
-    <br>
-    <br>
-    <a href="https://sw.kovidgoyal.net/kitty/">Kitty</a>
-  </div>
-</div>
+GPU accelerated terminal emulator. I used iTerm2, Alacritty, Wezterm and kitty. The last one turned out to be perfect for. More about kitty.
 
-<div class="two-side">
-  <div class="image">
-    <img src="./assets/starship.png" alt="starship"/>
-  </div>
-  <div class="text">
-    <h3>starship</h3>
-    Starship is a customizable prompt for your shell. It can display various information like git status, current branch, current directory and even some environment info like your node or bun version
-    <br>
-    <br>
-    <a href="https://starship.rs/" alt="Starship">Starship</a>
-  </div>
-</div>
+[Kitty](https://sw.kovidgoyal.net/kitty/)
 
-### CLIs and TUIs
+<br><br>
 
-<div class="two-side">
-  <div class="image">
-    <img src="./assets/kitty.png" alt="neovim"/>
-  </div>
-  <div class="text">
-    <h3>Neovim</h3>
-    Terminal-based text editor, successor of Vim. Highly customizable, blazingly fast.
-    <br>
-    <br>
-    <a href="https://neovim.io/" alt="Neovim">Neovim</a>
-  </div>
-</div>
+#### The best text editor of all time - Neovim
 
-<div class="two-side">
-  <div class="image">
-    <img src="./assets/lazygit.png" alt="lazygit"/>
-  </div>
-  <div class="text">
-    <h3>Lazygit</h3>
-    TUI for git operations.
-    <br>
-    <br>
-    <a href="https://github.com/jesseduffield/lazygit" alt="lazygit">Lazygit</a>
-  </div>
-</div>
+<img src="./assets/nvim.png" alt="neovim" width="100%" style="display: block; margin-bottom: 16px;"/>
+Terminal-based text editor, successor of Vim. Highly customizable, blazingly fast.
 
-<div class="two-side">
-  <div class="image">
-    <img src="./assets/yazi.png" alt="yazi"/>
-  </div>
-  <div class="text">
-    <h3>Yazi</h3>
-    Advanced file manager with written in Rust. Has vim-inspired navigation.
-    <br>
-    <br>
-    <a href="https://yazi-rs.github.io/" alt="Yazi">Yazi</a>
-  </div>
-</div>
+[Neovim](https://neovim.io/)
 
-<div class="two-side">
-  <div class="image">
-    <img src="./assets/lazydocker.png" alt="Lazydocker"/>
-  </div>
-  <div class="text">
-    <h3>Lazydocker</h3>
-    Terminal-based Docker control panel.
-    <br>
-    <br>
-    <a href="https://github.com/jesseduffield/lazydocker" alt="Yazi">Lazydocker</a>
-  </div>
-</div>
+<br><br>
 
-<div class="two-side">
-  <div class="image">
-    <img src="./assets/gh.png" alt="gh"/>
-  </div>
-  <div class="text">
-    <h3>gh and gh-dash</h3>
-    GitHub dashboard based on gh - official GitHub CLI.
-    <br>
-    <br>
-    <a href="https://cli.github.com/" alt="gh">gh</a>
-    <br>
-    <a href="https://github.com/dlvhdr/gh-dash" alt="gh-dash">gh dash</a>
-  </div>
-</div>
+#### Better git experience - Lazygit
 
-<div class="two-side">
-  <div class="image">
-    <img src="./assets/btop.png" alt="gh"/>
-  </div>
-  <div class="text">
-    <h3>gh and gh-dash</h3>
-    Process monitor. Better <code>top</code>
-    <br>
-    <br>
-    <a href="https://github.com/aristocratos/btop" alt="btop">btop</a>
-  </div>
-</div>
+<img src="./assets/lazygit.png" alt="lazygit" width="100%" style="display: block; margin-bottom: 16px;"/>
+GIT UI for your terminal. Probably, the most used tool after Neovim.
+
+[Lazygit](https://github.com/jesseduffield/lazygit)
+
+<br><br>
+
+#### Terminal file explorer that don't suck - Yazi
+
+<img src="./assets/yazi.png" alt="yazi" width="100%" style="display: block; margin-bottom: 16px;"/>
+
+> Advanced file manager with written in Rust. Has vim-inspired navigation. Perfect when you need to perform certain operations
+> without leaving your terminal.
+
+[Yazi](https://yazi-rs.github.io/)
+
+<br><br>
+
+#### All issues, PRs and stuff in one place - gh & gh dash
+
+<img src="./assets/gh-dash.png" alt="gh" width="100%" style="display: block; margin-bottom: 16px;"/>
+
+> GitHub dashboard based on `gh` - official GitHub CLI. No need to go to the browser to explore pull requests, issues and stuff.
+> Integrates with `octo.nvim` to perform code reviews and more.
+
+[gh](https://cli.github.com/) • [gh dash](https://github.com/dlvhdr/gh-dash)
+
+<br><br>
+
+#### Forget about the Activity Monitor - BTOP
+
+<img src="./assets/btop.png" alt="gh" width="100%" style="display: block; margin-bottom: 16px;"/>
+
+> Process monitor. Similar to `top` and `htop` but far better.
+
+[BTOP](https://github.com/aristocratos/btop)
 
 ### UI and system navigation
 
-#### Aerospace
+#### For those who's missing i3 on mac - Aerospace
 
-#### Skethybar
+<img src="./assets/aerospace.png" alt="aerospace" width="100%" style="display: block; margin-bottom: 16px;"/>
+Aerospace is a tiling window manager for Mac. It is basically a i3 alternative for macOS. While there are little quircks, Aerospace
+gets the job done. Vertical and horizontal splits, workspaces, window layouts, you name it. What's even cooler is that you can use key bindings
+to perform different actions. In my case, I use it as an app launcher as well.
 
-#### Borders
+[Aerospace](https://github.com/FelixKratz/SketchyBar)
+
+<br><br>
+
+#### Personalized status bar - Sketchybar
+
+<img src="./assets/sketchybar.png" alt="sketchybar" width="100%" width="100%" style="display: block; margin-bottom: 16px;"/>
+
+Sketchybar is a customizable status bar replacement for macOS. It allows you to display system information, notifications, and more in a sleek and efficient manner.
+
+[Sketchybar](https://github.com/FelixKratz/SketchyBar)
+
+<br><br>
+
+#### Because default focus indication on Mac sucks - Borders
+
+<img src="./assets/borders.png" alt="borders" width="100%" width="100%" style="display: block; margin-bottom: 16px;"/>
+Borders is a utility for managing window borders on your desktop. It enhances the visual separation between windows, making multitasking more intuitive.
+
+[Janky Borders](https://github.com/FelixKratz/JankyBorders)
+
+<br><br>
 
 ### Misc
 
-#### Hookdeck
+#### Testing webhooks is pain no more - Hookdeck
+
+<img src="./assets/hookdeck.png" alt="hookdeck" width="100%" width="100%" style="display: block; margin-bottom: 16px;"/>
+Hookdeck is a tool for managing webhooks with ease. It provides a reliable infrastructure for receiving, processing, and monitoring webhooks.
+
+[Hookdeck](https://hookdeck.com/)
+
+<br><br>
 
 #### Raycast
 
-<style>
-.two-side {
-  display: grid;
-  gap: 16px;
-  grid-template-columns: 250px minmax(0, 1fr);
-  align-items: center;
-}
+<img src="./assets/raycast.png" alt="raycast" width="100%" width="100%" style="display: block; margin-bottom: 16px;"/>
+Raycast is a productivity tool that allows you to perform tasks quickly using keyboard shortcuts. It integrates with various applications to streamline your workflow.
 
-.two-side img {
-  width: 250px;
-  height: 250px;
-  border-radius: 16px;
-  object-fit: cover;
-  object-position: left top
-}
-</style>
+[Raycast](https://www.raycast.com/)
