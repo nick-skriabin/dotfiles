@@ -81,16 +81,16 @@ gwr-sass () {
   echo $CMD
 }
 
-corne-unzip() {
-  rm -rf ~/Downloads/firmware && \
-    unzip ~/Downloads/firmware.zip -d ~/Downloads/firmware && \
-    rm ~/Downloads/firmware.zip
+v2g ()
+{
+  filename=$1
+  output=$2
+  offset=$3
+  duration=$4
+  scale=$5
+
+  ffmpeg -ss $offset -t $duration -i $filename \
+    -vf "fps=10,scale=$scale:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" \
+    -loop 0 $output
 }
 
-corne-update-left() {
-  cp ~/Downloads/firmware/corne_left-nice_nano_v2-zmk.uf2 /Volumes/NICENANO && rm ~/Downloads/firmware/corne_left-nice_nano_v2-zmk.uf2
-}
-
-corne-update-right() {
-  cp ~/Downloads/firmware/corne_right-nice_nano_v2-zmk.uf2 /Volumes/NICENANO && rm ~/Downloads/firmware/corne_right-nice_nano_v2-zmk.uf2
-}

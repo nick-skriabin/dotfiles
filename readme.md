@@ -70,7 +70,7 @@ GIT UI for your terminal. Probably, the most used tool after Neovim.
 
 #### For those who's missing i3 on mac - Aerospace
 
-<img src="./assets/aerospace.png" alt="aerospace" width="100%" style="display: block; margin-bottom: 16px;"/>
+<img src="./assets/aerospace.gif" alt="aeEospace" width="100%" style="display: block; margin-bottom: 16px;"/>
 Aerospace is a tiling window manager for Mac. It is basically a i3 alternative for macOS. While there are little quircks, Aerospace
 gets the job done. Vertical and horizontal splits, workspaces, window layouts, you name it. What's even cooler is that you can use key bindings
 to perform different actions. In my case, I use it as an app launcher as well.
@@ -91,7 +91,7 @@ Sketchybar is a customizable status bar replacement for macOS. It allows you to 
 
 #### Because default focus indication on Mac sucks - Borders
 
-<img src="./assets/borders.png" alt="borders" width="100%" width="100%" style="display: block; margin-bottom: 16px;"/>
+<img src="./assets/borders.gif" alt="borders" width="100%" width="100%" style="display: block; margin-bottom: 16px;"/>
 Borders is a utility for managing window borders on your desktop. It enhances the visual separation between windows, making multitasking more intuitive.
 
 [Janky Borders](https://github.com/FelixKratz/JankyBorders)
