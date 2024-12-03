@@ -1,4 +1,4 @@
-<h1 align="center">My personal dotfiles collection</h1>
+<h1 align="center" style="font-family: monospace;">/user/whaledev/.dotfiles</h1>
 
 ![Preview](/assets/screen.png)
 
