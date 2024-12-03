@@ -1,6 +1,4 @@
-<h1 style="text-align: center">
-  My personal dotfiles collection
-</h1>
+# <center>My personal dotfiles collection</center>
 
 ![Preview](/assets/screen.png)
 
