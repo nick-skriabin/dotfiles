@@ -8,7 +8,6 @@ source $HOME/Git/zsh-snap/znap.zsh
 
 # Plugins
 # Autocompletions
-# znap source marlonrichert/zsh-autocomplete
 znap source Aloxaf/fzf-tab
 znap source zsh-users/zsh-autosuggestions
 znap source zsh-users/zsh-syntax-highlighting

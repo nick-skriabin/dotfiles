@@ -72,7 +72,7 @@ alias dcr="dcd && dcu -d"
 
 # Nix commands
 alias nixb="darwin-rebuild switch --flake $HOME/Git/dotfiles/nix-darwin"
-alias nixe="v $HOME/.config/nix-darwin/flake.nix"
+alias nixe="v ~/.config/nix-darwin/flake.nix"
 
 gwr-sass () {
   REF=$1

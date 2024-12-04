@@ -5,6 +5,9 @@ export PKG_CONFIG_PATH="/usr/local/opt/zlib/lib/pkgconfig"
 export XDG_CONFIG_HOME="$HOME/.config"
 export CPU_NUMBER=$(sysctl -n hw.ncpu)
 export collect_analytics=false
+export STARSHIP_CONFIG=$HOME/.config/starship/starship.toml
+export TERM_PROGRAM=kitty
+export TERM=xterm-kitty
 
 # Misc
 export THOR_MERGE=merge_tool_for_rails
