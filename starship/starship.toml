@@ -13,6 +13,7 @@ $python\
 $rust\
 $docker_context\
 $line_break\
+$jobs\
 $character"""
 # Inserts a blank line between shell prompts
 add_newline = false
@@ -36,7 +37,7 @@ truncation_symbol = '…/'
 format = " [ $version](bold green)"
 
 [bun]
-format = " [ $version](bold blue)"
+format = " [ $version](bold blue)"
 
 [python]
 format = " [ $version](bold blue)"
