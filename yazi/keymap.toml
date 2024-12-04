@@ -23,3 +23,10 @@ on = ["<Enter>"]
 run = "enter"
 desc = "Open file"
 
+[[manager.prepend_keymap]]
+on = ["<C-y>"]
+run = ["plugin system-clipboard --args=copy"]
+
+[[manager.prepend_keymap]]
+on = ["<C-p>"]
+run = ["plugin system-clipboard --args=paste"]
