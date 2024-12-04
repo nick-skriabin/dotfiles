@@ -1,15 +1,14 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/jesseduffield/lazygit/master/schema/config.json
-# git:
-#   paging:
-#     colorArg: always
-#     useConfig: false
-#     pager: delta --dark --paging=never
-# customCommands:
-#   - key: '<c-q>'
-#     context: 'localBranches'
-#     command: 'nvim -c ":Octo pr create"'
-#     description: "Open new PR with Octo"
-#   - key: <c-f>
-#     description: Fetch branch
-#     context: localBranches
-#     command: git fetch origin {{.SelectedLocalBranch.Name}}:{{.SelectedLocalBranch.Name}}
+git:
+  paging:
+    colorArg: always
+    useConfig: false
+    pager: delta --dark --paging=never
+customCommands:
+  - key: '<c-q>'
+    context: 'localBranches'
+    command: 'nvim -c ":Octo pr create"'
+    description: "Open new PR with Octo"
+  - key: <c-f>
+    description: Fetch branch
+    context: localBranches
+    command: git fetch origin {{.SelectedLocalBranch.Name}}:{{.SelectedLocalBranch.Name}}
