@@ -53,6 +53,7 @@
           pkgs.bun # JS/TS runtime
           pkgs.cargo # rust package manager/compiler
           pkgs.cmake
+          pkgs.clipboard-jh
           pkgs.deno
           pkgs.delta
           pkgs.emscripten
@@ -116,6 +117,7 @@
             "qmk/qmk/qmk"
             "urlview"
             "xcodegen"
+            "zsh-completions"
             {
               name = "sketchybar";
               start_service = true;
@@ -132,6 +134,7 @@
             "hammerspoon"
             "homerow"
             "figma"
+            "google-drive"
             "discord"
             "keymapp"
             "logi-options+"
