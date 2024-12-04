@@ -20,7 +20,6 @@ require("lazy").setup({
     { import = "nskriabin.plugins.code" },
     { import = "nskriabin.plugins.nav" },
     { import = "nskriabin.plugins.utils" },
-    { import = "nskriabin.plugins.extra" },
     { import = "nskriabin.plugins.lsp" },
 }, {
     install = {

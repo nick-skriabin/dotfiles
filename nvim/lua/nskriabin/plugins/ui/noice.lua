@@ -1,6 +1,7 @@
 return {
     "folke/noice.nvim",
     event = "VeryLazy",
+    enabled = true,
     opts = {
         -- you can enable a preset for easier configuration
         presets = {
@@ -14,11 +15,12 @@ return {
             enabled = false,
         },
         popupmenu = {
-            enabled = true,
+            enabled = false,
             backend = "nui",
             kind_icons = {},
         },
         lsp = {
+            enabled = false,
             progress = {
                 enabled = false,
             },
@@ -31,7 +33,7 @@ return {
                 -- ["cmp.entry.get_documentation"] = true,
             },
             hover = {
-                enabled = true,
+                enabled = false,
                 silent = true, -- set to true to not show a message if hover is not available
             },
             message = {
@@ -39,6 +41,7 @@ return {
             },
             -- defaults for hover and signature help
             documentation = {
+                enabled = false,
                 view = "hover",
                 opts = {
                     lang = "markdown",

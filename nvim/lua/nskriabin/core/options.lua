@@ -10,6 +10,7 @@ local opt = vim.opt
 
 g.mapleader = " "
 g.maplocalleader = "\\"
+g.mouse = ""
 
 opt.fixendofline = false
 opt.autowrite = false -- Enable auto write

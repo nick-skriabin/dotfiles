@@ -58,3 +58,9 @@ keys.map({
     { "n", "<leader>wr", "<C-w>r", nowait = true, desc = "Rotate Split" },
     { "n", "<leader>w=", "<C-w>e", nowait = true, desc = "Equalize Splits" },
 })
+
+-- cmdline
+keys.map({
+    -- vim.api.nvim_set_keymap('n', ':', '<cmd>FineCmdline<CR>', {noremap = true})
+    -- { "n", ":", "<Plug>(cmdpalette)", noremap = true, silent = true },
+})

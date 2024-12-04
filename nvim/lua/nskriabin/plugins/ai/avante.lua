@@ -8,6 +8,22 @@ return {
     keys = {
         { "<leader>aa", "<cmd>AvanteChat<CR>", desc = "Avante Chat", silent = true },
     },
+    opts = {
+        -- recommended settings
+        provider = "claude",
+        embed_image_as_base64 = false,
+        prompt_for_file_name = false,
+        drag_and_drop = {
+            insert_mode = true,
+        },
+        -- required for Windows users
+        mappings = {
+            submit = {
+                normal = "<CR>",
+                insert = "<C-b>",
+            },
+        },
+    },
     build = ":AvanteBuild", -- This is optional, recommended tho. Also note that this will block the startup for a bit since we are compiling bindings in Rust.
     dependencies = {
         "stevearc/dressing.nvim",
