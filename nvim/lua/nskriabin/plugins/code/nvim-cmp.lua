@@ -1,3 +1,4 @@
+-- Cmp is only used for cmdline unless blink adds support for it
 local border_opts = {
     border = nil,
     winhighlight = "Normal:CmpNormal,NormalFloat:CmpNormalFloat,FloatBorder:TelescopeBorder",
@@ -10,7 +11,7 @@ local border_opts = {
 return {
     "hrsh7th/nvim-cmp",
     enabled = true,
-    event = "VeryLazy", -- Load nvim-cmp when entering command-line mode
+    event = "CmdlineEnter", -- Load nvim-cmp when entering command-line mode
     dependencies = {
         "hrsh7th/cmp-cmdline", -- Command-line completion source
         "hrsh7th/cmp-path", -- Path completion source
@@ -18,7 +19,6 @@ return {
     config = function()
         local cmp = require("cmp")
         local window_settings = {
-
             completion = border_opts,
             documentation = border_opts,
         }

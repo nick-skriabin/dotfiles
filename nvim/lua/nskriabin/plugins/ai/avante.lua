@@ -1,10 +1,9 @@
+-- Avante is an AI chant inside neovim. It can provide code suggestions and generate new files.
+-- https://github.com/yetone/avante.nvim
+
 return {
     "yetone/avante.nvim",
-    lazy = true,
-    opts = {
-        -- add any opts here
-        provider = "openai",
-    },
+    event = { "VeryLazy", "BufReadPre" },
     keys = {
         { "<leader>aa", "<cmd>AvanteChat<CR>", desc = "Avante Chat", silent = true },
     },

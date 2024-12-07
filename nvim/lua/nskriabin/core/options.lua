@@ -96,4 +96,3 @@ g.skip_ts_context_commentstring_module = true
 vim.cmd("set spelllang=en")
 vim.cmd("set spell")
 vim.cmd("set noswapfile")
-vim.cmd("set shell=/opt/homebrew/bin/fish")

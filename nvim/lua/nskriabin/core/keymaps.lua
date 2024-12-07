@@ -34,8 +34,6 @@ keys.map({
 
 -- Buffers
 keys.map({
-    { "n", "<leader>bD", ":bufdo Bdelete<cr>", nowait = true, desc = "Delete all Buffers" },
-    { "n", "<leader>bd", ":Bdelete<cr>", nowait = true, desc = "Delete Buffer" },
     { "n", "<leader>bl", ":edit<cr>", nowait = true, desc = "Reload Buffer" },
     { "n", "<C-q>", ":q<cr>", nowait = true, desc = "Close Buffer" },
     { "n", "<C-w>", ":w<cr>", nowait = true, desc = "Save Buffer" },
@@ -63,4 +61,14 @@ keys.map({
 keys.map({
     -- vim.api.nvim_set_keymap('n', ':', '<cmd>FineCmdline<CR>', {noremap = true})
     -- { "n", ":", "<Plug>(cmdpalette)", noremap = true, silent = true },
+})
+
+-- Function to jump to the previous buffer
+function _G.jump_to_previous_buffer()
+    vim.cmd("buffer #")
+end
+
+keys.map({
+    -- Map the function to a key (for example, <leader>b)
+    { "n", "<leader>bb", _G.jump_to_previous_buffer, desc = "Cycle to next buffer", silent = true },
 })

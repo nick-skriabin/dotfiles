@@ -1,65 +1,5 @@
 local merge = require("nskriabin.core.util.merge")
 local configs = require("nskriabin.config.server_configs")
-local if_nil = function(val, default)
-    if val == nil then
-        return default
-    end
-    return val
-end
-local function default_capabilities(override)
-    override = override or {}
-
-    return {
-        textDocument = {
-            completion = {
-                dynamicRegistration = if_nil(override.dynamicRegistration, false),
-                completionItem = {
-                    snippetSupport = if_nil(override.snippetSupport, true),
-                    commitCharactersSupport = if_nil(override.commitCharactersSupport, true),
-                    deprecatedSupport = if_nil(override.deprecatedSupport, true),
-                    preselectSupport = if_nil(override.preselectSupport, true),
-                    tagSupport = if_nil(override.tagSupport, {
-                        valueSet = {
-                            1, -- Deprecated
-                        },
-                    }),
-                    insertReplaceSupport = if_nil(override.insertReplaceSupport, true),
-                    resolveSupport = if_nil(override.resolveSupport, {
-                        properties = {
-                            "documentation",
-                            "detail",
-                            "additionalTextEdits",
-                            "sortText",
-                            "filterText",
-                            "insertText",
-                            "textEdit",
-                            "insertTextFormat",
-                            "insertTextMode",
-                        },
-                    }),
-                    insertTextModeSupport = if_nil(override.insertTextModeSupport, {
-                        valueSet = {
-                            1, -- asIs
-                            2, -- adjustIndentation
-                        },
-                    }),
-                    labelDetailsSupport = if_nil(override.labelDetailsSupport, true),
-                },
-                contextSupport = if_nil(override.snippetSupport, true),
-                insertTextMode = if_nil(override.insertTextMode, 1),
-                completionList = if_nil(override.completionList, {
-                    itemDefaults = {
-                        "commitCharacters",
-                        "editRange",
-                        "insertTextFormat",
-                        "insertTextMode",
-                        "data",
-                    },
-                }),
-            },
-        },
-    }
-end
 
 local function get_config(name, capabilities, on_attach)
     local lsp = require("lspconfig")
@@ -87,6 +27,18 @@ local function get_config(name, capabilities, on_attach)
     return config
 end
 
+-- uses native lsp to display source actions
+local function get_source_actions(client)
+    vim.lsp.buf.code_action(nil, {
+        mode = "source",
+    })
+end
+
+-- uses native lsp to display code actions
+local function get_code_actions(client)
+    vim.lsp.buf.code_action(nil, client.offset_encoding)
+end
+
 return {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
@@ -95,6 +47,7 @@ return {
         "williamboman/mason.nvim",
         "SmiteshP/nvim-navic",
         "folke/neoconf.nvim",
+        "saghen/blink.cmp",
     },
     config = function()
         local lspconfig = require("lspconfig")
@@ -121,10 +74,17 @@ return {
             map.set("n", "gt", "<cmd>FzfLua lsp_type_definitions<CR>", opts) -- show lsp type definitions
 
             opts.desc = "See available code actions"
-            map.set({ "n", "v" }, "<leader>ca", "<cmd>FzfLua lsp_code_actions<cr>", opts) -- see available code actions, in visual mode will apply to selection
+            map.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts) -- see available code actions
 
             opts.desc = "See available source actions"
-            map.set("n", "<leader>cA", '<cmd>FzfLua lsp_code_actions only="source"<cr>', opts) -- see available code actions, in visual mode will apply to selection
+            map.set("n", "<leader>cA", function()
+                vim.lsp.buf.code_action({
+                    context = {
+                        only = { "source" },
+                        diagnostics = {},
+                    },
+                })
+            end, opts) -- see available code actions, in visual mode will apply to selection
 
             opts.desc = "Rename Symbol"
             map.set("n", "<leader>cr", vim.lsp.buf.rename, { buffer = bufnr, desc = "Rename" }) -- smart rename
@@ -143,7 +103,7 @@ return {
         end
 
         -- used to enable autocompletion (assign to every lsp server config)
-        local capabilities = default_capabilities()
+        local capabilities = require("blink.cmp").get_lsp_capabilities()
         capabilities.textDocument.foldingRange = {
             dynamicRegistration = false,
             lineFoldingOnly = true,

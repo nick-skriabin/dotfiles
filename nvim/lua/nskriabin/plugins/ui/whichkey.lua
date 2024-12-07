@@ -38,17 +38,18 @@ return {
         })
 
         wk.add({
-            { "<leader>H", group = "Hunks", icon = "" },
+            { "<leader>a", group = "Avante", icon = "" },
             { "<leader>b", group = "Buffers" },
             { "<leader>c", group = "Code Actions" },
             { "<leader>cp", group = "Packages" },
-            { "<leader>a", group = "Avante", icon = "" },
             { "<leader>d", group = "Debug" },
             { "<leader>f", group = "Files" },
             { "<leader>g", group = "Git(Hub)" },
+            { "<leader>H", group = "Hunks", icon = "" },
             { "<leader>i", group = "DBUI" },
             { "<leader>k", group = "Kulala", icon = "󱂛" },
             { "<leader>l", group = "Managers", icon = "󰏓" },
+            { "<leader>n", group = "Notifications", icon = "󱅫" },
             { "<leader>o", group = "Octo", icon = "" },
             { "<leader>op", group = "Octo PR" },
             { "<leader>or", group = "Octo Review" },
@@ -56,8 +57,8 @@ return {
             { "<leader>s", group = "Search" },
             { "<leader>t", group = "Tests" },
             { "<leader>u", group = "UI" },
-            { "<leader>x", group = "Diagnostics" },
             { "<leader>w", group = "Window" },
+            { "<leader>x", group = "Diagnostics" },
             {
                 mode = { "v" },
                 { "<leader>c", group = "Code Actions" },

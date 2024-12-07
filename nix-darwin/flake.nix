@@ -46,6 +46,7 @@
           # Nix files formatter
           pkgs.nixfmt-classic
           pkgs.aerospace
+          pkgs.ascii-image-converter
           pkgs.automake117x
           pkgs.btop # better top
           pkgs.bat # better cat
@@ -56,6 +57,7 @@
           pkgs.clipboard-jh
           pkgs.deno
           pkgs.delta
+          pkgs.dwt1-shell-color-scripts
           pkgs.emscripten
           pkgs.eza # better ls
           pkgs.fd # file finder
@@ -175,6 +177,70 @@
             # start-at-login = true;
           };
         };
+
+        system = {
+          defaults = {
+            dock = {
+              autohide = true;
+              show-recents = false;
+              launchanim = false;
+              magnification = false;
+              mineffect = "scale";
+              minimize-to-application = true;
+              wvous-bl-corner = 1;
+              wvous-br-corner = 1;
+              wvous-tl-corner = 1;
+              wvous-tr-corner = 1;
+              persistent-apps = [
+                "/Applications/Arc.app"
+                "${pkgs.kitty}/Applications/kitty.app"
+                "/Applications/Telegram.app"
+                "${pkgs.slack}/Applications/Slack.app"
+                "/System/Applications/Mail.app"
+                "/Applications/Notion.app"
+                "/Applications/Notion Calendar.app"
+                "${pkgs.spotify}/Applications/Spotify.app"
+                "${pkgs.obsidian}/Applications/Obsidian.app"
+              ];
+            };
+            finder = {
+              AppleShowAllExtensions = true;
+              CreateDesktop = false;
+              FXPreferredViewStyle = "Nlsv";
+              ShowExternalHardDrivesOnDesktop = false;
+              ShowPathbar = true;
+              ShowStatusBar = true;
+              _FXSortFoldersFirst = true;
+            };
+            loginwindow = {
+              GuestEnabled = false;
+              LoginwindowText = "Whaledev";
+              PowerOffDisabledWhileLoggedIn = true;
+              RestartDisabledWhileLoggedIn = true;
+              ShutDownDisabledWhileLoggedIn = true;
+            };
+            menuExtraClock = {
+              Show24Hour = false;
+              ShowAMPM = true;
+            };
+            screencapture = {
+              disable-shadow = true;
+              location = "/Users/nicholasrq/Pictures/Screenshots";
+              type = "jpg";
+            };
+            trackpad = { TrackpadThreeFingerDrag = true; };
+            # universalaccess = {
+            #   reduceTransparency = true;
+            #   reduceMotion = true;
+            # };
+          };
+        };
+
+        system.defaults.dock.persistent-others = let home = "/Users/nicholasrq";
+        in builtins.trace "user is ${home}" [
+          "${home}/Pictures/Screenshots"
+          "${home}/Downloads"
+        ];
 
         # Nix uses symlinks for GUI apps by default. This makes
         # Spotlight kinda useless. This activation script will

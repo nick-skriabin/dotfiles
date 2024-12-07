@@ -8,7 +8,7 @@ enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
 
 after-startup-command = [
-    'exec-and-forget sketchybar',
+    'exec-and-forget sketchybar --reload',
     'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0'
 ]
 
@@ -134,7 +134,7 @@ a = ['exec-and-forget open -a /Applications/Arc.app', 'mode main']
 c = ['exec-and-forget open -a /System/Applications/Notion\ Calendar.app', 'mode main']
 m = ['exec-and-forget open -a /System/Applications/Mail.app', 'mode main']
 v = ['exec-and-forget open -a /Applications/Spotify.app', 'mode main']
-f = ['exec-and-forget marta ~/Downloads', 'mode main']
+f = ['exec-and-forget open -a kitty.app -n --args -T "File Manager" zsh -c "yazi"', 'mode main']
 enter = 'mode main'
 esc = 'mode main'
 
@@ -154,10 +154,6 @@ outer.right =      8
 [[on-window-detected]]
 if.app-id = 'company.thebrowser.Browser'
 run = ['move-node-to-workspace 1']
-
-[[on-window-detected]]
-if.app-id = 'net.kovidgoyal.kitty'
-run = ['move-node-to-workspace 2']
 
 [[on-window-detected]]
 if.app-id = 'ru.keepcoder.Telegram'

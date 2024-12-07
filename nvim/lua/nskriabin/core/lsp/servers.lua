@@ -12,7 +12,8 @@ M.lsp = {
     "docker_compose_language_service",
     "yamlls",
     "jsonls",
-    "ts_ls",
+    -- "ts_ls",
+    "vtsls",
     "emmet_language_server",
 }
 

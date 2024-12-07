@@ -7,6 +7,7 @@ return {
             filetype_denylist = {
                 "neotree",
                 "oil",
+                "spectre",
                 "dirbuf",
                 "dirvish",
                 "fugitive",
