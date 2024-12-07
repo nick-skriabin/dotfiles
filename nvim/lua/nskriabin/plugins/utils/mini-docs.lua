@@ -1,1 +1,1 @@
-return { "echasnovski/mini.doc", version = "*" }
+return { "echasnovski/mini.doc", version = "*", opts = {} }
