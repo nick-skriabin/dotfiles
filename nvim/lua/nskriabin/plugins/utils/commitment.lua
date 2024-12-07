@@ -5,5 +5,6 @@ return {
     event = "VeryLazy",
     opts = {
         prevent_write = true,
+        writes_number = 1,
     },
 }

@@ -31,6 +31,7 @@
   "maximize.nvim": { "branch": "master", "commit": "d688b66344b03ee6e5a32a0a40af85d174490af8" },
   "mini.ai": { "branch": "main", "commit": "31c149067d38b97720d2a179619f7745a0006ecc" },
   "mini.animate": { "branch": "main", "commit": "d14190ac3040116540889e2ebc25f488b195799e" },
+  "mini.doc": { "branch": "main", "commit": "bb73a3d1ff390f7e2740027ea2567017099a237c" },
   "mini.files": { "branch": "main", "commit": "84efb81e5207ae8c41f54abdafb79c6212fc0971" },
   "mini.icons": { "branch": "main", "commit": "54686be7d58807906cb2c8c2216e0bf9c044f19a" },
   "mini.pairs": { "branch": "main", "commit": "7e834c5937d95364cc1740e20d673afe2d034cdb" },
