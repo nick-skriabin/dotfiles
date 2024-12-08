@@ -150,6 +150,10 @@ local function maximize_status()
     return vim.t.maximized and "   " or ""
 end
 
+local function is_tmux_attached()
+    return vim.fn.system("IPFS_SESSION=$(tmux attach-session -t ipfs 2>&1)"):find("sessions should be nested")
+end
+
 return {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
@@ -205,17 +209,19 @@ return {
 
         add_right(macro_recording(palette, icons))
         add_right(lsp(palette, icons))
-        -- add_right({
-        --     "branch",
-        -- })
-        -- add_right({
-        --     "diff",
-        --     symbols = {
-        --         added = icons.git.added,
-        --         modified = icons.git.modified,
-        --         removed = icons.git.removed,
-        --     },
-        -- })
+        if not is_tmux_attached() then
+            add_right({
+                "branch",
+            })
+            add_right({
+                "diff",
+                symbols = {
+                    added = icons.git.added,
+                    modified = icons.git.modified,
+                    removed = icons.git.removed,
+                },
+            })
+        end
         add_right(diagnostics(palette, icons))
         add_right({
             function()
