@@ -11,7 +11,7 @@ return {
     },
     config = true,
     keys = {
-        { "<leader>gs", ":Neogit open kind='auto'", desc = "Open neogit" },
-        { "<leader>gs", ":Neogit open kind='auto'", desc = "Open neogit" },
+        { "<leader>gs", ":Neogit kind='auto'", desc = "Open neogit" },
+        { "<leader>gc", ":Neogit commit kind='auto'", desc = "Open neogit" },
     },
 }

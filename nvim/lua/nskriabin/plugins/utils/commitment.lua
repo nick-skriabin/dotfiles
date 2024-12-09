@@ -4,7 +4,7 @@ return {
     dir = "~/Git/commitment.nvim",
     event = "VeryLazy",
     opts = {
-        prevent_write = true,
+        prevent_write = false,
         writes_number = 30,
     },
 }
