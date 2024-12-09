@@ -5,7 +5,6 @@ return {
     "saghen/blink.cmp",
     version = "v0.*",
     dependencies = "rafamadriz/friendly-snippets",
-
     opts = {
         highlight = {
             -- sets the fallback highlight groups to nvim-cmp's highlight groups

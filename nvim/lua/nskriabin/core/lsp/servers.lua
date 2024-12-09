@@ -1,24 +1,31 @@
 local M = {}
 
 M.lsp = {
-    "cssls",
-    "lua_ls",
-    "pyright",
-    "svelte",
-    "prismals",
+    "marksman",
     "bashls",
-    "tailwindcss",
-    "dockerls",
+    "cssls",
     "docker_compose_language_service",
-    "yamlls",
-    "jsonls",
-    -- "ts_ls",
-    "vtsls",
+    "dockerls",
     "emmet_language_server",
+    "gopls",
+    "jsonls",
+    "lua_ls",
+    "mdx_analyzer",
+    "nil_ls",
+    "prismals",
+    "pylsp",
+    "svelte",
+    "tailwindcss",
+    "vtsls",
+    "yamlls",
 }
 
 M.tools = {
-    "cspell",
+    "codespell",
+    "stylua",
+    "shfmt",
+    "nixpkgs-fmt",
+    "go-debug-adapter",
 }
 
 return M

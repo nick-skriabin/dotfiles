@@ -103,7 +103,7 @@ return {
                 lua = { "stylua" },
                 python = { "blue", "ruff_fix" },
                 go = { "gofmt", "goimports" },
-                markdown = { "mdformat", "markdownlint" },
+                markdown = { "prettier" },
                 nix = { "nixfmt" },
             },
             format_on_save = function(bufnr)

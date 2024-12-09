@@ -1,7 +1,8 @@
 lastupdatecheck: 0
 recentrepos:
-    - /Users/nicholasrq/Git/dotfiles
+    - /Users/nicholasrq/Git/notes
     - /Users/nicholasrq/Git/commitment.nvim
+    - /Users/nicholasrq/Git/dotfiles
     - /Users/nicholasrq/Projects/linkza
     - /Users/nicholasrq/Git/label-studio
     - /Users/nicholasrq/Git/label-studio-enterprise

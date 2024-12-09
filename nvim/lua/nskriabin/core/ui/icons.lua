@@ -20,6 +20,8 @@ M.lsps = {
     emmet_language_server = "",
     biome = "󰬉",
     jsonls = "󰘦",
+    marksman = "",
+    codespell = "󰗊",
     ["nil"] = "",
 }
 

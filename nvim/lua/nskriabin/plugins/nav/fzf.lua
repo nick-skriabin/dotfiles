@@ -2,6 +2,7 @@ return {
     "ibhagwan/fzf-lua",
     -- optional for icon support
     dependencies = { "nvim-tree/nvim-web-devicons" },
+    cmd = "FzfLua",
     keys = {
         { "<leader><space>", ":FzfLua files cwd='./'<cr>", silent = true, desc = "Open Git files picker" },
         {

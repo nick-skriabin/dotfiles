@@ -21,10 +21,12 @@ keys.map({
 
 -- navigation
 keys.map({
-    { "n", "<C-u>", "<C-u>zz" },
-    { "n", "<C-d>", "<C-d>zz" },
-    { "n", "j", "gj" },
-    { "n", "k", "gk" },
+    { { "n", "x" }, "<C-u>", "<C-u>zz" },
+    { { "n", "x" }, "<C-d>", "<C-d>zz" },
+    { { "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", expr = true, silent = true },
+    { { "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", expr = true, silent = true },
+    { { "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", expr = true, silent = true },
+    { { "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", expr = true, silent = true },
 })
 
 -- quit
@@ -55,12 +57,6 @@ keys.map({
     { "n", "<leader>wc", "<C-w>c", nowait = true, desc = "Close Split" },
     { "n", "<leader>wr", "<C-w>r", nowait = true, desc = "Rotate Split" },
     { "n", "<leader>w=", "<C-w>e", nowait = true, desc = "Equalize Splits" },
-})
-
--- cmdline
-keys.map({
-    -- vim.api.nvim_set_keymap('n', ':', '<cmd>FineCmdline<CR>', {noremap = true})
-    -- { "n", ":", "<Plug>(cmdpalette)", noremap = true, silent = true },
 })
 
 -- Function to jump to the previous buffer

@@ -24,7 +24,7 @@ return {
         }
 
         lint.linters_by_ft = {
-            ["*"] = { "cspell" },
+            ["*"] = { "codespell" },
             javascript = js_lint,
             typescript = js_lint,
             javascriptreact = js_lint,

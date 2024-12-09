@@ -228,11 +228,12 @@
               location = "/Users/nicholasrq/Pictures/Screenshots";
               type = "jpg";
             };
+            NSGlobalDomain = { NSWindowShouldDragOnGesture = true; };
             trackpad = { TrackpadThreeFingerDrag = true; };
-            # universalaccess = {
-            #   reduceTransparency = true;
-            #   reduceMotion = true;
-            # };
+            universalaccess = {
+              reduceTransparency = true;
+              reduceMotion = true;
+            };
           };
         };
 

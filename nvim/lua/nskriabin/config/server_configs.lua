@@ -98,7 +98,7 @@ M.emmet_language_server = {
     },
 }
 
-M.cspell = {
+M.codespell = {
     filetypes = { "*" },
 }
 

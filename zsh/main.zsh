@@ -1,6 +1,13 @@
 # Custom configurations
 source $HOME/.config/zsh/custom.zsh
 
+# Enable case-insensitive autocompletion
+autoload -Uz compinit && compinit
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+
+# Disable bell
+unsetopt BEEP
+
 # Various initializers
 export NVM_DIR="$HOME/development/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
