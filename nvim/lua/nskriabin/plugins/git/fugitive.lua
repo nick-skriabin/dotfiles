@@ -4,7 +4,7 @@ return {
     cmd = { "Git" },
     keys = {
         {
-            "<leader>ga",
+            "<leader>gs",
             function()
                 local current_file_path = vim.fn.expand("%")
                 vim.cmd("Git add " .. current_file_path)
