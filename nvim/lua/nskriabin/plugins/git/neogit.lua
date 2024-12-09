@@ -10,4 +10,8 @@ return {
         "ibhagwan/fzf-lua", -- optional
     },
     config = true,
+    keys = {
+        { "<leader>gs", ":Neogit open kind='auto'", desc = "Open neogit" },
+        { "<leader>gs", ":Neogit open kind='auto'", desc = "Open neogit" },
+    },
 }
