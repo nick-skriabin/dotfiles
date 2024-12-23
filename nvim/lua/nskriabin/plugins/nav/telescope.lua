@@ -20,6 +20,7 @@ return {
     "nvim-telescope/telescope.nvim",
     event = { "LspAttach" },
     cmd = { "Telescope" },
+    enabled = false,
     dependencies = {
         -- {
         --     "natecraddock/telescope-zf-native.nvim",

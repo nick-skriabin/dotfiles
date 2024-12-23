@@ -131,4 +131,6 @@ M.luals = {
     },
 }
 
+M.bashls = {}
+
 return M

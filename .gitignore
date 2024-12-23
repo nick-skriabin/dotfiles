@@ -4,3 +4,5 @@ keys.fish
 *.log
 fish_variables
 .DS_Store
+
+raycast/extensions

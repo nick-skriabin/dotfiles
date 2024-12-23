@@ -1,4 +1,5 @@
 # Global settings
+export HOMEBREW_PREFIX=/opt/homebrew
 export LDFLAGS="-L/usr/local/opt/zlib/lib"
 export CPPFLAGS="-I/usr/local/opt/zlib/include"
 export PKG_CONFIG_PATH="/usr/local/opt/zlib/lib/pkgconfig"
@@ -27,3 +28,6 @@ export NODE_NO_WARNINGS=1
 # Vim
 export MYVIMRC=$HOME/.config/nvim/init.lua
 export TMUX_FZF_LAUNCH_KEY="C-f"
+
+# Lib
+export DYLD_FALLBACK_LIBRARY_PATH="$(brew --prefix)/lib:$DYLD_FALLBACK_LIBRARY_PATH"

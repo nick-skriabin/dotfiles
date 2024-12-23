@@ -32,6 +32,9 @@ alias ecm='git commit --allow-empty -m "trigger ci" && git push'
 alias gd="gh dash"
 alias lg="lazygit"
 
+# Jujutsu
+alias jk="jj" # remap to unlock "jj" as "esc"
+
 # Cargo
 alias cargo-watch='cargo watch -i "www/*" -i .gitignore -i "pkg/*" -s "wasm-pack build --dev"'
 
@@ -51,8 +54,7 @@ alias gwr='gh workflow run'
 #
 alias gws-sass='gws 30106738'
 
-alias jira="jirust"
-alias jj="jirust"
+alias ji="jirust"
 alias ld="lazydocker"
 
 # Mutt
@@ -72,9 +74,15 @@ alias dcr="dcd && dcu -d"
 
 # Nix commands
 alias nixb="darwin-rebuild switch --flake $HOME/Git/dotfiles/nix-darwin"
-alias nixe="v ~/.config/nix-darwin/flake.nix"
+alias nixe="v ~/.config/nix-jarwin/flake.nix"
 
-gwr-sass () {
+# FS
+alias '..'="cd .."
+alias '...'="cd ../.."
+alias '....'="cd ../../.."
+alias '.....'="cd ../../../.."
+
+gwr-sass() {
   REF=$1
   PARAMS="{\"ref\": ${REF}, \"deploy_to_prod\": true, \"sure\": \"sure\"}"
   CMD="$PARAMS | gwr 30106738"
@@ -82,8 +90,7 @@ gwr-sass () {
   echo $CMD
 }
 
-v2g ()
-{
+v2g() {
   filename=$1
   output=$2
   offset=$3
@@ -94,4 +101,3 @@ v2g ()
     -vf "fps=10,scale=$scale:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" \
     -loop 0 $output
 }
-

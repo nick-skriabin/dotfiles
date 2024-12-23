@@ -207,6 +207,8 @@ return {
             end,
         })
 
+        -- local notifications = require("nskriabin.core.extensions.lualine.gh-notifications")
+        -- add_right(notifications(palette, icons))
         add_right(macro_recording(palette, icons))
         add_right(lsp(palette, icons))
         if not is_tmux_attached() then
@@ -242,9 +244,6 @@ return {
                     inactive = { b = { fg = palette.text, bg = "" } },
                 },
                 globalstatus = true,
-                disabled_filetypes = {
-                    statusline = { "dashboard", "alpha" },
-                },
             },
             sections = sections,
             inactive_sections = {

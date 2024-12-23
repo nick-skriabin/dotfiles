@@ -141,7 +141,12 @@ return {
 
                     map_split(buf_id, opts.mappings and opts.mappings.go_in_horizontal or "<C-w>s", "horizontal", false)
                     map_split(buf_id, opts.mappings and opts.mappings.go_in_vertical or "<C-w>v", "vertical", false)
-                    map_split(buf_id, opts.mappings and opts.mappings.go_in_horizontal_plus or "<C-w>S", "horizontal", true)
+                    map_split(
+                        buf_id,
+                        opts.mappings and opts.mappings.go_in_horizontal_plus or "<C-w>S",
+                        "horizontal",
+                        true
+                    )
                     map_split(buf_id, opts.mappings and opts.mappings.go_in_vertical_plus or "<C-w>V", "vertical", true)
                 end,
             })
@@ -168,13 +173,17 @@ return {
         end,
     },
     {
-        "echasnovski/mini.animate",
-        event = "VeryLazy",
-        config = function()
-            require("mini.animate").setup({
-                cursor = { enable = false },
-                scroll = { enable = false },
-            })
+        "echasnovski/mini.icons",
+        opts = {},
+        lazy = true,
+        specs = {
+            { "nvim-tree/nvim-web-devicons", enabled = false, optional = true },
+        },
+        init = function()
+            package.preload["nvim-web-devicons"] = function()
+                require("mini.icons").mock_nvim_web_devicons()
+                return package.loaded["nvim-web-devicons"]
+            end
         end,
     },
 }

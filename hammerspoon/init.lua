@@ -1,6 +1,5 @@
-hs.loadSpoon("ReloadConfiguration")
-hs.loadSpoon("ControlEscape")
 require("hs.ipc")
+hs.loadSpoon("ReloadConfiguration")
 
 hs.ipc.cliInstall("$HOME/.bin")
 
@@ -75,8 +74,6 @@ spoon.ReloadConfiguration:start()
 
 local ext_keyboard = false
 
-local log = hs.logger.new("nick", "debug")
-
 local keyboard_name = "Voyager"
 
 local function set_layout(layout)
@@ -115,7 +112,7 @@ local function toggle_col()
     end
 end
 
-local function default_scan_keyboards()
+local function default_scan_keyboards(set_layout)
     ext_keyboard = false
     local devices = hs.usb.attachedDevices()
     for _, v in pairs(devices) do
@@ -124,10 +121,13 @@ local function default_scan_keyboards()
             break
         end
     end
-    set_initial()
+    if set_layout ~= false then
+        set_initial()
+    end
 end
 
 hs.hotkey.bind({ "cmd" }, "space", function()
+    default_scan_keyboards(false)
     if ext_keyboard then
         toggle_col()
     else

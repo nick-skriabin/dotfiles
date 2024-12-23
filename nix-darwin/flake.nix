@@ -66,14 +66,20 @@
           pkgs.fzf # Fuzzy search for everything
           pkgs.gitmux # Git status for TMUX
           pkgs.gh # Github tools
+          pkgs.gh-dash # Gitnub dashboard
+          pkgs.gh-notify # Github notifications
           pkgs.gleam
+          # pkgs.gcc-arm-embedded
           pkgs.go
           pkgs.hub # GitHub tools
+          pkgs.imagemagick
           pkgs.jankyborders # Border around active window
+          pkgs.jujutsu
           pkgs.jq # JSON formatter and query engine
           pkgs.lazydocker # TUI for docker
           pkgs.lazygit # TUI for git
           pkgs.luajit
+          pkgs.lazyjj
           pkgs.markdownlint-cli
           pkgs.maven
           pkgs.mdformat
@@ -82,6 +88,10 @@
           pkgs.pipx
           pkgs.pnpm
           pkgs.poetry
+          pkgs.python312
+          pkgs.python312Packages.mdformat
+          pkgs.python312Packages.mdformat-frontmatter
+          pkgs.qmk
           pkgs.redis
           pkgs.ripgrep # Better grep
           pkgs.ruff # Python linter
@@ -95,20 +105,30 @@
           pkgs.wireguard-tools
           pkgs.xh # Better cURL
           pkgs.yazi # File manager
+          pkgs.yq-go
           pkgs.zoxide # Better cd
           pkgs.zoom-us
         ];
 
-        fonts.packages = [ pkgs.nerd-fonts.fira-code ];
+        fonts.packages =
+          [ pkgs.nerd-fonts.fira-code pkgs.nerd-fonts.jetbrains-mono ];
+
+        environment.variables = { HOMEBREW_PREFIX = "/opt/homebrew"; };
 
         # Managing packages installed via homebrew
         homebrew = {
           enable = true;
+          onActivation = {
+            cleanup = "zap";
+            autoUpdate = true;
+            upgrade = true;
+          };
+          # brewPrefix = "/opt/homebrew/bin";
           taps = [
-            # QMK firmware stuff
-            "qmk/qmk"
+            "homebrew/services"
             # Sketchybar and friends
             "FelixKratz/formulae"
+            "osx-cross/arm"
           ];
           brews = [
             "git"
@@ -116,10 +136,9 @@
             "ifstat" # network interface stats
             "luarocks"
             "nvm"
-            "qmk/qmk/qmk"
+            "svim"
             "urlview"
             "xcodegen"
-            "zsh-completions"
             {
               name = "sketchybar";
               start_service = true;
@@ -133,12 +152,14 @@
             "arc"
             "blender"
             "chatgpt"
+            "deskpad"
             "hammerspoon"
             "homerow"
             "figma"
             "google-drive"
             "discord"
             "keymapp"
+            "keycastr"
             "logi-options+"
             "marta"
             "miro"
@@ -156,7 +177,8 @@
             "affinity-photo"
             "chromedriver"
             "whisky"
-            "font-hack-nerd-font"
+            "font-monaspace-nerd-font"
+            "font-inconsolata-nerd-font"
             "font-sf-pro"
             "kindavim"
           ];
@@ -168,7 +190,6 @@
             AdGuard = 1440147259;
             XCode = 497799835;
           };
-          onActivation = { cleanup = "zap"; };
         };
 
         services = {
@@ -202,6 +223,11 @@
                 "${pkgs.spotify}/Applications/Spotify.app"
                 "${pkgs.obsidian}/Applications/Obsidian.app"
               ];
+              persistent-others = [
+                "/Users/nicholasrq/Pictures/Screenshots"
+                "/Users/nicholasrq/Downloads"
+                "/Applications"
+              ];
             };
             finder = {
               AppleShowAllExtensions = true;
@@ -228,20 +254,17 @@
               location = "/Users/nicholasrq/Pictures/Screenshots";
               type = "jpg";
             };
-            NSGlobalDomain = { NSWindowShouldDragOnGesture = true; };
+            NSGlobalDomain = {
+              NSWindowShouldDragOnGesture = true;
+              NSAutomaticWindowAnimationsEnabled = false;
+            };
             trackpad = { TrackpadThreeFingerDrag = true; };
             universalaccess = {
-              reduceTransparency = true;
+              reduceTransparency = false;
               reduceMotion = true;
             };
           };
         };
-
-        system.defaults.dock.persistent-others = let home = "/Users/nicholasrq";
-        in builtins.trace "user is ${home}" [
-          "${home}/Pictures/Screenshots"
-          "${home}/Downloads"
-        ];
 
         # Nix uses symlinks for GUI apps by default. This makes
         # Spotlight kinda useless. This activation script will
@@ -287,19 +310,19 @@
       darwinConfigurations."nsmbp-2" = nix-darwin.lib.darwinSystem {
         modules = [
           configuration
-          nix-homebrew.darwinModules.nix-homebrew
-          {
-            nix-homebrew = {
-              enable = true;
-              # Only for Apple Silicon (M-series)
-              enableRosetta = true;
-              # User (specify your system user)
-              user = "nicholasrq";
-              # Remove/comment the following line if
-              # you're starting from scratch (no homebrew installed)
-              autoMigrate = true;
-            };
-          }
+          # nix-homebrew.darwinModules.nix-homebrew
+          # {
+          #   nix-homebrew = {
+          #     enable = true;
+          #     # Only for Apple Silicon (M-series)
+          #     enableRosetta = true;
+          #     # User (specify your system user)
+          #     user = "nicholasrq";
+          #     # Remove/comment the following line if
+          #     # you're starting from scratch (no homebrew installed)
+          #     autoMigrate = true;
+          #   };
+          # }
         ];
       };
     };

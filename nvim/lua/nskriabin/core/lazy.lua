@@ -22,6 +22,9 @@ require("lazy").setup({
     { import = "nskriabin.plugins.utils" },
     { import = "nskriabin.plugins.lsp" },
 }, {
+    rocks = {
+        hererocks = true,
+    },
     install = {
         missing = true,
         colorscheme = { "kanagawa" },

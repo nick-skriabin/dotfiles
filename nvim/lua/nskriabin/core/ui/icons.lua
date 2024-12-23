@@ -7,6 +7,8 @@ M.misc = {
     file_plus = "󱪝",
     recording = "󰑊",
     modified = "",
+    notifications = "󰂚",
+    notifications_new = "󱅫",
 }
 
 M.lsps = {
@@ -23,6 +25,8 @@ M.lsps = {
     marksman = "",
     codespell = "󰗊",
     ["nil"] = "",
+    bashls = "󱆃",
+    clangd = "",
 }
 
 M.dap = {

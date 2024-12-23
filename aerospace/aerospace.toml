@@ -4,22 +4,33 @@
 # But the feature is very helpful.
 # Normalizations eliminate all sorts of weird tree configurations that don't make sense.
 # Give normalizations a chance and enable them back.
-enable-normalization-flatten-containers = true
-enable-normalization-opposite-orientation-for-nested-containers = true
+
+# Mouse follows focus when focused monitor changes
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+on-focus-changed = ['move-mouse window-lazy-center'] # Mouse lazily follows any focus (window or workspace)
 
 after-startup-command = [
     'exec-and-forget sketchybar --reload',
-    'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0'
+    'exec-and-forget borders'
 ]
 
 exec-on-workspace-change = ['/bin/bash', '-c', 'sketchybar --trigger aerospace_workspace_change AEROSPACE_FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE AEROSPACE_PREV_WORKSPACE=$AEROSPACE_PREV_WORKSPACE',
     'hs -c "test(\"from aerospace\")"'
 ]
 
-# Mouse follows focus when focused monitor changes
-on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
-
 start-at-login = true
+
+[workspace-to-monitor-force-assignment]
+1 = 'main'
+2 = 'main'
+3 = 'main'
+4 = 'main'
+5 = 'main'
+6 = 'main'
+7 = 'main'
+8 = 'main'
+9 = '^built-in retina display$'                       # Main monitor
+10 = 'main'
 
 [key-mapping.key-notation-to-key-code]
 q = 'q'
@@ -93,31 +104,32 @@ alt-shift-space = 'layout floating tiling' # 'floating toggle' in i3
 # should be supported at all https://github.com/nikitabobko/AeroSpace/issues/5
 # alt-a = 'focus parent'
 
-ctrl-1 = 'workspace 1'
-ctrl-2 = 'workspace 2'
-ctrl-3 = 'workspace 3'
-ctrl-4 = 'workspace 4'
-ctrl-5 = 'workspace 5'
-ctrl-6 = 'workspace 6'
-ctrl-7 = 'workspace 7'
-ctrl-8 = 'workspace 8'
-ctrl-9 = 'workspace 9'
-ctrl-0 = 'workspace 10'
+ctrl-keypad1 = 'workspace 1'
+ctrl-keypad2 = 'workspace 2'
+ctrl-keypad3 = 'workspace 3'
+ctrl-keypad4 = 'workspace 4'
+ctrl-keypad5 = 'workspace 5'
+ctrl-keypad6 = 'workspace 6'
+ctrl-keypad7 = 'workspace 7'
+ctrl-keypad8 = 'workspace 8'
+ctrl-keypad9 = 'workspace 9'
+ctrl-keypad0 = 'workspace 10'
 
-ctrl-shift-1 = 'move-node-to-workspace 1'
-ctrl-shift-2 = 'move-node-to-workspace 2'
-ctrl-shift-3 = 'move-node-to-workspace 3'
-ctrl-shift-4 = 'move-node-to-workspace 4'
-ctrl-shift-5 = 'move-node-to-workspace 5'
-ctrl-shift-6 = 'move-node-to-workspace 6'
-ctrl-shift-7 = 'move-node-to-workspace 7'
-ctrl-shift-8 = 'move-node-to-workspace 8'
-ctrl-shift-9 = 'move-node-to-workspace 9'
-ctrl-shift-0 = 'move-node-to-workspace 10'
+ctrl-shift-keypad1 = 'move-node-to-workspace 1'
+ctrl-shift-keypad2 = 'move-node-to-workspace 2'
+ctrl-shift-keypad3 = 'move-node-to-workspace 3'
+ctrl-shift-keypad4 = 'move-node-to-workspace 4'
+ctrl-shift-keypad5 = 'move-node-to-workspace 5'
+ctrl-shift-keypad6 = 'move-node-to-workspace 6'
+ctrl-shift-keypad7 = 'move-node-to-workspace 7'
+ctrl-shift-keypad8 = 'move-node-to-workspace 8'
+ctrl-shift-keypad9 = 'move-node-to-workspace 9'
+ctrl-shift-keypad0 = 'move-node-to-workspace 10'
 
 alt-comma = 'mode system'
+alt-m = 'mode monitor'
 alt-a = 'mode app'
-
+alt-shift-c = 'reload-config'
 alt-minus = 'resize smart -50'
 alt-equal = 'resize smart +50'
 
@@ -125,16 +137,31 @@ alt-equal = 'resize smart +50'
 enter = [ 'reload-config', 'mode main' ]
 esc = 'mode main'
 
+[mode.monitor.binding]
+ctrl-n = ["focus-monitor next"]
+ctrl-p = ["focus-monitor prev"]
+alt-n = ['move-node-to-monitor next']
+alt-p = ['move-node-to-monitor prev']
+esc = 'mode main'
+enter = 'mode main'
+
 [mode.app.binding]
-s = ['exec-and-forget open -a /Applications/Slack.app', 'mode main']
-shift-s = ['exec-and-forget open -a /Applications/Spotify.app', 'mode main']
-t = ['exec-and-forget open -a /Applications/kitty.app', 'mode main']
-p = ['exec-and-forget open -a /Applications/Telegram.app', 'mode main']
-a = ['exec-and-forget open -a /Applications/Arc.app', 'mode main']
-c = ['exec-and-forget open -a /System/Applications/Notion\ Calendar.app', 'mode main']
-m = ['exec-and-forget open -a /System/Applications/Mail.app', 'mode main']
-v = ['exec-and-forget open -a /Applications/Spotify.app', 'mode main']
-f = ['exec-and-forget open -a kitty.app -n --args -T "File Manager" zsh -c "yazi"', 'mode main']
+alt-b = ['exec-and-forget open -a Arc.app', 'mode main']
+alt-c = ['exec-and-forget open -a "Notion Calendar.app"', 'mode main']
+# Runs file manager in $HOME
+alt-f = ['exec-and-forget open -a kitty.app -n --args zsh -c "yazi" > /dev/null 2>&1 &', 'mode main']
+shift-f = ['exec-and-forget open -a kitty.app -n --args zsh -c yazi $(tmux display-message -p -F "#{pane_current_path}" -t0) > /dev/null 2>&1 &', 'mode main']
+alt-m = ['exec-and-forget open -a Mail.app', 'mode main']
+# Runs nvim in notes directory
+alt-n = ['exec-and-forget open -a kitty.app -n --args zsh -c "cd ~/Git/vaults/whaledev/Whaledev && nvim" > /dev/null 2>&1 &', 'mode main']
+alt-p = ['exec-and-forget open -a Telegram.app', 'mode main']
+alt-s = ['exec-and-forget open -a Slack.app', 'mode main']
+alt-t = ['exec-and-forget open -a kitty.app', 'mode main']
+alt-shift-t = ['exec-and-forget open -a kitty.app -n --args zsh -c "tmux"', 'mode main']
+alt-v = ['exec-and-forget open -a Spotify.app', 'mode main']
+# Runs Btop process viewer
+alt-z = ['exec-and-forget open -a kitty.app -n --args zsh -c "btop" > /dev/null 2>&1 &', 'mode main']
+
 enter = 'mode main'
 esc = 'mode main'
 
@@ -144,9 +171,10 @@ inner.vertical =   8
 outer.left =       8
 outer.bottom =     8
 outer.top =        [
-  {monitor."Built-in Retina Display" = 10},
-  {monitor.main = 40},
-  40
+  {monitor.btop = 10},
+  {monitor.'studio display$' = 40},
+  {monitor.'^built-in' = 8},
+  8
 ]
 outer.right =      8
 
@@ -193,6 +221,18 @@ run = ['move-node-to-workspace 8']
 
 [[on-window-detected]]
 if.app-id = 'com.shapr3d.shapr'
+run = ['move-node-to-workspace 8']
+
+[[on-window-detected]]
+if.app-id = 'com.apple.PhotoBooth'
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-id = " com.obsproject.obs-studio"
+run = ['move-node-to-workspace 9']
+
+[[on-window-detected]]
+if.app-id = "com.captureone.captureone15"
 run = ['move-node-to-workspace 8']
 
 # [[on-window-detected]]

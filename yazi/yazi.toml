@@ -1,3 +1,8 @@
 [manager]
 ratio = [2, 3, 3]
 
+
+[opener]
+edit = [
+  	{ run = 'nvim "$@"', block = true, for = "unix" },
+]

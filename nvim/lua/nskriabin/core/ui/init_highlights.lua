@@ -21,11 +21,19 @@ local function init_colors()
 
     hl(0, "NormalFloat", default_fg)
     hl(0, "FloatBorder", default_bg)
+    hl(0, "FloatTitle", default_fg)
     hl(0, "BlinkCmpMenuSelection", { bg = colors.highlight })
 
     -- CMP
     hl(0, "CmpNormal", default_bg_alone)
     hl(0, "CmpNormalFloat", default_bg_alone)
+
+    -- Snacks input
+    hl(0, "SnacksInputNormal", default_fg)
+    hl(0, "SnacksInputBorder", default_bg)
+    hl(0, "SnacksInputTitle", default_fg)
+
+    hl(0, "SnacksIndent", { fg = colors.border })
 
     -- Popup menu
     hl(0, "Pmenu", { blend = 0, bg = bg })

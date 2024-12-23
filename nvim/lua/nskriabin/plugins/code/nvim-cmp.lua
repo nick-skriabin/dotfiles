@@ -10,7 +10,7 @@ local border_opts = {
 }
 return {
     "hrsh7th/nvim-cmp",
-    enabled = true,
+    enabled = false,
     event = "CmdlineEnter", -- Load nvim-cmp when entering command-line mode
     dependencies = {
         "hrsh7th/cmp-cmdline", -- Command-line completion source

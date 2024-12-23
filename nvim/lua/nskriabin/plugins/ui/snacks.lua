@@ -38,6 +38,13 @@ return {
         {
             "<leader>bd",
             function()
+                Snacks.bufdelete.delete()
+            end,
+            desc = "Delete current buffer",
+        },
+        {
+            "<leader>bo",
+            function()
                 Snacks.bufdelete.other()
             end,
             desc = "Delete current buffer",
@@ -70,11 +77,28 @@ return {
             end,
             desc = "Dismiss Notifications",
         },
+        {
+            "<leader>zz",
+            function()
+                Snacks.zen()
+            end,
+        },
     },
     config = function()
         local Snacks = require("snacks")
 
         Snacks.setup({
+            animate = { enabled = true },
+            dim = { enabled = true },
+            indent = {
+                enabled = true,
+                indent = {
+                    only_scope = true,
+                    only_active = true,
+                },
+                chunk = { enabled = true },
+            },
+            input = { enabled = false },
             bigfile = { enabled = true },
             bufdelete = { enabled = true },
             nofify = { enabled = true },
@@ -86,23 +110,8 @@ return {
             dashboard = {
                 enabled = true,
                 sections = {
-                    {
-                        section = "header",
-                    },
-                    {
-                        section = "keys",
-                        gap = 1,
-                        padding = 1,
-                    },
-                    { icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1 },
-                    {
-                        pane = 2,
-                        section = "terminal",
-                        cmd = "CACHE=3 ascii-image-converter ~/.config/nvim/assets/whaledev.png -C -c",
-                        random = 10,
-                        height = 30,
-                        indent = 4,
-                    },
+                    { section = "header" },
+                    { icon = " ", titlE = "Projects", section = "projects", indent = 2, padding = 1, width = 100 },
                     { section = "startup" },
                 },
             },
@@ -122,10 +131,18 @@ return {
                 refresh = 50, -- refresh at most every 50ms
             },
             words = { enabled = false },
+            zen = { enabled = true },
         })
 
         ---@type table<number, {token:lsp.ProgressToken, msg:string, done:boolean}[]>
         local progress = vim.defaulttable()
+        au.cmd("User", {
+            pattern = "MiniFilesActionRename",
+            callback = function(event)
+                Snacks.rename.on_rename_file(event.data.from, event.data.to)
+            end,
+        })
+
         au.cmd("LspProgress", {
             ---@param ev {data: {client_id: integer, params: lsp.ProgressParams}}
             callback = function(ev)

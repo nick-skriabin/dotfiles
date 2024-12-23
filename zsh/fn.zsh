@@ -175,3 +175,8 @@ pull-all() {
 cherry(){ git cherry -v $1 }
 cherry-length(){ git cherry -v $1 | wc -l }
 alias cherry-pick="git cherry-pick"
+
+# FS
+cdm() {
+  mkdir -p $1 && cd $1
+}

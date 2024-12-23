@@ -1,14 +1,19 @@
 lastupdatecheck: 0
 recentrepos:
     - /Users/nicholasrq/Git/dotfiles
+    - /Users/nicholasrq/qmk_firmware
+    - /Users/nicholasrq/Git/label-studio-enterprise
+    - /Users/nicholasrq/GitStream/basic-ot
+    - /Users/nicholasrq/Git/eventor
+    - /Users/nicholasrq/Git/vaults/whaledev/Whaledev
+    - /Users/nicholasrq/Git/label-studio
+    - /Users/nicholasrq/qmk_firmware/lib/chibios
+    - /Users/nicholasrq/qmk_firmware/keyboards/voyager
+    - /Users/nicholasrq/Git/Adala
+    - /Users/nicholasrq/Git/nick-skriabin
     - /Users/nicholasrq/Git/notes
     - /Users/nicholasrq/Git/commitment.nvim
     - /Users/nicholasrq/Projects/linkza
-    - /Users/nicholasrq/Git/label-studio
-    - /Users/nicholasrq/Git/label-studio-enterprise
-    - /Users/nicholasrq/qmk_firmware/keyboards/voyager
-    - /Users/nicholasrq/qmk_firmware
-    - /Users/nicholasrq/Git/Adala
     - /Users/nicholasrq/Git/jz-state
     - /Users/nicholasrq/Git/label-studio-enterprise/editor
     - /Users/nicholasrq/Git/editor-frontend

@@ -1,7 +1,7 @@
-require("nskriabin.auto.dashboard")
 require("nskriabin.auto.highlight")
 require("nskriabin.auto.allow-close")
 require("nskriabin.auto.resize")
 require("nskriabin.auto.locations")
 require("nskriabin.auto.terminal")
 require("nskriabin.auto.wrap")
+require("nskriabin.auto.shiftwidth")

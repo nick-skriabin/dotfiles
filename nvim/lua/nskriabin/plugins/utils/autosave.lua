@@ -1,4 +1,10 @@
 return {
     "Pocco81/auto-save.nvim",
-    opts = {},
+    config = function()
+        require("auto-save").setup({
+            trigger_events = { "InsertLeave" },
+            hello = "",
+        })
+    end,
+    hello = "undefined",
 }

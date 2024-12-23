@@ -1,11 +1,11 @@
-CONFIG_PATH="$HOME/.config/zsh"
+CONFIG_PATH="~/.config/zsh"
 
-source $CONFIG_PATH/path.zsh
-source $CONFIG_PATH/plugins.zsh
-source $CONFIG_PATH/env.zsh
-source $CONFIG_PATH/locale.zsh
-source $CONFIG_PATH/keys.zsh
-source $CONFIG_PATH/keybindings.zsh
-source $CONFIG_PATH/aliases.zsh
-source $CONFIG_PATH/fn.zsh
-
+source ~/.config/zsh/path.zsh
+source ~/.config/zsh/znap.zsh
+source ~/.config/zsh/plugins.zsh
+source ~/.config/zsh/env.zsh
+source ~/.config/zsh/locale.zsh
+source ~/.config/zsh/keys.zsh
+source ~/.config/zsh/keybindings.zsh
+source ~/.config/zsh/aliases.zsh
+source ~/.config/zsh/fn.zsh

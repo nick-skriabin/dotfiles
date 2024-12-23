@@ -14,6 +14,8 @@ for m in $($AEROSPACE list-monitors | awk '{print $1}'); do
 
   for i in $($AEROSPACE list-workspaces --monitor $m); do
     sid=$i
+    mid=$(( $m == 1 ? $m + 2 : $m - 1 ))
+
     space=(
       space="$sid"
       icon="$sid"
@@ -22,7 +24,7 @@ for m in $($AEROSPACE list-monitors | awk '{print $1}'); do
       icon.font="$FONT:Heavy:14.0"
       icon.padding_left=6
       icon.padding_right=6
-      display=$m
+      display=$(( $m == 1 ? $m + 2 : $m - 1 )) \
       padding_left=2
       padding_right=2
       label.padding_right=20
@@ -34,17 +36,18 @@ for m in $($AEROSPACE list-monitors | awk '{print $1}'); do
       update_freq=0.5
       script="$PLUGIN_DIR/aerospace/scripts/space.sh"
     )
+    key=space.$mid.$sid
 
-    sketchybar --add space space.$sid left \
-      --set space.$sid "${space[@]}" \
-      --subscribe space.$sid mouse.clicked
+    sketchybar --add space $key left \
+      --set $key "${space[@]}" \
+      --subscribe $key mouse.clicked
 
     icon_strip=$(get_apps_icons $sid)
 
-    sketchybar --set space.$sid label="$icon_strip" icon="$sid"
+    sketchybar --set $key label="$icon_strip" icon="$sid"
 
     if [ "$sid" = "$focused_workspace" ]; then
-      sketchybar --set space.$sid \
+      sketchybar --set $key \
         icon.highlight=true \
         label.highlight=true
     fi
