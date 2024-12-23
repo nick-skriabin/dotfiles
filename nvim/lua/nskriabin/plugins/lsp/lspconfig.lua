@@ -71,7 +71,7 @@ return {
             map.set("n", "gi", "<cmd>FzfLua lsp_implementations<cr>", opts) -- show lsp implementations
 
             opts.desc = "Show LSP type definitions"
-            map.set("n", "gt", "<cmd>FzfLua lsp_type_definitions<CR>", opts) -- show lsp type definitions
+            map.set("n", "gt", "<cmd>FzfLua lsp_typedefs<CR>", opts) -- show lsp type definitions
 
             opts.desc = "See available code actions"
             map.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts) -- see available code actions
