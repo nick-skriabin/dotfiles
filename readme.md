@@ -114,7 +114,7 @@ Raycast is a productivity tool that allows you to perform tasks quickly using ke
 - [tmux](https://github.com/tmux/tmux) - TMUX allows you to spawn long-sessions that will continue working in the background even if you close your terminal
 
 ### My socials
-[YouTube](https://www.youtube.com/@NSkriabinDev)
-[Twitch](https://twitch.tv/nick_skriabeen)
-[Telegram channel](https://t.me/nick_skriabeen)
-[X (ex. Twitter)](https://x.com/nick_skriabin)
+- [YouTube](https://www.youtube.com/@NSkriabinDev)
+- [Twitch](https://twitch.tv/nick_skriabeen)
+- [Telegram channel](https://t.me/nick_skriabeen)
+- [X (ex. Twitter)](https://x.com/nick_skriabin)
