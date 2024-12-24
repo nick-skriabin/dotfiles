@@ -10,7 +10,7 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 on-focus-changed = ['move-mouse window-lazy-center'] # Mouse lazily follows any focus (window or workspace)
 
 after-startup-command = [
-    'exec-and-forget sketchybar --reload',
+    'exec-and-forget sketchybar',
     'exec-and-forget borders'
 ]
 

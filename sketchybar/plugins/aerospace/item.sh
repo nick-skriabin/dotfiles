@@ -2,6 +2,7 @@
 source "$CONFIG_DIR/colors.sh"
 source "$CONFIG_DIR/icon_map.sh"
 source "$CONFIG_DIR/plugins/aerospace/scripts/space_apps_icons.sh"
+source "$CONFIG_DIR/plugins/aerospace/utils.sh"
 
 CURRENT_FONT="sketchybar-app-font"
 ICON_FONT_SETTINGS="$CURRENT_FONT:Regular:16.0"
@@ -14,7 +15,7 @@ for m in $($AEROSPACE list-monitors | awk '{print $1}'); do
 
   for i in $($AEROSPACE list-workspaces --monitor $m); do
     sid=$i
-    mid=$(( $m == 1 ? $m + 2 : $m - 1 ))
+    mid=$(get_focused_monitor $m)
 
     space=(
       space="$sid"
@@ -24,7 +25,7 @@ for m in $($AEROSPACE list-monitors | awk '{print $1}'); do
       icon.font="$FONT:Heavy:14.0"
       icon.padding_left=6
       icon.padding_right=6
-      display=$(( $m == 1 ? $m + 2 : $m - 1 )) \
+      display=$mid \
       padding_left=2
       padding_right=2
       label.padding_right=20

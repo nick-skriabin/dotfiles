@@ -82,6 +82,9 @@ alias '...'="cd ../.."
 alias '....'="cd ../../.."
 alias '.....'="cd ../../../.."
 
+# Serve
+alias lserve="python3 -m http.server $1"
+
 gwr-sass() {
   REF=$1
   PARAMS="{\"ref\": ${REF}, \"deploy_to_prod\": true, \"sure\": \"sure\"}"

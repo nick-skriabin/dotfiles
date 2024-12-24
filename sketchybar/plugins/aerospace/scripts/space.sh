@@ -1,5 +1,7 @@
 #!/bin/zsh
 
+source "$CONFIG_DIR/plugins/aerospace/utils.sh"
+
 AEROSPACE="/run/current-system/sw/bin/aerospace"
 
 update() {
@@ -11,7 +13,7 @@ update() {
     fi
 
     m = $($AEROSPACE list-monitors --focused | awk -F " " "{print $1}")
-    mid=$(( $m == 1 ? $m + 2 : $m - 1 ))
+    mid=$(get_focused_monitor $m)
 
     sketchybar --set space.$mid.$($AEROSPACE list-workspaces --focused) \
       icon.highlight=true \

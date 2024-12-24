@@ -99,6 +99,7 @@
           pkgs.slack # Messenger
           pkgs.spotify # Some music?
           pkgs.silver-searcher # Code finder (ag)
+          pkgs.sketchybar
           pkgs.supabase-cli
           pkgs.tree-sitter # AST builder
           pkgs.wget
@@ -139,14 +140,6 @@
             "svim"
             "urlview"
             "xcodegen"
-            {
-              name = "sketchybar";
-              start_service = true;
-            }
-            {
-              name = "borders";
-              start_service = true;
-            }
           ];
           casks = [
             "arc"

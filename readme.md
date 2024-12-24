@@ -1,6 +1,7 @@
+![Logo](assets/logo.png)
 <h1 align="center" style="font-family: monospace;">/user/whaledev/.dotfiles</h1>
 
-![Preview](/assets/screen.png)
+![Preview](assets/screen.png)
 
 ## What's included
 
@@ -111,3 +112,9 @@ Raycast is a productivity tool that allows you to perform tasks quickly using ke
 - [zoxide](https://github.com/ajeetdsouza/zoxide) - Smarter `cd`. It remembers directories you visited and allow fuzzy `cd`. E.g., if I type `z dot` it will `cd ~/Git/dotfiles`
 - [eza](https://github.com/eza-community/eza) - A drop-in replacement for `ls`. Supports tree view, icons, friendly formatting and more.
 - [tmux](https://github.com/tmux/tmux) - TMUX allows you to spawn long-sessions that will continue working in the background even if you close your terminal
+
+### My socials
+[YouTube](https://www.youtube.com/@NSkriabinDev)
+[Twitch](https://twitch.tv/nick_skriabeen)
+[Telegram channel](https://t.me/nick_skriabeen)
+[X (ex. Twitter)](https://x.com/nick_skriabin)
