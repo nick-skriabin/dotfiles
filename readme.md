@@ -1,5 +1,5 @@
 ![Logo](assets/logo.png)
-<h1 align="center" style="font-family: monospace;">/user/whaledev/.dotfiles</h1>
+<h1 align="center" style="font-family: monospace;">Dotfiles</h1>
 
 ![Preview](assets/screen.png)
 
