@@ -1,5 +1,7 @@
 require("hs.ipc")
 hs.loadSpoon("ReloadConfiguration")
+hs.loadSpoon("ControlEscape")
+spoon.ReloadConfiguration:start()
 
 hs.ipc.cliInstall("$HOME/.bin")
 
@@ -33,7 +35,8 @@ local cattpuccin = {
     mantle = "#181825",
     crust = "#11111b",
 }
-local colors = {
+
+local alert_colors = {
     alert = {
         stroke = { white = 1, alpha = 0 },
         background = { hex = cattpuccin.base, alpha = 1 },
@@ -44,9 +47,9 @@ local colors = {
 function Alert(message)
     hs.alert.closeAll()
     hs.alert.show(message, {
-        textColor = colors.alert.text,
-        fillColor = colors.alert.background,
-        strokeColor = colors.alert.stroke,
+        textColor = alert_colors.alert.text,
+        fillColor = alert_colors.alert.background,
+        strokeColor = alert_colors.alert.stroke,
         textSize = 12,
         radius = 4,
         atScreenEdge = 2,
@@ -68,33 +71,37 @@ local layout_names = {
     [layouts.graphite] = "Graphite",
 }
 
-local default_layout = layouts.colemak
+local DEFAULT_LAYOUT = layouts.colemak
 
-spoon.ReloadConfiguration:start()
+local EXT_KEYBOARD = false
 
-local ext_keyboard = false
-
-local keyboard_name = "Voyager"
+local KEYBOARD_NAME = "Voyager"
 
 local function set_layout(layout)
     hs.keycodes.currentSourceID(layout)
     Alert("Layout: " .. layout_names[layout])
 end
 
+-- Sets an initial keyboard layout based on
+-- whether there's an external keyboard is
+-- connected
 local function set_initial()
     local current_layout = hs.keycodes.currentSourceID()
     if current_layout == layouts.qwerty_ru then
         return
     end
 
-    if ext_keyboard then
-        set_layout(default_layout)
+    if EXT_KEYBOARD then
+        set_layout(DEFAULT_LAYOUT)
+        spoon.ControlEscape:stop()
     else
         set_layout(layouts.qwerty_us)
+        spoon.ControlEscape:start()
     end
 end
 
-local function toggle_qw()
+-- Will toggle between RU and EN QWERTY
+local function toggle_qwerty()
     local current_layout = hs.keycodes.currentSourceID()
     if current_layout == layouts.qwerty_us then
         set_layout(layouts.qwerty_ru)
@@ -103,53 +110,64 @@ local function toggle_qw()
     end
 end
 
-local function toggle_col()
+-- Will toggle between QWERTY for cyrilic and Colemak for English
+local function toggle_colemak()
     local current_layout = hs.keycodes.currentSourceID()
     if current_layout == layouts.colemak then
         set_layout(layouts.qwerty_ru)
     else
-        set_layout(default_layout)
+        set_layout(DEFAULT_LAYOUT)
     end
 end
 
-local function default_scan_keyboards(set_layout)
-    ext_keyboard = false
+-- Runs a default USB scan to check if an external device
+-- with KEYBOARD_NAME is connected. If so, will activate
+-- Colemak layout.
+local function default_scan_keyboards(layout)
+    EXT_KEYBOARD = false
     local devices = hs.usb.attachedDevices()
     for _, v in pairs(devices) do
-        if v.productName == keyboard_name then
-            ext_keyboard = true
+        if v.productName == KEYBOARD_NAME then
+            EXT_KEYBOARD = true
             break
         end
     end
-    if set_layout ~= false then
+    if layout ~= false then
         set_initial()
     end
 end
 
-hs.hotkey.bind({ "cmd" }, "space", function()
-    default_scan_keyboards(false)
-    if ext_keyboard then
-        toggle_col()
-    else
-        toggle_qw()
-    end
-end)
-
+-- Does the same thing as `default_scan_keyboards` but
+-- dynamically and reacts to added/removed USB devices.
 local usb_watcher = hs.usb.watcher.new(function(data)
-    if data["productName"] ~= keyboard_name then
+    if data["productName"] ~= KEYBOARD_NAME then
         return
     end
 
     if data["eventType"] == "added" then
-        ext_keyboard = true
-        caps:stop()
+        EXT_KEYBOARD = true
+        set_initial()
     elseif data["eventType"] == "removed" then
-        ext_keyboard = false
-        caps:start()
+        EXT_KEYBOARD = false
+        set_initial()
     end
 
     set_initial()
 end)
 usb_watcher:start()
 
+-- Initial keyboard/layout check.
 default_scan_keyboards()
+
+-- Keymaps
+--
+-- Binds a cmd+space (standard macOS hotkey for switching layouts)
+-- It will be used instead of system's one
+hs.hotkey.bind({ "cmd" }, "space", function()
+    default_scan_keyboards(false)
+    if EXT_KEYBOARD then
+        toggle_colemak()
+    else
+        toggle_qwerty()
+    end
+end)
