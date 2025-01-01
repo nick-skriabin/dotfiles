@@ -2,6 +2,7 @@
   description = "Example nix-darwin system flake";
 
   inputs = {
+    # nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-24.11-darwin";
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
@@ -34,14 +35,6 @@
         # List packages installed in system profile. To search by name, run:
         # $ nix-env -qaP | grep wget
         environment.systemPackages = [
-          #### Terminal stuff
-          # Terminal emulator
-          pkgs.kitty
-          # Terminal multiplexer
-          pkgs.tmux
-          # I use (neo)vim, btw
-          pkgs.neovim
-
           ### Tools
           # Nix files formatter
           pkgs.nixfmt-classic
@@ -96,6 +89,7 @@
           pkgs.ripgrep # Better grep
           pkgs.ruff # Python linter
           pkgs.rustc # Rust programming language
+          pkgs.rustup
           pkgs.slack # Messenger
           pkgs.spotify # Some music?
           pkgs.silver-searcher # Code finder (ag)
@@ -132,11 +126,12 @@
             "osx-cross/arm"
           ];
           brews = [
+            "nvim"
+            "tmux"
             "git"
             "hookdeck/hookdeck/hookdeck"
             "ifstat" # network interface stats
             "luarocks"
-            "nvm"
             "svim"
             "urlview"
             "xcodegen"
@@ -153,6 +148,7 @@
             "discord"
             "keymapp"
             "keycastr"
+            "kitty"
             "logi-options+"
             "marta"
             "miro"
@@ -206,8 +202,8 @@
               wvous-tl-corner = 1;
               wvous-tr-corner = 1;
               persistent-apps = [
-                "/Applications/Arc.app"
-                "${pkgs.kitty}/Applications/kitty.app"
+                "/Applications/Zen Browser.app"
+                "/Applications/kitty.app"
                 "/Applications/Telegram.app"
                 "${pkgs.slack}/Applications/Slack.app"
                 "/System/Applications/Mail.app"
@@ -252,10 +248,10 @@
               NSAutomaticWindowAnimationsEnabled = false;
             };
             trackpad = { TrackpadThreeFingerDrag = true; };
-            universalaccess = {
-              reduceTransparency = false;
-              reduceMotion = true;
-            };
+            # universalaccess = {
+            #   reduceTransparency = false;
+            #   reduceMotion = true;
+            # };
           };
         };
 
