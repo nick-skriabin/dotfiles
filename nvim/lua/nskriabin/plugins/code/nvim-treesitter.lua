@@ -48,7 +48,7 @@ return {
                 "rust",
                 "lua",
                 "vim",
-                "svelte",
+                -- "svelte",
                 "devicetree",
             },
             incremental_selection = {
@@ -69,7 +69,6 @@ return {
                     goto_previous_end = { ["[F"] = "@function.outer", ["[C"] = "@class.outer" },
                 },
             },
-            -- enable nvim-ts-context-commentstring plugin for commenting tsx and jsx
         })
 
         autotag.setup({
