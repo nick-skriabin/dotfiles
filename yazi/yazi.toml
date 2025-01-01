@@ -1,8 +1,15 @@
 [manager]
 ratio = [2, 3, 3]
 
-
 [opener]
 edit = [
-  	{ run = 'nvim "$@"', block = true, for = "unix" },
+  	{ run = 'nvim "$@"', block = true, for = "unix", desc = "Edit" },
+]
+open = [
+  	{ run = 'open "$@"', block = true, for = "unix", desc = "Open" },
+]
+
+[open]
+prepend_rules = [
+  { name = "*.html", use =[ "edit", "open" ] }
 ]
