@@ -97,6 +97,7 @@ return {
                 scss = { "stylelint" },
                 html = { "biome" },
                 json = { "biome" },
+                markdown = { "biome" },
                 jsonc = { "biome" },
                 yaml = { "prettier" },
                 svelte = { "prettier", "biome" },

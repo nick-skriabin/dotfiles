@@ -15,7 +15,7 @@ issuesSections:
 defaults:
   preview:
     open: true
-    width: 50
+    width: 80
   prsLimit: 20
   issuesLimit: 20
   view: prs
@@ -39,6 +39,7 @@ defaults:
       updatedAt:
         width: 7
       repo:
+
         width: 15
       creator:
         width: 10
@@ -47,6 +48,7 @@ defaults:
         hidden: true
   refetchIntervalMinutes: 30
 repoPaths:
+  :owner/:repo: ~/Git/:repo
   nicholasrq/*: ~/Git/*
   HumanSignal/*: ~/Git/*
 keybindings:
@@ -57,7 +59,5 @@ keybindings:
         tmux new-window -c {{.RepoPath}} 'nvim -c ":Octo pr edit {{.PrNumber}}"'
 theme:
   ui:
-    table:
-      showSeparator: true
 pager:
   diff: "delta"

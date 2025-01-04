@@ -94,7 +94,6 @@
           pkgs.spotify # Some music?
           pkgs.silver-searcher # Code finder (ag)
           pkgs.sketchybar
-          pkgs.supabase-cli
           pkgs.tree-sitter # AST builder
           pkgs.wget
           pkgs.wireguard-tools
@@ -129,7 +128,9 @@
             "nvim"
             "tmux"
             "git"
+            "nvm"
             "hookdeck/hookdeck/hookdeck"
+            "supabase/tap/supabase"
             "ifstat" # network interface stats
             "luarocks"
             "svim"
@@ -202,7 +203,7 @@
               wvous-tl-corner = 1;
               wvous-tr-corner = 1;
               persistent-apps = [
-                "/Applications/Zen Browser.app"
+                "/Applications/Arc.app"
                 "/Applications/kitty.app"
                 "/Applications/Telegram.app"
                 "${pkgs.slack}/Applications/Slack.app"

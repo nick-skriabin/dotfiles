@@ -13,4 +13,4 @@ current_user_tickets_only = true
 show_ticket_status = ["Done", "In Progress", "To Do", "Needs Info", "QA", "Confirmed"]
 
 [projects]
-default_project = "DIA"
+default_projects = "DIA"

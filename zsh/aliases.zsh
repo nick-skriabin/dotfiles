@@ -33,7 +33,8 @@ alias gd="gh dash"
 alias lg="lazygit"
 
 # Jujutsu
-alias jk="jj" # remap to unlock "jj" as "esc"
+alias ju="jj" # remap to unlock "jj" as "esc"
+alias lj="lazyjj"
 
 # Cargo
 alias cargo-watch='cargo watch -i "www/*" -i .gitignore -i "pkg/*" -s "wasm-pack build --dev"'

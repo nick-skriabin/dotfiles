@@ -1,11 +1,6 @@
 local map = vim.keymap.set
 local keys = require("nskriabin.core.util.keymap")
 
--- cmdline
-keys.map({
-    { "n", "<leader>;", "<cmd>Telescope cmdline<cr>" },
-})
-
 -- exit insert mode
 keys.map({
     { "i", "jj", "<ESC>", nowait = true },
@@ -38,8 +33,8 @@ keys.map({
 keys.map({
     { "n", "<leader>bl", ":edit<cr>", nowait = true, desc = "Reload Buffer" },
     { "n", "<C-q>", ":q<cr>", nowait = true, desc = "Close Buffer" },
-    { "n", "<C-w>", ":w<cr>", nowait = true, desc = "Save Buffer" },
-    { "n", "<C-W>", ":wa<cr>", nowait = true, desc = "Save All Buffers" },
+    { "n", "<C-w>", ":w!<cr>", nowait = true, desc = "Save Buffer" },
+    { "n", "<C-W>", ":wa!<cr>", nowait = true, desc = "Save All Buffers" },
 })
 
 -- packages

@@ -15,9 +15,10 @@ local function init_colors()
     hl(0, "NoiceCmdlinePopup", default_bg_alone)
 
     -- Telescope
-    hl(0, "TelescopeNormal", default_fg)
-    hl(0, "TelescopeBorder", default_bg)
-    hl(0, "TelescopePromptBorder", default_bg)
+    hl(0, "FzfLuaNormal", default_fg)
+    hl(0, "FzfLuaBorder", default_bg)
+    hl(0, "FzfLuaPreviewNormal", default_bg)
+    hl(0, "FzfLuaPreviewBorder", default_bg)
 
     hl(0, "NormalFloat", default_fg)
     hl(0, "FloatBorder", default_bg)

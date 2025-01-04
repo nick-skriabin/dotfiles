@@ -35,9 +35,6 @@ return {
                     enabled = true,
                     lsp = true,
                 },
-                telescope = {
-                    enabled = false,
-                },
             },
         })
 

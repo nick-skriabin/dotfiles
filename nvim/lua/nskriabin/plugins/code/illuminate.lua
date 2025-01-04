@@ -12,7 +12,6 @@ return {
                 "dirvish",
                 "fugitive",
                 "octo",
-                "telescope",
             },
         })
     end,

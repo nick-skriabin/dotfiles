@@ -19,12 +19,6 @@ return {
             defaults = {
                 formatter = "path.filename_first", -- places file name first
             },
-            hls = {
-                normal = "TelescopeNormal",
-                border = "TelescopeBorder",
-                preview_normal = "TelescopeNormal",
-                preview_border = "TelescopeBorder",
-            },
             git = {
                 cmd = "git ls-files -dcmo --deduplicate --exclude-standard",
             },

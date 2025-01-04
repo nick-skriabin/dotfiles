@@ -33,10 +33,11 @@ return {
     {
         "iamcco/markdown-preview.nvim",
         cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+        enabled = false,
         build = "cd app && yarn install",
         keys = {
             {
-                "<leader>cp",
+                "<leader>mp",
                 ft = "markdown",
                 "<cmd>MarkdownPreviewToggle<cr>",
                 desc = "Markdown Preview",
@@ -44,6 +45,23 @@ return {
         },
         config = function()
             vim.cmd([[do FileType]])
+        end,
+    },
+    {
+        "wallpants/github-preview.nvim",
+        cmd = { "GithubPreviewToggle" },
+        keys = { "<leader>mpt" },
+        opts = {
+            -- config goes here
+        },
+        config = function(_, opts)
+            local gpreview = require("github-preview")
+            gpreview.setup(opts)
+
+            local fns = gpreview.fns
+            vim.keymap.set("n", "<leader>mpt", fns.toggle)
+            vim.keymap.set("n", "<leader>mps", fns.single_file_toggle)
+            vim.keymap.set("n", "<leader>mpd", fns.details_tags_toggle)
         end,
     },
 }

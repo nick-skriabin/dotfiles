@@ -3,10 +3,11 @@ return {
     lazy = true,
     dependencies = {
         "nvim-lua/plenary.nvim",
-        "nvim-telescope/telescope.nvim",
+        "ibhagwan/fzf-lua", -- optional
         "nvim-tree/nvim-web-devicons",
         "folke/which-key.nvim",
     },
+    cmd = "Octo",
     config = function()
         require("octo").setup({
             picker = "fzf-lua",

@@ -20,9 +20,7 @@ end
 --
 -- Credits to @linkazru for the code
 local function cleanup_input(trigger_char)
-    return function(ctx, items)
-        -- WARNING: Explicitly referencing ctx otherwise I was getting an "unused" warning
-        local _ = ctx
+    return function(_, items)
         local col = vim.api.nvim_win_get_cursor(0)[2]
         local before_cursor = vim.api.nvim_get_current_line():sub(1, col)
         local trigger_pos = before_cursor:find(trigger_char .. "[^" .. trigger_char .. "]*$")
@@ -39,7 +37,7 @@ local function cleanup_input(trigger_char)
         end
         -- NOTE: After the transformation, I have to reload the luasnip source
         -- Otherwise really crazy shit happens and I spent way too much time
-        -- figurig this out
+        -- figuring this out
         vim.schedule(function()
             require("blink.cmp").reload("luasnip")
         end)
@@ -64,9 +62,9 @@ return {
                     module = "blink.cmp.sources.lsp",
                     score_offset = 95,
                     max_items = 15,
-                    -- as LSP can be a source of snippets,
+                    -- As LSP can be a source of snippets,
                     -- they will show up after SNIPPETS_TRIGGER as well.
-                    -- we need to clean them up as we do with regular snippets
+                    -- We need to clean them up as we do with regular snippets.
                     transform_items = cleanup_input(SNIPPETS_TRIGGER),
                 },
                 snippets = {
@@ -107,11 +105,11 @@ return {
                     -- Only show buffer completions when inside a comment
                     should_show_items = function(ctx)
                         local bufnr = 0 -- current buffer
-                        local row, col = table.unpack(vim.api.nvim_win_get_cursor(0))
+                        local row, col = unpack(vim.api.nvim_win_get_cursor(0))
                         row = row - 1 -- Convert to 0-based index
 
-                        local parser = vim.treesitter.get_parser(bufnr)
-                        if not parser then
+                        local ok, parser = pcall(vim.treesitter.get_parser, bufnr)
+                        if not ok or not parser then
                             return false
                         end
 
