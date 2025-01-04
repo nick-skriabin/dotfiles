@@ -128,9 +128,9 @@
             "nvim"
             "tmux"
             "git"
-            "nvm"
             "hookdeck/hookdeck/hookdeck"
             "supabase/tap/supabase"
+            "atac"
             "ifstat" # network interface stats
             "luarocks"
             "svim"
@@ -203,7 +203,7 @@
               wvous-tl-corner = 1;
               wvous-tr-corner = 1;
               persistent-apps = [
-                "/Applications/Arc.app"
+                "/Applications/Zen Browser.app"
                 "/Applications/kitty.app"
                 "/Applications/Telegram.app"
                 "${pkgs.slack}/Applications/Slack.app"

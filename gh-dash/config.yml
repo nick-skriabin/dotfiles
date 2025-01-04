@@ -55,9 +55,24 @@ keybindings:
   issues: []
   prs: 
     - key: e
+      title: "Open pr in octo.nvim"
       command: >
         tmux new-window -c {{.RepoPath}} 'nvim -c ":Octo pr edit {{.PrNumber}}"'
 theme:
-  ui:
+  colors:
+    text:
+      primary: "#cdd6f4"
+      secondary: "#cba6f7"
+      inverted: "#11111b"
+      faint: "#bac2de"
+      warning: "#f9e2af"
+      success: "#a6e3a1"
+      error: "#f38ba8"
+    background:
+      selected: "#313244"
+    border:
+      primary: "#cba6f7"
+      secondary: "#45475a"
+      faint: "#313244"
 pager:
   diff: "delta"
