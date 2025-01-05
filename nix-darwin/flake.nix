@@ -96,6 +96,7 @@
           pkgs.silver-searcher # Code finder (ag)
           pkgs.sketchybar
           pkgs.slumber # REST client
+          pkgs.superfile # File manager
           pkgs.tree-sitter # AST builder
           pkgs.wget
           pkgs.wireguard-tools

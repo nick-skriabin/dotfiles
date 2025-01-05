@@ -1,0 +1,6 @@
+theme: catppuccin
+pager_json: jq
+editor: vim
+response:
+  prettify_json: true
+animation: none
