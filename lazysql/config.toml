@@ -1,0 +1,4 @@
+[[database]]
+Name = 'Intitely db'
+Provider = 'postgres'
+URL = 'postgresql://postgres:postgres@localhost:54322/postgres?sslmode=disable'

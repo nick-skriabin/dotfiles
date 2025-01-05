@@ -85,6 +85,7 @@
           pkgs.python312Packages.mdformat
           pkgs.python312Packages.mdformat-frontmatter
           pkgs.qmk
+          pkgs.rainfrog
           pkgs.redis
           pkgs.ripgrep # Better grep
           pkgs.ruff # Python linter
@@ -94,6 +95,7 @@
           pkgs.spotify # Some music?
           pkgs.silver-searcher # Code finder (ag)
           pkgs.sketchybar
+          pkgs.slumber # REST client
           pkgs.tree-sitter # AST builder
           pkgs.wget
           pkgs.wireguard-tools
@@ -130,10 +132,10 @@
             "git"
             "hookdeck/hookdeck/hookdeck"
             "supabase/tap/supabase"
-            "atac"
             "ifstat" # network interface stats
             "luarocks"
             "svim"
+            "posting"
             "urlview"
             "xcodegen"
           ];
@@ -203,7 +205,7 @@
               wvous-tl-corner = 1;
               wvous-tr-corner = 1;
               persistent-apps = [
-                "/Applications/Zen Browser.app"
+                "/Applications/Arc.app"
                 "/Applications/kitty.app"
                 "/Applications/Telegram.app"
                 "${pkgs.slack}/Applications/Slack.app"
