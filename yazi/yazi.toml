@@ -13,3 +13,8 @@ open = [
 prepend_rules = [
   { name = "*.html", use =[ "edit", "open" ] }
 ]
+
+[plugin]
+prepend_previewers = [
+  { name = "*.md", run = "glow" },
+]

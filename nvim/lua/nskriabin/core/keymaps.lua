@@ -1,4 +1,3 @@
-local map = vim.keymap.set
 local keys = require("nskriabin.core.util.keymap")
 
 -- exit insert mode
@@ -18,6 +17,8 @@ keys.map({
 keys.map({
     { { "n", "x" }, "<C-u>", "<C-u>zz" },
     { { "n", "x" }, "<C-d>", "<C-d>zz" },
+    { { "n", "x" }, "gg", "ggzz" },
+    { { "n", "x" }, "G", "Gzz" },
     { { "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", expr = true, silent = true },
     { { "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", expr = true, silent = true },
     { { "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", expr = true, silent = true },
@@ -39,8 +40,8 @@ keys.map({
 
 -- packages
 keys.map({
-    { "n", "<leader>ll", ":Lazy<cr>", desc = "Lazy" },
-    { "n", "<leader>lm", ":Mason<cr>", desc = "Mason" },
+    { "n", "<leader>pl", ":Lazy<cr>", desc = "Lazy" },
+    { "n", "<leader>pm", ":Mason<cr>", desc = "Mason" },
 })
 
 -- splits
@@ -51,6 +52,10 @@ keys.map({
     { "n", "<leader>wq", "<C-w>q", nowait = true, desc = "Close Split" },
     { "n", "<leader>wc", "<C-w>c", nowait = true, desc = "Close Split" },
     { "n", "<leader>wr", "<C-w>r", nowait = true, desc = "Rotate Split" },
+    { "n", "<leader>wH", "<C-w>H", nowait = true, desc = "Move split to Left" },
+    { "n", "<leader>wJ", "<C-w>J", nowait = true, desc = "Move split to Down" },
+    { "n", "<leader>wK", "<C-w>K", nowait = true, desc = "Move split to Up" },
+    { "n", "<leader>wL", "<C-w>L", nowait = true, desc = "Move split to Right" },
     { "n", "<leader>w=", "<C-w>e", nowait = true, desc = "Equalize Splits" },
 })
 
@@ -62,4 +67,9 @@ end
 keys.map({
     -- Map the function to a key (for example, <leader>b)
     { "n", "<leader>bb", _G.jump_to_previous_buffer, desc = "Cycle to next buffer", silent = true },
+})
+
+keys.map({
+    { "n", "<leader>mb", "viwsa*viwsa*", desc = "Bold" },
+    { "n", "<leader>mi", "viwsa*", desc = "Italic" },
 })

@@ -30,7 +30,6 @@ update() {
   args=()
 
   render_bar_item
-  render_popup
 
   if [ "$SENDER" = "forced" ]; then
     sketchybar --animate tanh 15 --set "$NAME" label.y_offset=5 label.y_offset=0

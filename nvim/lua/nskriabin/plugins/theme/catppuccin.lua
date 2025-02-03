@@ -2,6 +2,7 @@ local init_highlights = require("nskriabin.core.ui.init_highlights")
 
 return {
     "catppuccin/nvim",
+    enabled = false,
     name = "catppuccin",
     priority = 1000,
     config = function()
@@ -38,8 +39,7 @@ return {
             },
         })
 
-        vim.cmd([[colorscheme catppuccin]])
-
-        init_highlights("catppuccin")
+        -- vim.cmd([[colorscheme catppuccin]])
+        vim.g.zenbones_transparent_background = true
     end,
 }

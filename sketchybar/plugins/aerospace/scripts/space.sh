@@ -1,12 +1,12 @@
 #!/bin/zsh
 
 source "$CONFIG_DIR/plugins/aerospace/utils.sh"
+source "$CONFIG_DIR/colors.sh"
 
 AEROSPACE="/run/current-system/sw/bin/aerospace"
 
 update() {
   if [ "$SENDER" = "space_change" ]; then
-    source "$CONFIG_DIR/colors.sh"
     COLOR=$SURFACE2
     if [ "$SELECTED" = "true" ]; then
       COLOR=$ACTIVE_BG
@@ -16,8 +16,7 @@ update() {
     mid=$(get_focused_monitor $m)
 
     sketchybar --set space.$mid.$($AEROSPACE list-workspaces --focused) \
-      icon.highlight=true \
-      label.highlight=true
+      icon.highlight=true
   fi
 }
 

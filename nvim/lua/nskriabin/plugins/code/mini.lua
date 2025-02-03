@@ -1,4 +1,5 @@
 return {
+    { "echasnovski/mini.starter" },
     {
         "echasnovski/mini.pairs",
         event = "InsertEnter",
@@ -20,7 +21,7 @@ return {
     },
     {
         "echasnovski/mini.ai",
-        event = "VeryLazy",
+        event = "BufRead",
         opts = function()
             local ai = require("mini.ai")
             return {
@@ -39,6 +40,8 @@ return {
     },
     {
         "echasnovski/mini.files",
+        lazy = false,
+        enabled = false,
         dependencies = {
             "echasnovski/mini.animate",
         },
@@ -47,11 +50,13 @@ return {
                 "-",
                 ":lua MiniFiles.open(vim.api.nvim_buf_get_name(0), true)<cr>",
                 desc = "Open mini.files (Directory of Current File)",
+                silent = true,
             },
             {
                 "_",
                 ":lua MiniFiles.open(vim.uv.cwd(), true)<cr>",
                 desc = "Open mini.files (cwd)",
+                silent = true,
             },
         },
         opts = {
@@ -59,16 +64,19 @@ return {
                 close = "q",
                 go_in = "",
                 go_in_plus = "L",
-                go_out = "-",
-                go_out_plus = "H",
+                go_out = "h",
+                go_out_plus = "-",
                 mark_goto = "'",
                 mark_set = "m",
                 reset = "<BS>",
-                reveal_cwd = "@",
+                reveal_cwd = "_",
                 show_help = "g?",
-                synchronize = "=",
+                synchronize = "<C-w>",
                 trim_left = "<",
                 trim_right = ">",
+            },
+            window = {
+                preview = true,
             },
         },
         config = function(_, opts)
@@ -185,5 +193,11 @@ return {
                 return package.loaded["nvim-web-devicons"]
             end
         end,
+    },
+    {
+        "echasnovski/mini.surround",
+        version = "*",
+        opts = {},
+        config = "true",
     },
 }

@@ -21,7 +21,7 @@ return {
             adapters = {
                 require("neotest-vitest"),
                 require("neotest-jest")({
-                    cmd = "yarn jest --detectOpenHandles",
+                    cmd = "yarn jest",
                     env = {
                         NODE_ENV = "test",
                     },

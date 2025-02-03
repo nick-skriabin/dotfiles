@@ -1,4 +1,4 @@
-theme: catppuccin
+theme: catppuccin-alt
 pager_json: jq
 editor: vim
 response:

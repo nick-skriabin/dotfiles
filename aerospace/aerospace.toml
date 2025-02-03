@@ -14,8 +14,11 @@ after-startup-command = [
     'exec-and-forget borders'
 ]
 
-exec-on-workspace-change = ['/bin/bash', '-c', 'sketchybar --trigger aerospace_workspace_change AEROSPACE_FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE AEROSPACE_PREV_WORKSPACE=$AEROSPACE_PREV_WORKSPACE',
-    'hs -c "test(\"from aerospace\")"'
+exec-on-workspace-change = [
+  '/bin/bash',
+  '-c',
+  'sketchybar --trigger aerospace_workspace_change AEROSPACE_FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE AEROSPACE_PREV_WORKSPACE=$AEROSPACE_PREV_WORKSPACE',
+  'hs -c "test(\"from aerospace\")"'
 ]
 
 start-at-login = true
@@ -115,16 +118,16 @@ ctrl-keypad8 = 'workspace 8'
 ctrl-keypad9 = 'workspace 9'
 ctrl-keypad0 = 'workspace 10'
 
-ctrl-shift-keypad1 = 'move-node-to-workspace 1'
-ctrl-shift-keypad2 = 'move-node-to-workspace 2'
-ctrl-shift-keypad3 = 'move-node-to-workspace 3'
-ctrl-shift-keypad4 = 'move-node-to-workspace 4'
-ctrl-shift-keypad5 = 'move-node-to-workspace 5'
-ctrl-shift-keypad6 = 'move-node-to-workspace 6'
-ctrl-shift-keypad7 = 'move-node-to-workspace 7'
-ctrl-shift-keypad8 = 'move-node-to-workspace 8'
-ctrl-shift-keypad9 = 'move-node-to-workspace 9'
-ctrl-shift-keypad0 = 'move-node-to-workspace 10'
+ctrl-shift-keypad1 = ['move-node-to-workspace 1', 'workspace 1']
+ctrl-shift-keypad2 = ['move-node-to-workspace 2', 'workspace 2']
+ctrl-shift-keypad3 = ['move-node-to-workspace 3', 'workspace 3']
+ctrl-shift-keypad4 = ['move-node-to-workspace 4', 'workspace 4']
+ctrl-shift-keypad5 = ['move-node-to-workspace 5', 'workspace 5']
+ctrl-shift-keypad6 = ['move-node-to-workspace 6', 'workspace 6']
+ctrl-shift-keypad7 = ['move-node-to-workspace 7', 'workspace 7']
+ctrl-shift-keypad8 = ['move-node-to-workspace 8', 'workspace 8']
+ctrl-shift-keypad9 = ['move-node-to-workspace 9', 'workspace 9']
+ctrl-shift-keypad0 = ['move-node-to-workspace 10', 'workspace 0']
 
 alt-comma = 'mode system'
 alt-m = 'mode monitor'
@@ -149,11 +152,11 @@ enter = 'mode main'
 alt-b = ['exec-and-forget open -a Arc.app', 'mode main']
 alt-c = ['exec-and-forget open -a "Notion Calendar.app"', 'mode main']
 # Runs file manager in $HOME
-alt-f = ['exec-and-forget open -a kitty.app -n --args zsh -c "yazi" > /dev/null 2>&1 &', 'mode main']
+alt-f = ['exec-and-forget open -a kitty.app -n --args zsh -c yazi > /dev/null 2>&1 &', 'mode main']
 shift-f = ['exec-and-forget open -a kitty.app -n --args zsh -c yazi $(tmux display-message -p -F "#{pane_current_path}" -t0) > /dev/null 2>&1 &', 'mode main']
 alt-m = ['exec-and-forget open -a Mail.app', 'mode main']
 # Runs nvim in notes directory
-alt-n = ['exec-and-forget open -a kitty.app -n --args zsh -c "cd ~/Git/vaults/whaledev/Whaledev && nvim" > /dev/null 2>&1 &', 'mode main']
+alt-n = ['exec-and-forget open -a kitty.app -n --args zsh -c nvim > /dev/null 2>&1 &', 'mode main']
 alt-p = ['exec-and-forget open -a Telegram.app', 'mode main']
 alt-s = ['exec-and-forget open -a Slack.app', 'mode main']
 alt-t = ['exec-and-forget open -a kitty.app', 'mode main']
@@ -171,17 +174,18 @@ inner.vertical =   8
 outer.left =       8
 outer.bottom =     8
 outer.top =        [
-  {monitor.btop = 10},
-  {monitor.'studio display$' = 40},
-  {monitor.'^built-in' = 8},
-  8
+  {monitor.btop = 18},
+  {monitor.'studio display$' = 58},
+  {monitor.'^built-in' = 18},
+  {monitor.'^deskpad' = 58},
+  18
 ]
 outer.right =      8
 
 # Pin apps to the workspace
-[[on-window-detected]]
-if.app-id = 'company.thebrowser.Browser'
-run = ['move-node-to-workspace 1']
+# [[on-window-detected]]
+# if.app-id = 'company.thebrowser.Browser'
+# run = ['move-node-to-workspace 1']
 
 [[on-window-detected]]
 if.app-id = 'ru.keepcoder.Telegram'

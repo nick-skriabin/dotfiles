@@ -5,11 +5,10 @@ vim:fileencoding=utf-8:foldmethod=marker
 #: kitty has very powerful font management. You can configure
 #: individual font faces and even specify special fonts for particular
 #: characters.
-
-font_family      FiraCode NF
-bold_font        auto
-italic_font      auto
-bold_italic_font auto
+# font_family      JetBrains Nerd Font Mono
+# bold_font        auto
+# italic_font      auto
+# bold_italic_font auto
 
 #: You can specify different fonts for the bold/italic/bold-italic
 #: variants. To get a full list of supported fonts use the `kitty
@@ -24,7 +23,7 @@ bold_italic_font auto
 #:     italic_font      Operator Mono Book Italic
 #:     bold_italic_font Operator Mono Medium Italic
 
-font_size 18.0
+font_size 19.0
 
 #: Font size (in pts)
 
@@ -47,9 +46,10 @@ font_size 18.0
 #: support, because it will force kitty to always treat the text as
 #: LTR, which FriBidi expects for terminals.
 
-# symbol_map
-
 #: E.g. symbol_map U+E0A0-U+E0A3,U+E0C0-U+E0C7 PowerlineSymbols
+# Nerd Fonts v3.2.0
+
+symbol_map U+e000-U+e00a,U+ea60-U+ebeb,U+e0a0-U+e0c8,U+e0ca,U+e0cc-U+e0d7,U+e200-U+e2a9,U+e300-U+e3e3,U+e5fa-U+e6b1,U+e700-U+e7c5,U+ed00-U+efc1,U+f000-U+f2ff,U+f000-U+f2e0,U+f300-U+f372,U+f400-U+f533,U+f0001-U+f1af0 Symbols Nerd Font Mono
 
 #: Map the specified Unicode codepoints to a particular font. Useful
 #: if you need special rendering for some symbols, such as for
@@ -159,8 +159,8 @@ disable_ligatures never
 #: suffix px for pixels or % for percentage of original value. No
 #: suffix means use pts. For example::
 
-modify_font underline_position 2
-modify_font underline_thickness 150%
+# modify_font underline_position 2
+# modify_font underline_thickness 150%
 #:     modify_font strikethrough_position 2px
 
 #: Additionally, you can modify the size of the cell in which each
@@ -168,8 +168,9 @@ modify_font underline_thickness 150%
 #: placed in the cell. For example::
 
 #:     modify_font cell_width 80%
-modify_font cell_height 2px
-modify_font baseline 2
+modify_font cell_height 170%
+modify_font cell_width 110%
+modify_font baseline 0
 
 #: Note that modifying the baseline will automatically adjust the
 #: underline and strikethrough positions by the same amount.
@@ -184,7 +185,7 @@ modify_font baseline 2
 #: arrive at a pixel value. There must be four values corresponding to
 #: thin, normal, thick, and very thick lines.
 
-# undercurl_style thin-sparse
+undercurl_style thin-sparse
 
 #: The style with which undercurls are rendered. This option takes the
 #: form (thin|thick)-(sparse|dense). Thin and thick control the
@@ -195,6 +196,8 @@ modify_font baseline 2
 #: }}}
 
 #: Cursor customization {{{
+
+cursor_trail 1
 
 # cursor #cccccc
 
@@ -276,7 +279,7 @@ modify_font baseline 2
 #: the scrollback buffer with pager. This separate buffer is not
 #: available for interactive scrolling but will be piped to the pager
 #: program when viewing scrollback buffer in a separate window. The
-#: current implementation stores the data in UTF-8, so approximatively
+#: current implementation stores the data in UTF-8, so approximately
 #: 10000 lines per megabyte at 100 chars per line, for pure ASCII,
 #: unformatted text. A value of zero or less disables this feature.
 #: The maximum allowed size is 4GB. Note that on config reload if this
@@ -325,13 +328,13 @@ mouse_hide_wait 3.0
 #: robustly with the ever-changing sea of bugs that is Cocoa is too
 #: much effort.
 
-# url_color #0087bd
-# url_style curly
+url_color #0087bd
+url_style curly
 
 #: The color and style for highlighting URLs on mouse-over. url_style
 #: can be one of: none, straight, double, curly, dotted, dashed.
 
-open_url_with /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+# open_url_with /Applications/Arc.app/Contents/MacOS/Arc
 
 #: The program to open clicked URLs. The special value default with
 #: first look for any URL handlers defined via the open_actions
@@ -458,7 +461,7 @@ detect_urls yes
 #: buttons on a mouse.
 
 #: event-type is one of press, release, doublepress, triplepress,
-#: click, doubleclick. modes indicates whether the action is performed
+#: click, double-click. modes indicates whether the action is performed
 #: when the mouse is grabbed by the program running in the terminal,
 #: or not. The values are grabbed or ungrabbed or a comma separated
 #: combination of them. grabbed refers to when the program running in
@@ -736,14 +739,14 @@ detect_urls yes
 #: set the vertical and horizontal sides. Three values set top,
 #: horizontal and bottom. Four values set top, right, bottom and left.
 
-window_padding_width 0
+window_padding_width 10
 
 #: The window padding (in pts) (blank area between the text and the
 #: window border). A single value sets all four sides. Two values set
 #: the vertical and horizontal sides. Three values set top, horizontal
 #: and bottom. Four values set top, right, bottom and left.
 
-placement_strategy top-left
+placement_strategy center
 
 #: When the window size is not an exact multiple of the cell size, the
 #: cell area of the terminal window will have some extra padding on
@@ -771,7 +774,7 @@ placement_strategy top-left
 #: Fade the text in inactive windows by the specified amount (a number
 #: between zero and one, with zero being fully faded).
 
-hide_window_decorations yes
+hide_window_decorations titlebar-only
 
 #: Hide the window decorations (title-bar and window borders) with
 #: yes. On macOS, titlebar-only can be used to only hide the titlebar.
@@ -953,7 +956,7 @@ hide_window_decorations yes
 #: title
 #:     The current tab title.
 #: index
-#:     The tab index useable with goto_tab N goto_tab shortcuts.
+#:     The tab index usable with goto_tab N goto_tab shortcuts.
 #: layout_name
 #:     The current layout name.
 #: num_windows
@@ -1016,7 +1019,8 @@ hide_window_decorations yes
 
 #: The foreground and background colors.
 
-background_opacity 0.95
+background_opacity 0.7
+background_blur 50
 
 #: The opacity of the background. A number between zero and one, where
 #: one is opaque and zero is fully transparent. This will only work if
@@ -1165,7 +1169,7 @@ background_opacity 0.95
 
 #: Advanced {{{
 
-shell /opt/homebrew/bin/fish
+# shell /opt/homebrew/bin/fish
 
 #: The shell program to execute. The default value of . means to use
 #: whatever shell is set as the default shell for the current user.
@@ -1472,13 +1476,13 @@ macos_option_as_alt yes
 #: Changing this option by reloading the config is not supported.
 
 # macos_hide_from_tasks no
-macos_hide_titlebar yes
+# macos_hide_titlebar yes
 
 #: Hide the kitty window from running tasks on macOS (⌘+Tab and the
 #: Dock). Changing this option by reloading the config is not
 #: supported.
 
-# macos_quit_when_last_window_closed no
+macos_quit_when_last_window_closed yes
 
 #: Have kitty quit when all the top-level windows are closed on macOS.
 #: By default, kitty will stay running, even with no open windows, as
@@ -1616,7 +1620,7 @@ macos_hide_titlebar yes
 #: The full list of actions that can be mapped to key presses is
 #: available here <https://sw.kovidgoyal.net/kitty/actions/>.
 
-# kitty_mod ctrl+shift
+kitty_mod ctrl+shift
 
 #: Special modifier key alias for default shortcuts. You can change
 #: the value of this option to alter all default shortcuts that use
@@ -2054,7 +2058,7 @@ map cmd+v       paste_from_clipboard
 
 #: Open URL
 
-# map kitty_mod+e open_url_with_hints
+map kitty_mod+e open_url_with_hints
 
 #::  Open a currently visible URL using the keyboard. The program used
 #::  to open the URL is specified in open_url_with.
@@ -2289,16 +2293,19 @@ map cmd+v       paste_from_clipboard
 
 #: }}}
 
-# Dracula theme
-# include tokyo-night-kitty.conf
-#include nightfox.conf
-
 # Keymap
 map shift+enter send_text all \x1b[13;2u
 map ctrl+enter send_text all \x1b[13;5u
 
-
 # BEGIN_KITTY_THEME
-# Catppuccin-Macchiato
+# Catppuccin-Mocha
 include current-theme.conf
 # END_KITTY_THEME
+
+
+# BEGIN_KITTY_FONTS
+font_family      family="JetBrainsMonoNL Nerd Font Mono"
+bold_font        auto
+italic_font      auto
+bold_italic_font auto
+# END_KITTY_FONTS

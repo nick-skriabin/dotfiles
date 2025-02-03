@@ -20,45 +20,35 @@ for m in $($AEROSPACE list-monitors | awk '{print $1}'); do
     space=(
       space="$sid"
       icon="$sid"
-      icon.color=$OVERLAY0
-      icon.highlight_color=$TEXT
+      icon.color=$TEXT
+      icon.highlight_color=$RED
       icon.font="$FONT:Heavy:14.0"
-      icon.padding_left=6
+      icon.padding_left=12
       icon.padding_right=6
       display=$mid \
-      padding_left=2
-      padding_right=2
-      label.padding_right=20
-      label.color=$SUBTEXT1
-      label.highlight_color=$RED
-      label.font="$ICON_FONT_SETTINGS"
-      background.color=$SURFACE1
-      label.y_offset=-1
-      update_freq=0.5
+      padding_left=0
+      padding_right=6
+      # background.color=$SURFACE2
+      update_freq=0.1
       script="$PLUGIN_DIR/aerospace/scripts/space.sh"
     )
-    key=space.$mid.$sid
+    key="space.$mid.$sid"
 
     sketchybar --add space $key left \
       --set $key "${space[@]}" \
       --subscribe $key mouse.clicked
 
-    icon_strip=$(get_apps_icons $sid)
-
-    sketchybar --set $key label="$icon_strip" icon="$sid"
+    sketchybar --set $key icon="$sid"
 
     if [ "$sid" = "$focused_workspace" ]; then
       sketchybar --set $key \
-        icon.highlight=true \
-        label.highlight=true
+        icon.highlight=true
     fi
   done
 done
 
 space_creator=(
   icon.drawing=off
-  label.drawing=off
-  display=active
   script="$PLUGIN_DIR/aerospace/scripts/space_windows.sh"
 )
 

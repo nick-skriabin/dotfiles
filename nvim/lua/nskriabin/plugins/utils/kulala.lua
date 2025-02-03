@@ -7,7 +7,7 @@ return {
             function()
                 require("kulala").run()
             end,
-            desc = "Run request under cursow",
+            desc = "Run request under cursor",
         },
         {
             "<leader>kR",

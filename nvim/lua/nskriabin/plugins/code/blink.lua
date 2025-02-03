@@ -46,7 +46,7 @@ local function cleanup_input(trigger_char)
 end
 return {
     "saghen/blink.cmp",
-    version = "v0.*",
+    version = "v0.9",
     event = { "InsertEnter", "CmdlineEnter" },
     dependencies = { "rafamadriz/friendly-snippets", "moyiz/blink-emoji.nvim" },
     opts = {

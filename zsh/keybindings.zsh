@@ -36,3 +36,5 @@ for m in visual viopp; do
         done
 done
 
+# use fzf as a command history
+bindkey '^r' fzf-history-widget

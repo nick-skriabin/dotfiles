@@ -1,113 +1,65 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
-next ()
-{
-  osascript -e 'tell application "Spotify" to play next track'
-}
+# Max number of characters so it fits nicely to the right of the notch
+# MAY NOT WORK WITH NON-ENGLISH CHARACTERS
 
-back () 
-{
-  osascript -e 'tell application "Spotify" to play previous track'
-}
+MAX_LENGTH=35
 
-play () 
-{
-  osascript -e 'tell application "Spotify" to playpause'
-}
+# Logic starts here, do not modify
+HALF_LENGTH=$(((MAX_LENGTH + 1) / 2))
 
-repeat () 
-{
-  REPEAT=$(osascript -e 'tell application "Spotify" to get repeating')
-  if [ "$REPEAT" = "false" ]; then
-    sketchybar -m --set spotify.repeat icon.highlight=on
-    osascript -e 'tell application "Spotify" to set repeating to true'
-  else 
-    sketchybar -m --set spotify.repeat icon.highlight=off
-    osascript -e 'tell application "Spotify" to set repeating to false'
-  fi
-}
+# Spotify JSON / $INFO comes in malformed, line below sanitizes it
+SPOTIFY_JSON="$INFO"
 
-shuffle () 
-{
-  SHUFFLE=$(osascript -e 'tell application "Spotify" to get shuffling')
-  if [ "$SHUFFLE" = "false" ]; then
-    sketchybar -m --set spotify.shuffle icon.highlight=on
-    osascript -e 'tell application "Spotify" to set shuffling to true'
-  else 
-    sketchybar -m --set spotify.shuffle icon.highlight=off
-    osascript -e 'tell application "Spotify" to set shuffling to false'
-  fi
-}
+update_track() {
 
-update ()
-{
-  PLAYING=1
-  if [ "$(echo "$INFO" | jq -r '.["Player State"]')" = "Playing" ]; then
-    PLAYING=0
-    TRACK="$(echo "$INFO" | jq -r .Name | sed 's/\(.\{20\}\).*/\1.../')"
-    ARTIST="$(echo "$INFO" | jq -r .Artist | sed 's/\(.\{20\}\).*/\1.../')"
-    ALBUM="$(echo "$INFO" | jq -r .Album | sed 's/\(.\{25\}\).*/\1.../')"
-    SHUFFLE=$(osascript -e 'tell application "Spotify" to get shuffling')
-    REPEAT=$(osascript -e 'tell application "Spotify" to get repeating')
-    COVER=$(osascript -e 'tell application "Spotify" to get artwork url of current track')
+  if [[ -z $SPOTIFY_JSON ]]; then
+    sketchybar --set $NAME icon.color=0xffeed49f label.drawing=no
+    return
   fi
 
-  args=()
-  if [ $PLAYING -eq 0 ]; then
-    curl -s --max-time 20 "$COVER" -o /tmp/cover.jpg
-    if [ "$ARTIST" == "" ]; then
-      args+=(--set spotify.title label="$TRACK" drawing=on          \
-             --set spotify.album label="Podcast" drawing=on         \
-             --set spotify.artist label="$ALBUM" drawing=on  )
-    else
-      args+=(--set spotify.title label="$TRACK" drawing=on          \
-             --set spotify.album label="$ALBUM" drawing=on          \
-             --set spotify.artist label="$ARTIST" drawing=on)
+  PLAYER_STATE=$(echo "$SPOTIFY_JSON" | jq -r '.["Player State"]')
+
+  if [ $PLAYER_STATE = "Playing" ]; then
+    TRACK="$(echo "$SPOTIFY_JSON" | jq -r .Name)"
+    ARTIST="$(echo "$SPOTIFY_JSON" | jq -r .Artist)"
+
+    # Calculations so it fits nicely
+    TRACK_LENGTH=${#TRACK}
+    ARTIST_LENGTH=${#ARTIST}
+
+    if [ $((TRACK_LENGTH + ARTIST_LENGTH)) -gt $MAX_LENGTH ]; then
+      # If the total length exceeds the max
+      if [ $TRACK_LENGTH -gt $HALF_LENGTH ] && [ $ARTIST_LENGTH -gt $HALF_LENGTH ]; then
+        # If both the track and artist are too long, cut both at half length - 1
+
+        # If MAX_LENGTH is odd, HALF_LENGTH is calculated with an extra space, so give it an extra char
+        TRACK="${TRACK:0:$((MAX_LENGTH % 2 == 0 ? HALF_LENGTH - 2 : HALF_LENGTH - 1))}…"
+        ARTIST="${ARTIST:0:$((HALF_LENGTH - 2))}…"
+
+      elif [ $TRACK_LENGTH -gt $HALF_LENGTH ]; then
+        # Else if only the track is too long, cut it by the difference of the max length and artist length
+        TRACK="${TRACK:0:$((MAX_LENGTH - ARTIST_LENGTH - 1))}…"
+      elif [ $ARTIST_LENGTH -gt $HALF_LENGTH ]; then
+        ARTIST="${ARTIST:0:$((MAX_LENGTH - TRACK_LENGTH - 1))}…"
+      fi
     fi
-    args+=(--set spotify.play icon=􀊆                                \
-           --set spotify.shuffle icon.highlight="$SHUFFLE"          \
-           --set spotify.repeat icon.highlight="$REPEAT"            \
-           --set spotify.cover background.image="/tmp/cover.jpg"    \
-                               background.color=0x00000000          \
-           --set spotify.anchor drawing=on                          \
-           --set spotify drawing=on                               )
+    sketchybar --set $NAME label="${TRACK}  ${ARTIST}" label.drawing=yes icon.color=0xffa6da95
+
+  elif [ $PLAYER_STATE = "Paused" ]; then
+    sketchybar --set $NAME icon.color=0xffeed49f
+  elif [ $PLAYER_STATE = "Stopped" ]; then
+    sketchybar --set $NAME icon.color=0xffeed49f label.drawing=no
   else
-    args+=(--set spotify.title drawing=off                          \
-           --set spotify.artist drawing=off                         \
-           --set spotify.anchor drawing=off popup.drawing=off       \
-           --set spotify.play icon=􀊄                           )
+    sketchybar --set $NAME icon.color=0xffeed49f
   fi
-  sketchybar -m "${args[@]}"
-}
-
-mouse_clicked () {
-  case "$NAME" in
-    "spotify.next") next
-    ;;
-    "spotify.back") back
-    ;;
-    "spotify.play") play
-    ;;
-    "spotify.shuffle") shuffle
-    ;;
-    "spotify.repeat") repeat
-    ;;
-    *) exit
-    ;;
-  esac
-}
-
-popup () {
-  sketchybar --set spotify.anchor popup.drawing="$1"
 }
 
 case "$SENDER" in
-  "mouse.clicked") mouse_clicked
+"mouse.clicked")
+  osascript -e 'tell application "Spotify" to playpause'
   ;;
-  "mouse.entered") popup on
-  ;;
-  "mouse.exited"|"mouse.exited.global") popup off
-  ;;
-  *) update
+*)
+  update_track
   ;;
 esac

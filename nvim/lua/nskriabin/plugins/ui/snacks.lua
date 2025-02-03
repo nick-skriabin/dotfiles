@@ -1,9 +1,9 @@
 local au = require("nskriabin.auto.utils")
 return {
     "folke/snacks.nvim",
-    priority = 1000,
+    priority = 2000,
     lazy = false,
-    event = "LspAttach",
+    event = "VeryLazy",
     keys = {
         {
             "<leader>gg",
@@ -83,12 +83,48 @@ return {
                 Snacks.zen()
             end,
         },
+        {
+            "<leader><space>",
+            function()
+                Snacks.picker("smart")
+            end,
+        },
+        {
+            "<leader>,",
+            function()
+                Snacks.picker("buffers")
+            end,
+        },
+        {
+            "<leader>gb",
+            function()
+                Snacks.picker("git_branches")
+            end,
+        },
+        {
+            "<leader>r",
+            function()
+                Snacks.picker("grep")
+            end,
+        },
+        {
+            "<leader>.",
+            function()
+                Snacks.picker("projects")
+            end,
+        },
     },
     config = function()
         local Snacks = require("snacks")
 
         Snacks.setup({
-            animate = { enabled = true },
+            animate = {
+                enabled = true,
+                duration = 20, -- ms per step
+                easing = "linear",
+                fps = 60, -- frames per second. Global setting for all animations
+            },
+            picker = { enabled = true, formatters = { file = { filename_first = true } } },
             dim = { enabled = true },
             indent = {
                 enabled = true,

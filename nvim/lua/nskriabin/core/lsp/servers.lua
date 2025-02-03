@@ -15,7 +15,7 @@ M.lsp = {
     "prismals",
     "pylsp",
     "svelte",
-    "tailwindcss",
+    -- "tailwindcss",
     "vtsls",
     "yamlls",
 }

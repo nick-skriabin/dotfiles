@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "public/youtube/mousless/intro.md",
+                "file": "public/youtube/000-ideas/ideas.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "intro"
+              "title": "ideas"
             }
           }
         ]
@@ -171,6 +171,15 @@
   },
   "active": "b85ce59042904b1d",
   "lastOpenFiles": [
+    "keyboard-review.md",
+    "public/youtube/000-ideas/ideas.md",
+    "public/youtube/001-mouseless/Mouseless.md",
+    "public/youtube/002-tui-apps/TUI Apps.md",
+    "public/youtube/004-hammerspoon/Hammerspoon.md",
+    "create a link.md",
+    "README.md",
+    "mission.md",
+    "public/youtube/003-terminal-setup/Terminal Setup.md",
     "public/youtube/unknown-cli/script.md~",
     "bun.lockb",
     "node_modules/@biomejs/biome/scripts/postinstall.js",
@@ -182,7 +191,6 @@
     "node_modules/@biomejs/biome/scripts",
     "node_modules/@biomejs/biome/ROME-LICENSE-MIT",
     "node_modules/@biomejs/biome/README.zh-TW.md",
-    "node_modules/@biomejs/biome/bin",
     "node_modules/@biomejs/biome/README.zh-CN.md",
     "node_modules/@biomejs/biome/README.pt-BR.md",
     "node_modules/@biomejs/biome/README.md",
@@ -199,14 +207,6 @@
     "slides/node_modules/balanced-match/README.md",
     "slides/node_modules/wrap-ansi/readme.md",
     "slides/node_modules/strip-ansi/readme.md",
-    "slides/node_modules/queue-microtask/README.md",
-    "slides/node_modules/thenify/README.md",
-    "slides/node_modules/thenify/History.md",
-    "slides/node_modules/signal-exit/README.md",
-    "slides/node_modules/lru-cache/README.md",
-    "slides/node_modules/@pkgjs/parseargs/README.md",
-    "slides/node_modules/@pkgjs/parseargs/CHANGELOG.md",
-    "slides/node_modules/function-bind/README.md",
     "slides/static/slides/stream-ot/notion.png",
     "slides/static/slides/stream-ot/figma.png",
     "slides/static/slides/stream-ot/miro.png",

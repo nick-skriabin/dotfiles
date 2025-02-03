@@ -1,17 +1,19 @@
 return {
     "ibhagwan/fzf-lua",
     -- optional for icon support
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    cmd = "FzfLua",
-    keys = {
-        { "<leader><space>", ":FzfLua files cwd='./'<cr>", silent = true, desc = "Open Git files picker" },
-        {
-            "<leader>,",
-            ":FzfLua buffers previewer=false winopts.height=0.5 winopts.width=0.4<cr>",
-            silent = true,
-            desc = "Open Git files picker",
-        },
+    dependencies = {
+        { "echasnovski/mini.icons", version = false },
     },
+    cmd = "FzfLua",
+    -- keys = {
+    --     { "<leader><space>", ":FzfLua files cwd='./'<cr>", silent = true, desc = "Open Git files picker" },
+    --     {
+    --         "<leader>,",
+    --         ":FzfLua buffers previewer=false winopts.height=0.5 winopts.width=0.4<cr>",
+    --         silent = true,
+    --         desc = "Open Git files picker",
+    --     },
+    -- },
     config = function()
         -- calling `setup` is optional for customization
         require("fzf-lua").setup({

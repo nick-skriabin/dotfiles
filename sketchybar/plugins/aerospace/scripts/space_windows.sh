@@ -11,7 +11,7 @@ echo AEROSPACE_PREV_WORKSPACE: $AEROSPACE_PREV_WORKSPACE, \
 
 source "$CONFIG_DIR/colors.sh"
 source "$CONFIG_DIR/icon_map.sh"
-source "$CONFIG_DIR/plugins/aerospace/scripts/space_apps_icons.sh"
+# source "$CONFIG_DIR/plugins/aerospace/scripts/space_apps_icons.sh"
 source "$CONFIG_DIR/plugins/aerospace/utils.sh"
 
 AEROSPACE="/run/current-system/sw/bin/aerospace"
@@ -20,8 +20,7 @@ focused_monitor=1
 
 reload_workspace_icon() {
   mid=$(get_focused_monitor $focused_monitor)
-  icon_strip=$(get_apps_icons "$@")
-  sketchybar --set space.$mid.$@ label="$icon_strip" icon="$@"
+  sketchybar --set "space.$mid.$@" icon="$@"
 }
 
 if [ "$SENDER" = "aerospace_workspace_change" ]; then
@@ -31,12 +30,11 @@ if [ "$SENDER" = "aerospace_workspace_change" ]; then
 
   # current workspace space border color
   sketchybar --set space.$mid.$AEROSPACE_FOCUSED_WORKSPACE icon.highlight=true \
-    label.highlight=true
+    icon.highlight=true
 
   # prev workspace space border color
   sketchybar --set space.$mid.$AEROSPACE_PREV_WORKSPACE \
-    icon.highlight=false \
-    label.highlight=false
+    icon.highlight=false
 
   reload_workspace_icon "$AEROSPACE_PREV_WORKSPACE"
   reload_workspace_icon "$AEROSPACE_FOCUSED_WORKSPACE"

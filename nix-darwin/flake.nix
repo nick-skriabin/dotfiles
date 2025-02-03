@@ -35,21 +35,18 @@
         # List packages installed in system profile. To search by name, run:
         # $ nix-env -qaP | grep wget
         environment.systemPackages = [
-          ### Tools
-          # Nix files formatter
-          pkgs.nixfmt-classic
-          pkgs.aerospace
           pkgs.ascii-image-converter
           pkgs.automake117x
-          pkgs.btop # better top
           pkgs.bat # better cat
           pkgs.blueutil # cli to interact with bluetooth
+          pkgs.btop # better top
           pkgs.bun # JS/TS runtime
           pkgs.cargo # rust package manager/compiler
+          pkgs.clipboard-jh # CLI clipboard manager
           pkgs.cmake
-          pkgs.clipboard-jh
-          pkgs.deno
+          pkgs.cmatrix
           pkgs.delta
+          pkgs.deno
           pkgs.dwt1-shell-color-scripts
           pkgs.emscripten
           pkgs.eza # better ls
@@ -57,25 +54,28 @@
           pkgs.ffmpeg # media magic
           pkgs.fswatch # FS events
           pkgs.fzf # Fuzzy search for everything
-          pkgs.gitmux # Git status for TMUX
           pkgs.gh # Github tools
           pkgs.gh-dash # Gitnub dashboard
           pkgs.gh-notify # Github notifications
+          pkgs.gitmux # Git status for TMUX
           pkgs.gleam
-          # pkgs.gcc-arm-embedded
-          pkgs.go
+          pkgs.glow # Markdown renderer
+          pkgs.go # golang
+          pkgs.gum # beautiful cli
           pkgs.hub # GitHub tools
-          pkgs.imagemagick
+          pkgs.imagemagick # manipulate images
           pkgs.jankyborders # Border around active window
-          pkgs.jujutsu
           pkgs.jq # JSON formatter and query engine
+          pkgs.jujutsu # modern CVS
           pkgs.lazydocker # TUI for docker
           pkgs.lazygit # TUI for git
+          pkgs.lazyjj # TUI for jujutsu
           pkgs.luajit
-          pkgs.lazyjj
           pkgs.markdownlint-cli
           pkgs.maven
           pkgs.mdformat
+          pkgs.nixfmt-classic
+          pkgs.nushell
           pkgs.obsidian
           pkgs.pass
           pkgs.pipx
@@ -91,20 +91,22 @@
           pkgs.ruff # Python linter
           pkgs.rustc # Rust programming language
           pkgs.rustup
-          pkgs.slack # Messenger
-          pkgs.spotify # Some music?
+          pkgs.sesh
           pkgs.silver-searcher # Code finder (ag)
           pkgs.sketchybar
+          pkgs.slack # Messenger
           pkgs.slumber # REST client
+          pkgs.spotify # Some music?
           pkgs.superfile # File manager
           pkgs.tree-sitter # AST builder
+          pkgs.uv
           pkgs.wget
           pkgs.wireguard-tools
           pkgs.xh # Better cURL
           pkgs.yazi # File manager
           pkgs.yq-go
-          pkgs.zoxide # Better cd
           pkgs.zoom-us
+          pkgs.zoxide # Better cd
         ];
 
         fonts.packages =
@@ -120,66 +122,59 @@
             autoUpdate = true;
             upgrade = true;
           };
-          # brewPrefix = "/opt/homebrew/bin";
-          taps = [
-            "homebrew/services"
-            # Sketchybar and friends
-            "FelixKratz/formulae"
-            "osx-cross/arm"
-          ];
+          taps = [ "homebrew/services" "FelixKratz/formulae" "osx-cross/arm" ];
           brews = [
-            "nvim"
-            "tmux"
             "git"
             "hookdeck/hookdeck/hookdeck"
-            "supabase/tap/supabase"
+            "hugo"
             "ifstat" # network interface stats
             "luarocks"
-            "svim"
+            "nvim"
             "posting"
+            "supabase/tap/supabase"
+            "svim"
+            "tmux"
             "urlview"
             "xcodegen"
           ];
           casks = [
+            "affinity-designer"
+            "affinity-photo"
             "arc"
             "blender"
             "chatgpt"
+            "chromedriver"
             "deskpad"
+            "discord"
+            "figma"
+            "font-inconsolata-nerd-font"
+            "font-monaspace-nerd-font"
+            "font-sf-pro"
+            "google-drive"
             "hammerspoon"
             "homerow"
-            "figma"
-            "google-drive"
-            "discord"
-            "keymapp"
             "keycastr"
+            "keymapp"
+            "kindavim"
             "kitty"
-            "logi-options+"
-            "marta"
+            "maccy"
             "miro"
-            "nordpass"
+            "nikitabobko/tap/aerospace"
             "notion"
             "notion-calendar"
             "orbstack"
             "raycast"
             "sf-symbols"
             "shapr3d"
-            "maccy"
             "steam"
             "telegram"
-            "affinity-designer"
-            "affinity-photo"
-            "chromedriver"
+            "ubersicht"
             "whisky"
-            "font-monaspace-nerd-font"
-            "font-inconsolata-nerd-font"
-            "font-sf-pro"
-            "kindavim"
           ];
           # Installed from App Store
           # You must be logged in and an app must already be purchased
           masApps = {
             PDFGear = 6469021132;
-            iWallpaper = 1552826194;
             AdGuard = 1440147259;
             XCode = 497799835;
           };
@@ -188,7 +183,7 @@
         services = {
           aerospace = {
             enable = false;
-            # start-at-login = true;
+            settings = { start-at-login = true; };
           };
         };
 

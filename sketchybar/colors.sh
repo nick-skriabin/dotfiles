@@ -6,7 +6,8 @@
 #
 #
 
-export BASE=0xff000000
+export TRANSPARENT=0x00000000
+export BASE=0xaa000000
 export MANTLE=0xff1e2030
 export CRUST=0xff181926
 
@@ -36,17 +37,10 @@ export MAUVE=0xffc6a0f6
 export PINK=0xfff5bde6
 export FLAMINGO=0xfff0c6c6
 export ROSEWATER=0xfff4dbd6
-
 export ACTIVE_BG=0xff8ea4a2
 
-export RANDOM_CAT_COLOR=("$BLUE" "$LAVENDER" "$SAPPHIRE" "$SKY" "$TEAL" "$GREEN" "$YELLOW" "$PEACH" "$MAROON" "$RED" "$MAUVE" "$PINK" "$FLAMINGO" "$ROSEWATER")
-
-function getRandomCatColor() {
-  echo "${RANDOM_CAT_COLOR[ $RANDOM % ${#RANDOM_CAT_COLOR[@]} ]}"
-}
-
 #
-# LEGACY COLORS 
+# LEGACY COLORS
 #
 # Color Palette
 export GREY=0xff939ab7
@@ -54,5 +48,5 @@ export TRANSPARENT=0x00000000
 
 # General bar colors
 export BAR_COLOR=$BASE
-export ICON_COLOR=$TEXT # Color of all icons
+export ICON_COLOR=$TEXT  # Color of all icons
 export LABEL_COLOR=$TEXT # Color of all labels

@@ -4,7 +4,7 @@ return {
     dependencies = {
         "nvim-lua/plenary.nvim",
         "ibhagwan/fzf-lua", -- optional
-        "nvim-tree/nvim-web-devicons",
+        { "echasnovski/mini.icons", version = false },
         "folke/which-key.nvim",
     },
     cmd = "Octo",
@@ -20,13 +20,17 @@ return {
         local wk = require("which-key")
 
         wk.add({
+            { "<localleader>a", group = "Assignees" },
+            { "<localleader>g", group = "Navigate 🗺️" },
+            { "<localleader>l", group = "Labels 🏷️" },
+            { "<localleader>r", group = "Reactions 😄" },
             { "<localleader>p", group = "PR" },
             { "<localleader>ps", group = "Squash" },
             { "<localleader>pr", group = "Rebase" },
-            { "<localleader>i", group = "Issues" },
-            { "<localleader>c", group = "Comment" },
+            { "<localleader>i", group = "Issues 🐞" },
+            { "<localleader>c", group = "Comment 💬" },
             { "<localleader>s", group = "Suggestion" },
-            { "<localleader>v", group = "Review" },
+            { "<localleader>v", group = "Review 👀" },
         })
     end,
     keys = {

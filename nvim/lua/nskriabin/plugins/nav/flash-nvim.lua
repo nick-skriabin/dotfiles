@@ -24,7 +24,7 @@ return {
     },
     keys = {
         {
-            "s",
+            "<leader>ff",
             mode = { "n" },
             function()
                 require("flash").jump()
@@ -32,20 +32,12 @@ return {
             desc = "Flash",
         },
         {
-            "S",
+            "<leader>ft",
             mode = { "n" },
             function()
                 require("flash").treesitter()
             end,
             desc = "Flash Treesitter",
-        },
-        {
-            "<c-q>",
-            mode = { "c" },
-            function()
-                require("flash").toggle()
-            end,
-            desc = "Toggle Flash Search",
         },
     },
 }
