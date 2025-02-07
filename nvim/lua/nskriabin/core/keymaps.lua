@@ -70,6 +70,5 @@ keys.map({
 })
 
 keys.map({
-    { "n", "<leader>mb", "viwsa*viwsa*", desc = "Bold" },
-    { "n", "<leader>mi", "viwsa*", desc = "Italic" },
+    { "n", "yp", "<cmd>Cppath<cr>", silent = true },
 })

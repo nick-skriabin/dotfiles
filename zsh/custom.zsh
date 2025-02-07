@@ -9,3 +9,4 @@ source ~/.config/zsh/keys.zsh
 source ~/.config/zsh/keybindings.zsh
 source ~/.config/zsh/aliases.zsh
 source ~/.config/zsh/fn.zsh
+source ~/.config/zsh/functions.zsh

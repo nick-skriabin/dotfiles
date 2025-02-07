@@ -124,7 +124,23 @@ return {
                 easing = "linear",
                 fps = 60, -- frames per second. Global setting for all animations
             },
-            picker = { enabled = true, formatters = { file = { filename_first = true } } },
+            picker = {
+                enabled = true,
+                formatters = {
+                    file = {
+                        filename_first = true,
+                        truncate = 120,
+                    },
+                },
+                win = {
+                    input = {
+                        keys = {
+                            ["<C-c>"] = { "close", mode = { "i", "n" } },
+                            ["<C-y>"] = { "confirm", mode = { "i", "n" } },
+                        },
+                    },
+                },
+            },
             dim = { enabled = true },
             indent = {
                 enabled = true,

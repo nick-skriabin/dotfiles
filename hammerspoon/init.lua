@@ -71,15 +71,21 @@ local layout_names = {
     [layouts.graphite] = "Graphite",
 }
 
-local DEFAULT_LAYOUT = layouts.colemak
-
+local MAIN_LAYOUT = layouts.colemak
+local SECONDARY_LAYOUT = layouts.qwerty_us
 local EXT_KEYBOARD = false
-
 local KEYBOARD_NAME = "Voyager"
 
 local function set_layout(layout)
     hs.keycodes.currentSourceID(layout)
     Alert("Layout: " .. layout_names[layout])
+end
+
+local function main_layout()
+    if EXT_KEYBOARD then
+        return MAIN_LAYOUT
+    end
+    return SECONDARY_LAYOUT
 end
 
 -- Sets an initial keyboard layout based on
@@ -91,32 +97,23 @@ local function set_initial()
         return
     end
 
+    set_layout(main_layout())
     if EXT_KEYBOARD then
-        set_layout(DEFAULT_LAYOUT)
         spoon.ControlEscape:stop()
     else
-        set_layout(layouts.qwerty_us)
         spoon.ControlEscape:start()
     end
 end
 
 -- Will toggle between RU and EN QWERTY
-local function toggle_qwerty()
+local function toggle_layout()
     local current_layout = hs.keycodes.currentSourceID()
-    if current_layout == layouts.qwerty_us then
-        set_layout(layouts.qwerty_ru)
-    else
-        set_layout(layouts.qwerty_us)
-    end
-end
+    local layout = main_layout()
 
--- Will toggle between QWERTY for cyrilic and Colemak for English
-local function toggle_colemak()
-    local current_layout = hs.keycodes.currentSourceID()
-    if current_layout == layouts.colemak then
+    if current_layout == layout then
         set_layout(layouts.qwerty_ru)
     else
-        set_layout(DEFAULT_LAYOUT)
+        set_layout(layout)
     end
 end
 
@@ -165,9 +162,14 @@ default_scan_keyboards()
 -- It will be used instead of system's one
 hs.hotkey.bind({ "cmd" }, "space", function()
     default_scan_keyboards(false)
-    if EXT_KEYBOARD then
-        toggle_colemak()
+    toggle_layout()
+end)
+
+hs.hotkey.bind({ "cmd", "ctrl", "option" }, "space", function()
+    if MAIN_LAYOUT == layouts.colemak then
+        MAIN_LAYOUT = layouts.graphite
     else
-        toggle_qwerty()
+        MAIN_LAYOUT = layouts.colemak
     end
+    set_initial()
 end)

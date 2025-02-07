@@ -80,7 +80,6 @@
           pkgs.pass
           pkgs.pipx
           pkgs.pnpm
-          pkgs.poetry
           pkgs.python312
           pkgs.python312Packages.mdformat
           pkgs.python312Packages.mdformat-frontmatter
@@ -130,6 +129,7 @@
             "ifstat" # network interface stats
             "luarocks"
             "nvim"
+            "poetry"
             "posting"
             "supabase/tap/supabase"
             "svim"
