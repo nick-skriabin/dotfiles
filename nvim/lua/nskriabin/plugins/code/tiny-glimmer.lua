@@ -4,8 +4,10 @@ return {
     opts = {},
     config = function()
         local color = require("nskriabin.core.util.color").current()
-        print(dump(color))
         require("tiny-glimmer").setup({
+            overwrite = {
+                auto_map = false,
+            },
             animations = {
                 fade = {
                     from_color = color.warn,

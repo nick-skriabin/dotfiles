@@ -36,5 +36,17 @@ for m in visual viopp; do
         done
 done
 
+# vi mode
+bindkey -v
+
+# Yank to the system clipboard
+function vi-yank-xclip {
+    zle vi-yank
+   echo "$CUTBUFFER" | pbcopy -i
+}
+
+zle -N vi-yank-xclip
+bindkey -M vicmd 'y' vi-yank-xclip
+
 # use fzf as a command history
 bindkey '^r' fzf-history-widget

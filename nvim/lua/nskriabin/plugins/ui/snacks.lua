@@ -182,7 +182,7 @@ return {
                 },
                 refresh = 50, -- refresh at most every 50ms
             },
-            words = { enabled = false },
+            words = { enabled = false, debounce = 80 },
             zen = { enabled = true },
         })
 
