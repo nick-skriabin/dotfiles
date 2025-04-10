@@ -92,7 +92,6 @@
           pkgs.rustup
           pkgs.sesh
           pkgs.silver-searcher # Code finder (ag)
-          pkgs.sketchybar
           pkgs.slack # Messenger
           pkgs.slumber # REST client
           pkgs.spotify # Some music?
@@ -123,8 +122,13 @@
           };
           taps = [ "homebrew/services" "FelixKratz/formulae" "osx-cross/arm" ];
           brews = [
+            {
+              name = "borders";
+              start_service = true;
+            }
             "git"
             "hookdeck/hookdeck/hookdeck"
+            "stripe/stripe-cli/stripe"
             "hugo"
             "ifstat" # network interface stats
             "luarocks"
@@ -132,6 +136,10 @@
             "poetry"
             "posting"
             "supabase/tap/supabase"
+            {
+              name = "sketchybar";
+              start_service = true;
+            }
             "svim"
             "tmux"
             "urlview"
@@ -140,7 +148,6 @@
           casks = [
             "affinity-designer"
             "affinity-photo"
-            "arc"
             "blender"
             "chatgpt"
             "chromedriver"
@@ -170,6 +177,7 @@
             "telegram"
             "ubersicht"
             "whisky"
+            "zen-browser@twilight"
           ];
           # Installed from App Store
           # You must be logged in and an app must already be purchased
@@ -201,7 +209,7 @@
               wvous-tl-corner = 1;
               wvous-tr-corner = 1;
               persistent-apps = [
-                "/Applications/Arc.app"
+                "/Applications/Twilight.app"
                 "/Applications/kitty.app"
                 "/Applications/Telegram.app"
                 "${pkgs.slack}/Applications/Slack.app"
@@ -209,12 +217,10 @@
                 "/Applications/Notion.app"
                 "/Applications/Notion Calendar.app"
                 "${pkgs.spotify}/Applications/Spotify.app"
-                "${pkgs.obsidian}/Applications/Obsidian.app"
               ];
               persistent-others = [
                 "/Users/nicholasrq/Pictures/Screenshots"
                 "/Users/nicholasrq/Downloads"
-                "/Applications"
               ];
             };
             finder = {

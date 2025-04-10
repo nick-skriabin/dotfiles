@@ -1,18 +1,6 @@
-# Reference: https://github.com/i3/i3/blob/next/etc/config
-
-# i3 doesn't have "normalizations" feature that why we disable them here.
-# But the feature is very helpful.
-# Normalizations eliminate all sorts of weird tree configurations that don't make sense.
-# Give normalizations a chance and enable them back.
-
 # Mouse follows focus when focused monitor changes
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 on-focus-changed = ['move-mouse window-lazy-center'] # Mouse lazily follows any focus (window or workspace)
-
-after-startup-command = [
-    'exec-and-forget sketchybar',
-    'exec-and-forget borders'
-]
 
 exec-on-workspace-change = [
   '/bin/bash',
@@ -99,35 +87,27 @@ alt-e = 'layout tiles vertical horizontal' # 'layout toggle split' in i3
 
 alt-shift-space = 'layout floating tiling' # 'floating toggle' in i3
 
-# Not supported, because this command is redundant in AeroSpace mental model.
-# See: https://nikitabobko.github.io/AeroSpace/guide#floating-windows
-#alt-space = 'focus toggle_tiling_floating'
+ctrl-1 = 'workspace 1'
+ctrl-2 = 'workspace 2'
+ctrl-3 = 'workspace 3'
+ctrl-4 = 'workspace 4'
+ctrl-5 = 'workspace 5'
+ctrl-6 = 'workspace 6'
+ctrl-7 = 'workspace 7'
+ctrl-8 = 'workspace 8'
+ctrl-9 = 'workspace 9'
+ctrl-0 = 'workspace 10'
 
-# `focus parent`/`focus child` are not yet supported, and it's not clear whether they
-# should be supported at all https://github.com/nikitabobko/AeroSpace/issues/5
-# alt-a = 'focus parent'
-
-ctrl-keypad1 = 'workspace 1'
-ctrl-keypad2 = 'workspace 2'
-ctrl-keypad3 = 'workspace 3'
-ctrl-keypad4 = 'workspace 4'
-ctrl-keypad5 = 'workspace 5'
-ctrl-keypad6 = 'workspace 6'
-ctrl-keypad7 = 'workspace 7'
-ctrl-keypad8 = 'workspace 8'
-ctrl-keypad9 = 'workspace 9'
-ctrl-keypad0 = 'workspace 10'
-
-ctrl-shift-keypad1 = ['move-node-to-workspace 1', 'workspace 1']
-ctrl-shift-keypad2 = ['move-node-to-workspace 2', 'workspace 2']
-ctrl-shift-keypad3 = ['move-node-to-workspace 3', 'workspace 3']
-ctrl-shift-keypad4 = ['move-node-to-workspace 4', 'workspace 4']
-ctrl-shift-keypad5 = ['move-node-to-workspace 5', 'workspace 5']
-ctrl-shift-keypad6 = ['move-node-to-workspace 6', 'workspace 6']
-ctrl-shift-keypad7 = ['move-node-to-workspace 7', 'workspace 7']
-ctrl-shift-keypad8 = ['move-node-to-workspace 8', 'workspace 8']
-ctrl-shift-keypad9 = ['move-node-to-workspace 9', 'workspace 9']
-ctrl-shift-keypad0 = ['move-node-to-workspace 10', 'workspace 0']
+ctrl-shift-1 = ['move-node-to-workspace 1', 'workspace 1']
+ctrl-shift-2 = ['move-node-to-workspace 2', 'workspace 2']
+ctrl-shift-3 = ['move-node-to-workspace 3', 'workspace 3']
+ctrl-shift-4 = ['move-node-to-workspace 4', 'workspace 4']
+ctrl-shift-5 = ['move-node-to-workspace 5', 'workspace 5']
+ctrl-shift-6 = ['move-node-to-workspace 6', 'workspace 6']
+ctrl-shift-7 = ['move-node-to-workspace 7', 'workspace 7']
+ctrl-shift-8 = ['move-node-to-workspace 8', 'workspace 8']
+ctrl-shift-9 = ['move-node-to-workspace 9', 'workspace 9']
+ctrl-shift-0 = ['move-node-to-workspace 10', 'workspace 0']
 
 alt-comma = 'mode system'
 alt-m = 'mode monitor'
@@ -183,9 +163,9 @@ outer.top =        [
 outer.right =      8
 
 # Pin apps to the workspace
-# [[on-window-detected]]
-# if.app-id = 'company.thebrowser.Browser'
-# run = ['move-node-to-workspace 1']
+[[on-window-detected]]
+if.app-id = 'app.zen-browser.zen'
+run = ['move-node-to-workspace 1']
 
 [[on-window-detected]]
 if.app-id = 'ru.keepcoder.Telegram'
@@ -239,8 +219,4 @@ run = ['move-node-to-workspace 9']
 if.app-id = "com.captureone.captureone15"
 run = ['move-node-to-workspace 8']
 
-# [[on-window-detected]]
-# if.app-id = ''
-# check-further-callbacks = true
-# run = 'layout floating'
 

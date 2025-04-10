@@ -133,6 +133,7 @@ end
 -- Does the same thing as `default_scan_keyboards` but
 -- dynamically and reacts to added/removed USB devices.
 local usb_watcher = hs.usb.watcher.new(function(data)
+    print(data["productName"])
     if data["productName"] ~= KEYBOARD_NAME then
         return
     end

@@ -29,9 +29,9 @@ return {
             typescript = js_lint,
             javascriptreact = js_lint,
             typescriptreact = js_lint,
-            css = { "stylelint" },
-            sass = { "stylelint" },
-            scss = { "stylelint" },
+            css = { "biomejs", "stylelint" },
+            sass = { "biomejs", "stylelint" },
+            scss = { "biomejs", "stylelint" },
             python = { "ruff" },
             lua = { "luacheck" },
         }

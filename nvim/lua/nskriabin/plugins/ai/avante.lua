@@ -1,6 +1,5 @@
--- Avante is an AI chant inside neovim. It can provide code suggestions and generate new files.
--- https://github.com/yetone/avante.nvim
-
+-- Avante is an AI chant inside neovim. It can
+-- provide code suggestions and generate new files.
 return {
     "yetone/avante.nvim",
     event = { "BufReadPre" },
@@ -13,23 +12,31 @@ return {
         "nvim-lua/plenary.nvim",
         "MunifTanjim/nui.nvim",
         "echasnovski/mini.icons",
-        "HakonHarnes/img-clip.nvim",
         {
-            -- Make sure to setup it properly if you have lazy=true
-            "MeanderingProgrammer/render-markdown.nvim",
+            "HakonHarnes/img-clip.nvim",
             opts = {
-                file_types = { "markdown", "Avante" },
+                embed_image_as_base64 = false,
+                prompt_for_file_name = false,
+                drag_and_drop = {
+                    insert_mode = true,
+                },
             },
-            ft = { "markdown", "Avante" },
         },
+        -- Make sure to setup it properly if you have lazy=true
+        { "MeanderingProgrammer/render-markdown.nvim" },
     },
     opts = {
         -- recommended settings
         provider = "claude",
-        embed_image_as_base64 = false,
-        prompt_for_file_name = false,
-        drag_and_drop = {
-            insert_mode = true,
+        claude = {
+            model = "claude-3-7-sonnet-20250219",
+            timeout = 30000, -- Timeout in milliseconds
+            temperature = 0,
+            max_tokens = 4096,
+        },
+        behaviour = {
+            enable_cursor_planning_mode = true, -- enable cursor planning mode!
+            enable_claude_text_editor_tool_mode = true,
         },
     },
 }

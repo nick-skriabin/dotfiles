@@ -54,8 +54,10 @@ return {
         "SmiteshP/nvim-navic",
         "folke/neoconf.nvim",
         "saghen/blink.cmp",
+        "folke/neoconf.nvim",
     },
     config = function()
+        require("neoconf").setup({})
         local lspconfig = require("lspconfig")
         local mason = require("mason-lspconfig")
 

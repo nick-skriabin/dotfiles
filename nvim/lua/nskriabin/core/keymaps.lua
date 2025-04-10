@@ -2,7 +2,7 @@ local keys = require("nskriabin.core.util.keymap")
 
 -- exit insert mode
 keys.map({
-    { "i", "jj", "<ESC>", nowait = true },
+    { "i", "ii", "<ESC>", nowait = true },
     { "n", "<esc>", "<cmd>nohl<cr>" },
     { "n", "<Enter>", "o<ESC>" },
     { "n", "<S-Enter>", "O<ESC>" },

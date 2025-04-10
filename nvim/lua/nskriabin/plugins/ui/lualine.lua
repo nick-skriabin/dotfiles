@@ -116,7 +116,7 @@ local lsp = function(palette, icons)
             for _, client in ipairs(clients) do
                 local filetypes = client.config.filetypes
                 if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-                    local icon = icons.lsps[client.name] or attached
+                    local icon = icons.lsps[client.name] or client.name
                     table.insert(attached, icon)
                 end
             end
@@ -240,8 +240,8 @@ return {
                 component_separators = "",
                 section_separators = "",
                 theme = {
-                    normal = { b = { fg = palette.text, bg = "" } },
-                    inactive = { b = { fg = palette.text, bg = "" } },
+                    normal = { a = { bg = "" }, b = { fg = palette.text, bg = "black" } },
+                    inactive = { a = { bg = "" }, b = { fg = palette.text, bg = "black" } },
                 },
                 globalstatus = true,
             },

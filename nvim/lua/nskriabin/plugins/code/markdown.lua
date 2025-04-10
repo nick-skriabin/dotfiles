@@ -3,7 +3,9 @@ return {
     {
         "MeanderingProgrammer/render-markdown.nvim",
         dependencies = { "3rd/image.nvim" },
+        ft = { "markdown", "Avante" },
         opts = {
+            file_types = { "markdown", "Avante" },
             bullet = {
                 icons = { "●", "○", "◆", "◇" },
                 icons_enabled = true,

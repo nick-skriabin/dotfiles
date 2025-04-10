@@ -198,6 +198,12 @@ return {
         "echasnovski/mini.surround",
         version = "*",
         opts = {},
-        config = "true",
+        config = true,
     },
+    -- {
+    --     "echasnovski/mini.comment",
+    --     version = "*",
+    --     opts = {},
+    --     config = true,
+    -- },
 }

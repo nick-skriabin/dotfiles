@@ -38,16 +38,17 @@ local function cleanup_input(trigger_char)
         -- NOTE: After the transformation, I have to reload the luasnip source
         -- Otherwise really crazy shit happens and I spent way too much time
         -- figuring this out
-        vim.schedule(function()
-            require("blink.cmp").reload("luasnip")
-        end)
+        -- vim.schedule(function()
+        --     require("blink.cmp").reload("luasnip")
+        -- end)
         return items
     end
 end
 return {
     "saghen/blink.cmp",
-    version = "v0.9",
     event = { "InsertEnter", "CmdlineEnter" },
+
+    build = "cargo build --release",
     dependencies = { "rafamadriz/friendly-snippets", "moyiz/blink-emoji.nvim" },
     opts = {
         signature = { enabled = true },

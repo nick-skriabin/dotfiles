@@ -27,6 +27,7 @@ M.lsps = {
     ["nil"] = "",
     bashls = "󱆃",
     clangd = "",
+    harper_ls = "󰗊",
 }
 
 M.dap = {
