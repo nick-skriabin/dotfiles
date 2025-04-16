@@ -9,6 +9,7 @@ return {
         opts = {
             skip_confirm_for_simple_edits = false,
             constrain_cursor = "name",
+            use_default_keymaps = false,
             keymaps = {
                 ["g?"] = { "actions.show_help", mode = "n" },
                 ["<CR>"] = "actions.select",

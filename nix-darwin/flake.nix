@@ -128,7 +128,6 @@
             }
             "git"
             "hookdeck/hookdeck/hookdeck"
-            "stripe/stripe-cli/stripe"
             "hugo"
             "ifstat" # network interface stats
             "luarocks"
@@ -209,11 +208,11 @@
               wvous-tl-corner = 1;
               wvous-tr-corner = 1;
               persistent-apps = [
-                "/Applications/Twilight.app"
+                "/Applications/Zen Browser.app"
                 "/Applications/kitty.app"
                 "/Applications/Telegram.app"
                 "${pkgs.slack}/Applications/Slack.app"
-                "/System/Applications/Mail.app"
+                "/Applications/Notion Mail.app"
                 "/Applications/Notion.app"
                 "/Applications/Notion Calendar.app"
                 "${pkgs.spotify}/Applications/Spotify.app"

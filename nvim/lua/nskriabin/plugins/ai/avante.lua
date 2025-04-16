@@ -28,11 +28,19 @@ return {
     opts = {
         -- recommended settings
         provider = "claude",
+        -- Since auto-suggestions are a high-frequency operation and therefore expensive,
+        -- it is recommended to specify an inexpensive provider or even a free provider: copilot
+
+        auto_suggestions_provider = "claude-haiku",
+        file_selector = {
+            provider = "snacks",
+        },
         claude = {
             model = "claude-3-7-sonnet-20250219",
             timeout = 30000, -- Timeout in milliseconds
             temperature = 0,
-            max_tokens = 4096,
+            max_tokens = 8000,
+            disable_tools = true,
         },
         behaviour = {
             enable_cursor_planning_mode = true, -- enable cursor planning mode!
