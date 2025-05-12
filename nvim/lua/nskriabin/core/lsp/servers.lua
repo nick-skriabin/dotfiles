@@ -14,11 +14,9 @@ M.lsp = {
     "nil_ls",
     "prismals",
     "jedi_language_server",
-    -- "pylsp",
     "svelte",
-    -- "tailwindcss",
+    "tailwindcss",
     "vtsls",
-    -- "ts_ls",
     "yamlls",
 }
 

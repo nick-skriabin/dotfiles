@@ -1,44 +1,6 @@
 local merge = require("nskriabin.core.util.merge")
 local configs = require("nskriabin.config.server_configs")
 
-local function get_config(name, capabilities, on_attach)
-    local lsp = require("lspconfig")
-    local server_config = configs[name]
-    local final_config = {}
-
-    if type(server_config) == "function" then
-        final_config = server_config(lsp)
-    elseif type(server_config) == "table" then
-        final_config = server_config
-    end
-
-    local overwritten_on_attach = function(client, bufnr)
-        if final_config.on_attach then
-            final_config.on_attach(client, bufnr)
-        end
-        on_attach(client, bufnr)
-    end
-
-    local config = merge({
-        capabilities = capabilities,
-        on_attach = overwritten_on_attach,
-    }, final_config)
-
-    return config
-end
-
--- uses native lsp to display source actions
-local function get_source_actions(client)
-    vim.lsp.buf.code_action(nil, {
-        mode = "source",
-    })
-end
-
--- uses native lsp to display code actions
-local function get_code_actions(client)
-    vim.lsp.buf.code_action(nil, client.offset_encoding)
-end
-
 local function snack(name)
     return function()
         Snacks.picker(name)
@@ -48,24 +10,24 @@ end
 return {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
+    version = "1.32.0",
     dependencies = {
         { "antosha417/nvim-lsp-file-operations", config = true },
-        "williamboman/mason.nvim",
-        "SmiteshP/nvim-navic",
-        "folke/neoconf.nvim",
+        { "mason-org/mason.nvim" },
+        { "mason-org/mason-lspconfig.nvim" },
         "saghen/blink.cmp",
-        "folke/neoconf.nvim",
     },
     config = function()
-        require("neoconf").setup({})
         local lspconfig = require("lspconfig")
-        local mason = require("mason-lspconfig")
 
         local map = vim.keymap -- for conciseness
 
         local opts = { noremap = true, silent = true }
 
         local on_attach = function(client, bufnr)
+            if client.server_capabilities.inlayHintProvider then
+                vim.lsp.inlay_hint.enable(true)
+            end
             opts.buffer = bufnr
 
             -- set keybinds
@@ -127,7 +89,6 @@ return {
         }
 
         -- Change the Diagnostic symbols in the sign column (gutter)
-        -- (not in youtube nvim video)
         local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
 
         for type, icon in pairs(signs) do
@@ -135,23 +96,19 @@ return {
             vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
         end
 
-        vim.tbl_deep_extend("keep", lspconfig, {
-            cmd = { "gleam", "lsp" },
-            filetypes = { "gleam" },
-        })
-        lspconfig.gleam.setup({
-            capabilities = capabilities,
-            on_attach = on_attach,
-            root_dir = lspconfig.util.root_pattern("gleam.toml"),
-        })
+        for server, config in pairs(configs) do
+            if config.enabled ~= false then
+                vim.lsp.config(
+                    server,
+                    merge({
+                        on_attach = on_attach,
+                        capabilities = capabilities,
+                    }, config)
+                )
+            end
+        end
 
-        mason.setup_handlers({
-            function(server)
-                if server == "emmet_language_server" then
-                    return
-                end
-                lspconfig[server].setup(get_config(server, capabilities, on_attach))
-            end,
-        })
+        require("mason").setup()
+        require("mason-lspconfig").setup()
     end,
 }

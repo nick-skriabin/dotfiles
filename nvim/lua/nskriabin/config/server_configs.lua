@@ -2,51 +2,9 @@ local auto = require("nskriabin.auto.utils")
 
 local M = {}
 
-M.tailwindcss = function(lsp)
-    return {
-        cwd = lsp.util.root_pattern("tailwind.config.js", "tailwind.config.cjs", "tailwind.config.ts"),
-    }
-end
+M.tailwindcss = {}
 
-M.svelte = {
-    settings = {
-        svelte = {
-            ["enable-ts-plugin"] = true,
-            plugin = {
-                svelte = {
-                    enable = true,
-                    format = {
-                        enable = true,
-                    },
-                },
-                css = {
-                    completions = {
-                        emmet = false,
-                    },
-                },
-                html = {
-                    completions = {
-                        emmet = false,
-                    },
-                    tagComplete = {
-                        enable = false,
-                    },
-                },
-            },
-        },
-    },
-    on_attach = function(client)
-        auto.cmd("BufWritePost", {
-            pattern = { "*.js", "*.ts" },
-            group = auto.group("svelte"),
-
-            callback = function(ctx)
-                -- Here use ctx.match instead of ctx.file
-                client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.match })
-            end,
-        })
-    end,
-}
+M.svelte = {}
 
 M.vtsls = {
     settings = {
@@ -78,54 +36,26 @@ M.vtsls = {
     },
 }
 
-M.emmet_language_server = {
-    filetypes = {
-        "css",
-        "eruby",
-        "html",
-        "javascript",
-        "javascriptreact",
-        "less",
-        "sass",
-        "scss",
-        "pug",
-        "typescriptreact",
-        "svelte",
-    },
-    init_options = {
-        showAbbreviationSuggestions = false,
-        showSuggestionsAsSnippets = false,
-    },
-}
+M.emmet_language_server = {}
 
 M.codespell = {
+    enabled = false,
     filetypes = { "*" },
 }
 
 M.cssls = {
-    css = {
-        format = {
-            spaceAroundSelectorSeparator = true,
-        },
-    },
-    scss = {
-        format = {
-            spaceAroundSelectorSeparator = false,
-        },
-    },
-    less = {
-        format = {
-            spaceAroundSelectorSeparator = true,
-        },
+    init_options = {
+        provideFormatter = false,
     },
 }
 
-M.luals = {
+M.lua_ls = {
     settings = {
         diagnostics = {
             globals = {
                 "vim",
                 "hs",
+                "Snacks",
             },
         },
     },
@@ -141,6 +71,15 @@ M.tailwindcss = {
                 "className",
                 "rawClassName",
             },
+            experimental = {
+                classRegex = {
+                    { "clsx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+                    { "cn\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+                    { "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
+                    ":\\s*?[\"'`]([^\"'`]*).*?,",
+                    { "classnames:\\s*{([\\s\\s]*?)}", "\\s?[\\w].*:\\s*?[\"'`]([^\"'`]*).*?,?\\s?" },
+                },
+            },
         },
 
         ["tailwindCSS.classAttributes"] = {
@@ -149,19 +88,8 @@ M.tailwindcss = {
             "rawClassName",
         },
     },
-    tailwindCSS = {
-        classAttributes = {
-            "class",
-            "className",
-            "rawClassName",
-        },
-    },
-
-    ["tailwindCSS.classAttributes"] = {
-        "class",
-        "className",
-        "rawClassName",
-    },
 }
+
+M.prismals = {}
 
 return M

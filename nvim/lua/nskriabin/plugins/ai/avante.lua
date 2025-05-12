@@ -2,6 +2,7 @@
 -- provide code suggestions and generate new files.
 return {
     "yetone/avante.nvim",
+    enabled = false,
     event = { "BufReadPre" },
     keys = {
         { "<leader>aa", "<cmd>AvanteChat<CR>", desc = "Avante Chat", silent = true },

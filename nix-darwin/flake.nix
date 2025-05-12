@@ -126,6 +126,7 @@
               name = "borders";
               start_service = true;
             }
+            "flyctl"
             "git"
             "hookdeck/hookdeck/hookdeck"
             "hugo"
@@ -134,7 +135,9 @@
             "nvim"
             "poetry"
             "posting"
+            "ngrok"
             "supabase/tap/supabase"
+            "stripe/stripe-cli/stripe"
             {
               name = "sketchybar";
               start_service = true;
@@ -208,7 +211,7 @@
               wvous-tl-corner = 1;
               wvous-tr-corner = 1;
               persistent-apps = [
-                "/Applications/Zen Browser.app"
+                "/Applications/Twilight.app"
                 "/Applications/kitty.app"
                 "/Applications/Telegram.app"
                 "${pkgs.slack}/Applications/Slack.app"

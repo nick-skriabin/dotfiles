@@ -129,6 +129,9 @@ return {
                     end,
                 },
             },
+            per_filetype = {
+                codecompanion = { "codecompanion" },
+            },
         },
         keymap = {
             -- set to 'none' to disable the 'default' preset

@@ -108,7 +108,7 @@ local lsp = function(palette, icons)
         function()
             local msg = "No Active Lsp"
             local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
-            local clients = vim.lsp.get_active_clients()
+            local clients = vim.lsp.get_clients()
             if next(clients) == nil then
                 return msg
             end
@@ -161,6 +161,7 @@ return {
         local icons = require("nskriabin.core.ui.icons")
         local Util = require("nskriabin.core.util")
         local palette = require("nskriabin.core.util.color").current()
+        local ccspinner = require("nskriabin.core.plugins.codecompanion-lualine")
 
         local sections = {
             -- these are to remove the defaults
@@ -210,6 +211,7 @@ return {
         -- local notifications = require("nskriabin.core.extensions.lualine.gh-notifications")
         -- add_right(notifications(palette, icons))
         add_right(macro_recording(palette, icons))
+        add_right(ccspinner)
         add_right(lsp(palette, icons))
         if not is_tmux_attached() then
             add_right({

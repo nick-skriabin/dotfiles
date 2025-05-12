@@ -28,6 +28,7 @@ M.lsps = {
     bashls = "󱆃",
     clangd = "",
     harper_ls = "󰗊",
+    prismals = "",
 }
 
 M.dap = {

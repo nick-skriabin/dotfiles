@@ -219,4 +219,7 @@ run = ['move-node-to-workspace 9']
 if.app-id = "com.captureone.captureone15"
 run = ['move-node-to-workspace 8']
 
-
+[[on-window-detected]]
+if.app-id= "app.zen-browser.zen"
+if.window-title-regex-substring= "Picture-in-Picture"
+run = ['layout floating']

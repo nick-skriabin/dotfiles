@@ -1,9 +1,9 @@
 return {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     lazy = true,
     cmd = { "Mason" },
     dependencies = {
-        "williamboman/mason-lspconfig.nvim",
+        "mason-org/mason-lspconfig.nvim",
         "WhoIsSethDaniel/mason-tool-installer.nvim",
     },
     config = function()
@@ -12,9 +12,7 @@ return {
 
         -- import mason-lspconfig
         local mason_lspconfig = require("mason-lspconfig")
-
         local mason_tool_installer = require("mason-tool-installer")
-
         local servers = require("nskriabin.core.lsp.servers")
 
         -- enable mason and configure icons

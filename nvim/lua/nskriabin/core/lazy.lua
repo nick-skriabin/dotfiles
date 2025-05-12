@@ -13,10 +13,8 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     { import = "nskriabin.plugins.theme" },
-    { import = "nskriabin.plugins.ai" },
     { import = "nskriabin.plugins.ui" },
     { import = "nskriabin.plugins.git" },
-    { import = "nskriabin.plugins.dap" },
     { import = "nskriabin.plugins.code" },
     { import = "nskriabin.plugins.nav" },
     { import = "nskriabin.plugins.utils" },
