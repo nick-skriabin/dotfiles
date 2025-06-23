@@ -34,6 +34,7 @@ return {
             scss = { "biomejs", "stylelint" },
             python = { "ruff" },
             lua = { "luacheck" },
+            sql = { "sqlfluff" },
         }
 
         for ft, _ in pairs(lint.linters_by_ft) do

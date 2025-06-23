@@ -36,6 +36,7 @@
         # $ nix-env -qaP | grep wget
         environment.systemPackages = [
           pkgs.ascii-image-converter
+          pkgs.atuin
           pkgs.automake117x
           pkgs.bat # better cat
           pkgs.blueutil # cli to interact with bluetooth
@@ -45,6 +46,8 @@
           pkgs.clipboard-jh # CLI clipboard manager
           pkgs.cmake
           pkgs.cmatrix
+          pkgs.chatgpt
+          pkgs.code-cursor
           pkgs.delta
           pkgs.deno
           pkgs.dwt1-shell-color-scripts
@@ -120,7 +123,12 @@
             autoUpdate = true;
             upgrade = true;
           };
-          taps = [ "homebrew/services" "FelixKratz/formulae" "osx-cross/arm" ];
+          taps = [
+            "homebrew/services"
+            "FelixKratz/formulae"
+            "osx-cross/arm"
+            "nikitabobko/tap"
+          ];
           brews = [
             {
               name = "borders";
@@ -150,6 +158,7 @@
           casks = [
             "affinity-designer"
             "affinity-photo"
+            "aldente"
             "blender"
             "chatgpt"
             "chromedriver"
@@ -168,18 +177,20 @@
             "kitty"
             "maccy"
             "miro"
+            "mouseless"
             "nikitabobko/tap/aerospace"
             "notion"
             "notion-calendar"
+            "obs"
             "orbstack"
             "raycast"
+            "screen-studio"
             "sf-symbols"
             "shapr3d"
             "steam"
             "telegram"
             "ubersicht"
             "whisky"
-            "zen-browser@twilight"
           ];
           # Installed from App Store
           # You must be logged in and an app must already be purchased

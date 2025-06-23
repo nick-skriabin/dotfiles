@@ -9,6 +9,7 @@ export collect_analytics=false
 export STARSHIP_CONFIG=$HOME/.config/starship/starship.toml
 export TERM_PROGRAM=kitty
 export TERM=xterm-kitty
+export FZF_PATH=$HOME/.fzf
 
 # Misc
 export THOR_MERGE=merge_tool_for_rails

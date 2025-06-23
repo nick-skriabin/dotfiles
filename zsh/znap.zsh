@@ -1,7 +1,6 @@
 # Download Znap, if it's not there yet.
-[[ -f ~/Git/zsh-snap/znap.zsh ]] ||
-  git clone --depth 1 -- \
-    https://github.com/marlonrichert/zsh-snap.git ~/Git/zsh-snap
+[[ -f "${HOME}/.zgenom/zgenom.zsh" ]] ||
+  git clone https://github.com/jandamm/zgenom.git "${HOME}/.zgenom"
 
-# Start Znap
-source $HOME/Git/zsh-snap/znap.zsh
+# load zgenom
+source "${HOME}/.zgenom/zgenom.zsh"

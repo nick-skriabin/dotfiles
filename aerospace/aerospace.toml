@@ -212,6 +212,10 @@ if.app-id = 'com.apple.PhotoBooth'
 run = ['layout floating']
 
 [[on-window-detected]]
+if.app-id = 'com.timpler.screenstudio'
+run = ['layout floating']
+
+[[on-window-detected]]
 if.app-id = " com.obsproject.obs-studio"
 run = ['move-node-to-workspace 9']
 

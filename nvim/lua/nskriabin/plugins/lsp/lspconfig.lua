@@ -1,4 +1,5 @@
 local merge = require("nskriabin.core.util.merge")
+
 local configs = require("nskriabin.config.server_configs")
 
 local function snack(name)

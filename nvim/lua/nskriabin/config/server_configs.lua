@@ -36,7 +36,25 @@ M.vtsls = {
     },
 }
 
-M.emmet_language_server = {}
+M.emmet_language_server = {
+    filetypes = {
+        "css",
+        "eruby",
+        "html",
+        "javascript",
+        "javascriptreact",
+        "less",
+        "sass",
+        "scss",
+        "pug",
+        "typescriptreact",
+        "svelte",
+    },
+    init_options = {
+        showAbbreviationSuggestions = false,
+        showSuggestionsAsSnippets = false,
+    },
+}
 
 M.codespell = {
     enabled = false,

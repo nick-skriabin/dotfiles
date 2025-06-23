@@ -1,7 +1,10 @@
 # Plugins
-# Autocompletions
-znap source Aloxaf/fzf-tab
-znap source zsh-users/zsh-autosuggestions
-znap source zsh-users/zsh-syntax-highlighting
-znap source jeffreytse/zsh-vi-mode
-znap source joshskidmore/zsh-fzf-history-search
+
+if ! zgenom saved; then
+  # Autocompletions
+  zgenom load Aloxaf/fzf-tab
+  zgenom load zsh-users/zsh-autosuggestions
+  zgenom load zsh-users/zsh-syntax-highlighting
+  zgenom load jeffreytse/zsh-vi-mode
+  zgenom load unixorn/fzf-zsh-plugin
+fi

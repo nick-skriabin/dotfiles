@@ -12,7 +12,7 @@ M.lsp = {
     "lua_ls",
     "mdx_analyzer",
     "nil_ls",
-    "prismals",
+    -- "prismals",
     "jedi_language_server",
     "svelte",
     "tailwindcss",
