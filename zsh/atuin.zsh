@@ -106,6 +106,7 @@ zle -N atuin-up-search-viins _atuin_up_search_viins
 zle -N _atuin_search_widget _atuin_search
 zle -N _atuin_up_search_widget _atuin_up_search
 
+# Atuin keybindings - ensure Ctrl+R works for history search
 bindkey -M emacs '^r' atuin-search
 bindkey -M viins '^r' atuin-search-viins
 bindkey -M vicmd '/' atuin-search

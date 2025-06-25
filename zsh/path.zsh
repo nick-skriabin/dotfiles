@@ -1,23 +1,33 @@
-# Path
-export PATH="$PATH:$ANDROID_HOME/tools"
-export PATH="$PATH:$ANDROID_HOME/tools/bin"
-export PATH="$PATH:$ANDROID_HOME/platform-tools"
-export PATH="/usr/local/share/npm/bin:$PATH"
-export PATH="/usr/local/mysql/bin:$PATH"
-export PATH="/opt/local/bin:$PATH"
-export PATH="/opt/local/sbin:$PATH"
-export PATH="/opt/homebrew/bin:$PATH"
-export PATH=$HOME/bin:"$PATH"
-export PATH="$HOME/.bin:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/.yarn/bin:$PATH"
-export PATH="$HOME/.cargo/bin:$PATH"
-export PATH="$HOME/.cargo/env:$PATH"
-export PATH="$HOME/development/flutter/bin:$PATH"
-export PATH="$HOME/Library/Python/3.7/bin:$PATH"
-export PATH="$HOME/Git/sourcekit-lsp/.build/debug:$PATH"
-export PATH="$HOME/.config/tmux/plugins/t-smart-tmux-session-manager/bin:$PATH"
-export PATH="$HOME/bin:/usr/local/bin:$PATH"
+# Path - optimized for faster loading
+# Core paths
+export PATH="/opt/homebrew/bin:/usr/local/bin:$HOME/bin:$PATH"
+
+# Development tools
+export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$HOME/.yarn/bin:$PATH"
+
+# Language-specific paths
 export PATH="$HOME/.bun/bin:$PATH"
-export PATH="$GOPATH/bin:$PATH"
-export PATH="$NIX_PATH:$PATH"
+export PATH="$HOME/.cargo/env:$PATH"
+
+# Android SDK (only if directory exists)
+if [[ -d "$ANDROID_HOME" ]]; then
+  export PATH="$PATH:$ANDROID_HOME/tools"
+  export PATH="$PATH:$ANDROID_HOME/tools/bin"
+  export PATH="$PATH:$ANDROID_HOME/platform-tools"
+fi
+
+# Flutter (only if directory exists)
+if [[ -d "$HOME/development/flutter/bin" ]]; then
+  export PATH="$HOME/development/flutter/bin:$PATH"
+fi
+
+# Go (only if GOPATH is set)
+if [[ -n "$GOPATH" ]]; then
+  export PATH="$GOPATH/bin:$PATH"
+fi
+
+# Additional paths (only if they exist)
+[[ -d "/usr/local/mysql/bin" ]] && export PATH="/usr/local/mysql/bin:$PATH"
+[[ -d "/opt/local/bin" ]] && export PATH="/opt/local/bin:$PATH"
+[[ -d "/opt/local/sbin" ]] && export PATH="/opt/local/sbin:$PATH"
+[[ -d "$HOME/.config/tmux/plugins/t-smart-tmux-session-manager/bin" ]] && export PATH="$HOME/.config/tmux/plugins/t-smart-tmux-session-manager/bin:$PATH"

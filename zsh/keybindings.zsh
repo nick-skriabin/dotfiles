@@ -47,3 +47,6 @@ function vi-yank-xclip {
 
 zle -N vi-yank-xclip
 bindkey -M vicmd 'y' vi-yank-xclip
+
+# Note: Atuin keybindings are now handled by post-startup hook in main.zsh
+# to ensure they work with zsh-vi-mode
