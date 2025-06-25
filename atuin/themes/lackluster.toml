@@ -1,0 +1,12 @@
+[theme]
+name = "lackluster"
+parent = "autumn"
+
+[colors]
+AlertInfo = "#789978"
+AlertError = "#d70000"
+AlertWarn = "#abab77"
+Guidance = "#abab77"
+Base = "#aaaaaa"
+Title = "#aaaaaa"
+Annotation = "#aaaaaa"

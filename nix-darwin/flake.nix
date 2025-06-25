@@ -36,7 +36,6 @@
         # $ nix-env -qaP | grep wget
         environment.systemPackages = [
           pkgs.ascii-image-converter
-          pkgs.atuin
           pkgs.automake117x
           pkgs.bat # better cat
           pkgs.blueutil # cli to interact with bluetooth
@@ -78,7 +77,6 @@
           pkgs.maven
           pkgs.mdformat
           pkgs.nixfmt-classic
-          pkgs.nushell
           pkgs.obsidian
           pkgs.pass
           pkgs.pipx
@@ -130,6 +128,7 @@
             "nikitabobko/tap"
           ];
           brews = [
+            "atuin"
             {
               name = "borders";
               start_service = true;
@@ -141,9 +140,9 @@
             "ifstat" # network interface stats
             "luarocks"
             "nvim"
+            "nushell"
             "poetry"
             "posting"
-            "ngrok"
             "supabase/tap/supabase"
             "stripe/stripe-cli/stripe"
             {
@@ -177,6 +176,7 @@
             "kitty"
             "maccy"
             "miro"
+            "ngrok"
             "mouseless"
             "nikitabobko/tap/aerospace"
             "notion"
@@ -222,7 +222,7 @@
               wvous-tl-corner = 1;
               wvous-tr-corner = 1;
               persistent-apps = [
-                "/Applications/Twilight.app"
+                "/Applications/Arc.app"
                 "/Applications/kitty.app"
                 "/Applications/Telegram.app"
                 "${pkgs.slack}/Applications/Slack.app"

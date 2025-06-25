@@ -47,6 +47,3 @@ function vi-yank-xclip {
 
 zle -N vi-yank-xclip
 bindkey -M vicmd 'y' vi-yank-xclip
-
-# use fzf as a command history
-bindkey '^r' fzf-history-widget

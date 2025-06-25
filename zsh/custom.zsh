@@ -6,6 +6,7 @@ source ~/.config/zsh/plugins.zsh
 source ~/.config/zsh/env.zsh
 source ~/.config/zsh/locale.zsh
 source ~/.config/zsh/keys.zsh
+source ~/.config/zsh/atuin.zsh
 source ~/.config/zsh/keybindings.zsh
 source ~/.config/zsh/aliases.zsh
 source ~/.config/zsh/fn.zsh

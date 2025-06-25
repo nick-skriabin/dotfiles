@@ -26,6 +26,4 @@ type starship_zle-keymap-select >/dev/null ||
     eval "$(/usr/local/bin/starship init zsh)"
   }
 
-# Set up fzf key bindings and fuzzy completion
-source <(fzf --zsh)
 eval "$(/opt/homebrew/bin/brew shellenv)"
