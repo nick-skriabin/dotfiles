@@ -6,33 +6,37 @@ M.tailwindcss = {}
 
 M.svelte = {}
 
+-- M.ts_ls = {}
+
+local tsdk = vim.fn.getcwd() .. "/node_modules/typescript/lib"
+
 M.vtsls = {
     settings = {
-        includeCompletionsForModuleExports = true,
-        includePackageJsonAutoImports = true,
         typescript = {
             tsserver = {
-                maxTsServerMemory = "auto",
+                maxTsServerMemory = 4096, -- give it RAM; 2048 often too low in big monorepos
+                useSeparateSyntaxServer = true, -- keeps quick info/snippets snappy
+                separateSyntaxServer = true, -- alias tolerated by some clients
+                experimental = {
+                    -- Turn OFF project-wide intellisense to avoid full-graph crawls on file change
+                    projectWideIntellisense = false,
+                },
+                watchOptions = {
+                    watchFile = "useFsEventsOnParentDirectory",
+                    watchDirectory = "useFsEvents",
+                    fallbackPolling = "dynamicPriority",
+                    synchronousWatchDirectory = false,
+                },
             },
-            format = {
-                enable = false,
-            },
-            inlayHints = {
-                parameterNames = true,
-            },
-            updateImportsOnFileMove = "always",
         },
-
-        javascript = {
-            format = {
-                enable = false,
+        vtsls = {
+            tsserver = {
+                globalPlugins = {}, -- keep empty unless you truly need extras
             },
-            inlayHints = {
-                parameterNames = true,
-            },
-            updateImportsOnFileMove = "always",
+            -- Small but real wins:
+            enableMoveToFileCodeAction = false,
+            autoUseWorkspaceTsdk = true, -- ensure it picks your repo TS
         },
-        plugins = { "typescript-plugin-css-modules" },
     },
 }
 
@@ -109,5 +113,6 @@ M.tailwindcss = {
 }
 
 M.prismals = {}
+M["mdx-analyzer"] = {}
 
 return M

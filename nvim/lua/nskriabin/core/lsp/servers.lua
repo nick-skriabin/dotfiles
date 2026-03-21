@@ -17,6 +17,7 @@ M.lsp = {
     "svelte",
     "tailwindcss",
     "vtsls",
+    -- "ts_ls",
     "yamlls",
 }
 
