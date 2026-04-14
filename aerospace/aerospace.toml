@@ -1,7 +1,4 @@
 # Mouse follows focus when focused monitor changes
-on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
-on-focus-changed = ['move-mouse window-lazy-center'] # Mouse lazily follows any focus (window or workspace)
-
 exec-on-workspace-change = [
   '/bin/bash',
   '-c',
@@ -23,43 +20,43 @@ start-at-login = true
 9 = '^built-in retina display$'                       # Main monitor
 10 = 'main'
 
-[key-mapping.key-notation-to-key-code]
-q = 'q'
-w = 'w'
-f = 'e'
-p = 'r'
-b = 't'
-j = 'y'
-l = 'u'
-u = 'i'
-y = 'o'
-semicolon = 'p'
-leftSquareBracket = 'leftSquareBracket'
-rightSquareBracket = 'rightSquareBracket'
-backslash = 'backslash'
-
-a = 'a'
-r = 's'
-s = 'd'
-t = 'f'
-g = 'g'
-m = 'h'
-n = 'j'
-e = 'k'
-i = 'l'
-o = 'semicolon'
-quote = 'quote'
-
-x = 'z'
-c = 'x'
-d = 'c'
-v = 'v'
-z = 'b'
-k = 'n'
-h = 'm'
-comma = 'comma'
-period = 'period'
-slash = 'slash'
+# [key-mapping.key-notation-to-key-code]
+# q = 'q'
+# w = 'w'
+# f = 'e'
+# p = 'r'
+# b = 't'
+# j = 'y'
+# l = 'u'
+# u = 'i'
+# y = 'o'
+# semicolon = 'p'
+# leftSquareBracket = 'leftSquareBracket'
+# rightSquareBracket = 'rightSquareBracket'
+# backslash = 'backslash'
+#
+# a = 'a'
+# r = 's'
+# s = 'd'
+# t = 'f'
+# g = 'g'
+# m = 'h'
+# n = 'j'
+# e = 'k'
+# i = 'l'
+# o = 'semicolon'
+# quote = 'quote'
+#
+# x = 'z'
+# c = 'x'
+# d = 'c'
+# v = 'v'
+# z = 'b'
+# k = 'n'
+# h = 'm'
+# comma = 'comma'
+# period = 'period'
+# slash = 'slash'
 
 [mode.main.binding]
 cmd-h = [] # Disable "hide application"

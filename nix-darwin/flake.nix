@@ -40,13 +40,11 @@
           pkgs.bat # better cat
           pkgs.blueutil # cli to interact with bluetooth
           pkgs.btop # better top
-          pkgs.bun # JS/TS runtime
           pkgs.cargo # rust package manager/compiler
           pkgs.clipboard-jh # CLI clipboard manager
           pkgs.cmake
           pkgs.cmatrix
           pkgs.chatgpt
-          pkgs.code-cursor
           pkgs.delta
           pkgs.deno
           pkgs.dwt1-shell-color-scripts
@@ -91,7 +89,6 @@
           pkgs.ruff # Python linter
           pkgs.rustc # Rust programming language
           pkgs.rustup
-          pkgs.sesh
           pkgs.silver-searcher # Code finder (ag)
           pkgs.slack # Messenger
           pkgs.slumber # REST client
@@ -126,6 +123,7 @@
             "FelixKratz/formulae"
             "osx-cross/arm"
             "nikitabobko/tap"
+            "cesarferreira/tap"
           ];
           brews = [
             "atuin"
@@ -136,13 +134,18 @@
             "flyctl"
             "git"
             "hookdeck/hookdeck/hookdeck"
+            "oven-sh/bun/bun" # TS/JS runtime
             "hugo"
             "ifstat" # network interface stats
             "luarocks"
             "nvim"
+            "nvm"
+            "bleunlock"
             "nushell"
             "poetry"
             "posting"
+            "rip"
+            "sesh"
             "supabase/tap/supabase"
             "stripe/stripe-cli/stripe"
             {
@@ -167,6 +170,7 @@
             "font-inconsolata-nerd-font"
             "font-monaspace-nerd-font"
             "font-sf-pro"
+            "ghostty"
             "google-drive"
             "hammerspoon"
             "homerow"

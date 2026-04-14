@@ -1,6 +1,7 @@
 # Path - optimized for faster loading
 # Core paths
 export PATH="/opt/homebrew/bin:/usr/local/bin:$HOME/bin:$PATH"
+export PATH="$HOME/.bin:$PATH"
 
 # Development tools
 export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$HOME/.yarn/bin:$PATH"
@@ -8,6 +9,12 @@ export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$HOME/.yarn/bin:$PATH"
 # Language-specific paths
 export PATH="$HOME/.bun/bin:$PATH"
 export PATH="$HOME/.cargo/env:$PATH"
+
+# Add zoxide to PATH for subprocess access
+if command -v zoxide &>/dev/null; then
+  # zoxide is already in PATH from Nix
+  export PATH="$PATH"
+fi
 
 # Android SDK (only if directory exists)
 if [[ -d "$ANDROID_HOME" ]]; then

@@ -1,0 +1,143 @@
+[font]
+size = 19
+cell_height = "150%"
+fallback = ["JetBrains Mono Nerd Font", "Symbols Nerd Font"]
+ligatures = true
+
+[xyron]
+enabled = true
+path = "/Users/nicholasrq/Projects/xyron/zig-out/bin/xyron"
+
+[theme]
+name = "lackluster"
+
+[background]
+opacity = 1
+
+[window]
+decorations = false
+padding = 10
+
+[cursor]
+trail = true
+
+[logging]
+file = "/tmp/attyx.log"
+
+
+[[popup]]
+hotkey = "alt+g"
+command = "lazygit"
+width = "95%"
+height = "90%"
+border = "none"
+background = "#1a1a1a"
+padding_x = 1
+
+[[popup]]
+hotkey = "alt+y"
+command = "yazi"
+width = "95%"
+height = "85%"
+border = "none"
+background = "#1a1a1a"
+
+[[popup]]
+hotkey = "alt+m"
+command = "epist"
+width = "95%"
+height = "85%"
+border = "none"
+background = "#1a1a1a"
+
+[[popup]]
+hotkey = "alt+c"
+command = "aion"
+width = "95%"
+height = "85%"
+border = "none"
+background = "#1a1a1a"
+
+[[popup]]
+hotkey = "alt+d"
+command = "lazydocker"
+width = "95%"
+height = "85%"
+border = "none"
+background = "#1a1a1a"
+
+[[popup]]
+hotkey = "alt+i"
+command = "gh dash"
+width = "95%"
+height = "85%"
+border = "none"
+background = "#1a1a1a"
+
+[[popup]]
+hotkey = "alt+shift+r"
+command = 'printf "Tab name: " >&2 && read name && echo $name'
+width = "40%"
+height = "10%"
+border = "rounded"
+on_return_cmd = "attyx tab rename"
+
+[statusbar]
+enabled = true
+position = "top"
+
+
+[statusbar.cwd]
+side = "left"
+interval = 5
+truncate = 2
+
+[statusbar.git]
+side = "left"
+interval = 10
+icon_branch = '󰘬 '
+icon_hashprefix = ' '
+icon_ahead = ' '
+icon_behind = ' '
+icon_staged = '● '
+icon_conflict = '󱓌 '
+icon_untracked = ' '
+icon_modified = ' '
+icon_stashed = '󰆓 '
+icon_clean = ' '
+icon_insertions = ' '
+icon_deletions = ' '
+
+[statusbar.time]
+side = "right"
+interval = 1
+24h = false
+
+[sessions]
+enabled = true
+icon_filter = "❯"
+icon_active = "󱉺"
+icon_session = " "
+icon_recent = "󰿦"
+icon_folder = "󰉋"
+
+[keybindings]
+tab_select_1 = "alt+1"
+tab_select_2 = "alt+2"
+tab_select_3 = "alt+3"
+tab_select_4 = "alt+4"
+tab_select_5 = "alt+5"
+tab_select_6 = "alt+6"
+tab_select_7 = "alt+7"
+tab_select_8 = "alt+8"
+tab_select_9 = "alt+9"
+tab_move_left = "alt+p"
+tab_move_right = "alt+n"
+session_switcher_toggle = "alt+shift+s"
+pane_zoom_toggle = "alt+z"
+
+[tabs]
+dim_unfocused = true
+
+[scrollback]
+lines = 50000

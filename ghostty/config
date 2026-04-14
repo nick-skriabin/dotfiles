@@ -1,0 +1,54 @@
+
+# This is the configuration file for Ghostty.
+#
+# This template file has been automatically created at the following
+# path since Ghostty couldn't find any existing config files on your system:
+#
+#   /Users/nicholasrq/Library/Application Support/com.mitchellh.ghostty/config
+#
+# The template does not set any default options, since Ghostty ships
+# with sensible defaults for all options. Users should only need to set
+# options that they want to change from the default.
+#
+# Run `ghostty +show-config --default --docs` to view a list of
+# all available config options and their default values.
+#
+# Additionally, each config option is also explained in detail
+# on Ghostty's website, at https://ghostty.org/docs/config.
+
+# Config syntax crash course
+# ==========================
+# # The config file consists of simple key-value pairs,
+# # separated by equals signs.
+font-family = ""
+font-family = JetBrains Mono
+font-family = Symbols Nerd Font
+font-size = 19
+
+adjust-cell-height = 70%
+# adjust-strikethrough-position = -5
+background-blur = 30
+background-opacity = 1
+background = #111111
+
+macos-titlebar-style = hidden
+
+custom-shader = "shaders/cursor_smear_fade.glsl"
+custom-shader = "shaders/cursor_blaze_no_trail.glsl"
+custom-shader = "shaders/grain.glsl"
+
+window-padding-x = 8
+window-padding-y = 8
+window-padding-balance = true
+adjust-cursor-thickness = 2
+
+theme = lackluster
+
+macos-option-as-alt = true
+
+keybind = alt+left=unbind
+keybind = alt+right=unbind
+keybind = ctrl+enter=text:\x1b[13;5~
+
+font-codepoint-map = U+E000-U+E00A,U+E0A0-U+E0A3,U+E0B0-U+E0C8,U+E0CA,U+E0CC-U+E0D7,U+E200-U+E2A9,U+E300-U+E3E3,U+E5FA-U+E6B7,U+E700-U+E8EF,U+EA60-U+EC1E,U+ED00-U+F2FF,U+EE00-U+EE0B,U+F300-U+F381,U+F400-U+F533,U+F0001-U+F1AF0=Symbols Nerd Font
+

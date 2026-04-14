@@ -6,12 +6,17 @@ export PKG_CONFIG_PATH="/usr/local/opt/zlib/lib/pkgconfig"
 export XDG_CONFIG_HOME="$HOME/.config"
 export collect_analytics=false
 export STARSHIP_CONFIG=$HOME/.config/starship/starship.toml
-export TERM_PROGRAM=kitty
 
 # Set TERM more safely
-if [[ "$TERM_PROGRAM" == "kitty" ]]; then
+if [[ "$TERM_PROGRAM" == "ghostty " ]]; then
   # Try xterm-kitty first, fallback to xterm-256color
-  if infocmp xterm-kitty >/dev/null 2>&1; then
+  if infocmp xterm-ghostty >/dev/null 2>&1; then
+    export TERM=xterm-ghostty
+  else
+    export TERM=xterm-256color
+  fi
+elif [[ "$TERM_PROGRAM" == "kitty" ]]; then
+  if infocmp xterm-ghostty >/dev/null 2>&1; then
     export TERM=xterm-kitty
   else
     export TERM=xterm-256color
@@ -36,6 +41,7 @@ export GOOGLE_APPLICATION_CREDENTIALS="/Users/nicholasrq/gcs-credentials.json"
 
 export NODE_ENV=development
 export NODE_NO_WARNINGS=1
+export NODE_OPTIONS="--max-old-space-size=8192"
 
 # Vim
 export MYVIMRC=$HOME/.config/nvim/init.lua
@@ -44,6 +50,17 @@ export TMUX_FZF_LAUNCH_KEY="C-f"
 # Set slow environment variables synchronously (no background jobs)
 export CPU_NUMBER=$(sysctl -n hw.ncpu 2>/dev/null || echo "4")
 export DYLD_FALLBACK_LIBRARY_PATH="$(brew --prefix 2>/dev/null || echo "/opt/homebrew")/lib:$DYLD_FALLBACK_LIBRARY_PATH"
+
+# NVM setup for lazy loading AND subprocess access
+export NVM_DIR="$HOME/development/nvm"
+# Add NVM binaries to PATH so subprocesses can find them
+if [[ -d "$NVM_DIR/versions/node" ]]; then
+  # Find the latest Node.js version and add it to PATH
+  NODE_VERSION=$(ls "$NVM_DIR/versions/node" | sort -V | tail -1)
+  if [[ -n "$NODE_VERSION" ]]; then
+    export PATH="$NVM_DIR/versions/node/$NODE_VERSION/bin:$PATH"
+  fi
+fi
 
 export FZF_DEFAULT_OPTS=" \
 --color=bg+:#000000,bg:#000000,spinner:#aaaaaa,hl:#D70000 \

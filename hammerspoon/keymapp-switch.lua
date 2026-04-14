@@ -6,7 +6,8 @@
 --- - layer is always attached to a specific layout: by default it's QWERTY layer with Russian layout, and Graphite for the U.S. layout
 
 local KEYBOARD_NAME = "Voyager"
-local KEYBOARD_CONNECTED = false
+
+local KONTROLL = "~/.bin/kontroll"
 
 local alert_colors = {
     alert = {
@@ -74,9 +75,8 @@ local function toggle_layer(layout)
     if layout ~= LAYOUTS.qwerty_ru then
         index = 1
     end
-    local cmd = "/bin/zsh -c 'kontroll set-layer --index " .. index .. "'"
-    print("setting layer " .. index .. " for layout " .. layout)
-    print(cmd)
+    local cmd = KONTROLL .. " set-layer --index " .. index
+    print(hs.execute(KONTROLL .. " connect-any"))
     print(hs.execute(cmd))
 end
 

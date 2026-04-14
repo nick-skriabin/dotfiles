@@ -2,5 +2,7 @@ profile = "default"
 
 [default]
   api_key = "0cpbxblfrb4rngoka5koc9ftg5pe2abn7pjmm0l9ikrxektdvu"
+  project_id = "tm_Of5wYZchKw01"
+  project_mode = "inbound"
   workspace_id = "tm_Of5wYZchKw01"
   workspace_mode = "inbound"
