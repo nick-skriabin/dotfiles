@@ -1,0 +1,5 @@
+{
+  "workspace.library": ["/Users/nicholasrq/.local/share/xyron/types"],
+  "diagnostics.globals": ["xyron"],
+  "runtime.version": "Lua 5.5"
+}

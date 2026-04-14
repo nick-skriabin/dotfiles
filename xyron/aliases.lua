@@ -1,0 +1,10 @@
+xyron.alias("ll", "ls -la")
+xyron.alias("gs", "git status")
+xyron.alias("gp", "git push")
+xyron.alias("gc", "git commit")
+xyron.alias("lg", "lazygit")
+xyron.alias("v", "nvim")
+xyron.alias("r", "xyron reload")
+
+xyron.alias("cc", "CLAUDE_CODE_NO_FLICKER=1 CLAUDE_CONFIG_DIR=/Users/nicholasrq/.claude claude")
+xyron.alias("cch", "CLAUDE_CODE_NO_FLICKER=1 CLAUDE_CONFIG_DIR=/Users/nicholasrq/.claude-hs claude")

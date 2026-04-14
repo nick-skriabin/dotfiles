@@ -1,0 +1,6 @@
+require("env")
+require("path_defs")
+require("settings")
+require("prompt")
+require("aliases")
+require("commands.nvm")
