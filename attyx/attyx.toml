@@ -24,7 +24,6 @@ trail = true
 [logging]
 file = "/tmp/attyx.log"
 
-
 [[popup]]
 hotkey = "alt+g"
 command = "lazygit"
@@ -138,6 +137,7 @@ pane_zoom_toggle = "alt+z"
 
 [tabs]
 dim_unfocused = true
+side = "left"
 
 [scrollback]
 lines = 50000

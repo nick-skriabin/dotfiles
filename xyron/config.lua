@@ -1,4 +1,5 @@
 require("env")
+require("keys")
 require("path_defs")
 require("settings")
 require("prompt")
